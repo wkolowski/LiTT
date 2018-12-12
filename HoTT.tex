@@ -1,0 +1,69 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage[polish]{babel}
+\usetheme{Darmstadt}
+
+\newcommand{\impl}{\rightarrow}
+\renewcommand{\implies}{\rightarrow}
+
+\title{Homotopiczna teoria typów}
+
+\author{Zeimer}
+\date{13 stycznia 2019}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\frame{\tableofcontents}
+
+\section{O co chodzi}
+
+\begin{frame}{Odległe związki}
+\begin{itemize}
+	\item Homotopiczna teoria typów to połączenie teorii homotopii i teorii typów.
+	\item Teorii typów nie trzeba nikomu przedstawiać.
+	\item Teoria homotopii... TODO.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Po co HoTT? 1}
+\begin{itemize}
+	\item HoTT jest też pomysłem na nowe podstawy matematyki (foundations of mathematics).
+	\item Jest teorią typów, więc świetnie nadaje się do formalizacji za pomocą komputerów, czego nie można powiedzieć o teorii zbiorów.
+	\item Jest syntetyczną teorią homotopii, co pozwala łatwo formalizować całkiem ezoteryczną matematykę.
+	\item Jest konstruktywna, co powinno podobać się konstruktywistom. Co więcej, dzięki wyższym typom induktywnym pozwala na konstruktywne rozwiązanie problemów, które dotąd wymagały podejścia klasycznego.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Po co HoTT? 2}
+\begin{itemize}
+	\item Dopuszcza niektóre klasyczne aksjomaty, co powinno przypaść do gusty klasykom.
+	\item Jednocześnie podaje dobre filozoficzne podstawy (i formalne doowdy), by niektóre inne klasyczne aksjomaty odrzucić.
+	\item Z trzeciej strony, pozwala wyrazić w teorii typów niektóre klasyczne aksjomaty, których dotychczas wyrazić nie było można (np. aksjomat wyboru).
+\end{itemize}
+\begin{theorem}
+$\textstyle
+	\prod (A : \mathcal{U}) (B : A \to \mathcal{U}) (R : \Pi x : A, B\ x \to \mathcal{U}),$ \\
+		$(\prod x : A, \sum y : B\ x, R\ x\ y) \to$ \\
+			$\sum f : (\Pi x : A, B x), \Pi x : A, R\ x\ (f\ x)$
+\end{theorem}
+\end{frame}
+
+
+\begin{frame}{Pomysły}
+\begin{itemize}
+	\item O co chodzi z teorią homotopii i topologią algebraiczną? Grupa podstawowa okręgu.
+	\item Hierarchia n-typów: unit, funkcje sortujące, pusty, zbiory, grupoidy, okrąg, uniwersum.
+	
+\end{itemize}
+\end{frame}
+
+\begin{frame}{wut}
+\begin{itemize}
+	\item
+\end{itemize}
+\end{frame}
+
+\end{document}
