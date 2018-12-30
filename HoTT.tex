@@ -6,6 +6,7 @@
 
 \newcommand{\impl}{\rightarrow}
 \renewcommand{\implies}{\rightarrow}
+\newcommand{\U}{\mathcal{U}}
 
 \title{Homotopiczna teoria typów}
 
@@ -28,6 +29,48 @@
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Teoria typów 1}
+\begin{itemize}
+	\item Teorię typów w ujęciu HoTTowym można opisać jako system formalny, który za pomocą reguł (osądów) opisuje byty zwane typami. Kluczową innowacją HoTT jest interpretacja typów i wymyślone na jej podstawie aksjomaty rzucające światło na naturę kosmosu.
+	\item Reguły dzielą się na ciekawe i nieciekawe.
+	\item Nieciekawe to te, które muszą być, żeby wszystko działało, np. do zamieniania kolejności rzeczy w kontekście.
+	\item Ciekawe - to te, które faktycznie opisują typy. Jest ich pięć rodzajów: reguły formacji, wprowadzania, eliminacji, obliczania i unikalności.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Teoria typów 2}
+\begin{itemize}
+	\item Reguły formacji mówią, skąd się biorą typy.
+	\item Reguły wprowadzania mówią, jak zrobić elementy danego typu.
+	\item Reguły eliminacji mówią, jak zrobić coś z elementami danego typu.
+	\item Reguły obliczania mówią, jak reguły eliminacji mają się do reguł wprowadzania.
+	\item Reguły unikalności mówią, jak reguły wprowadzania mają się do reguł eliminacji.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Teoria typów 3}
+\begin{itemize}
+	\item Przykład: reguły dla typu funkcyjnego. Ćwiczenie: nazwij każdą z reguł.
+\end{itemize}
+
+	\begin{center}
+		$\displaystyle \frac{\Gamma \vdash A : \U \quad \Gamma \vdash B : \U}{\Gamma \vdash A \to B : \U}$
+	\end{center}
+	\begin{center}
+		$\displaystyle \frac{\Gamma, x : A \vdash b : B}{\Gamma \vdash \lambda x:A.b : A \to B}$
+	\end{center}
+	\begin{center}
+		$\displaystyle \frac{\Gamma \vdash f : A \to B \quad \Gamma \vdash x : A}{\Gamma \vdash f\ x : B}$
+	\end{center}
+	\begin{center}
+		$\displaystyle \frac{\Gamma, x : A \vdash b : B \quad \Gamma \vdash a : A}{\Gamma \vdash (\lambda x:A.b)\ a \equiv b[x := a] : B}$
+	\end{center}
+	\begin{center}
+		$\displaystyle \frac{\Gamma \vdash f : A \to B}{\Gamma \vdash \lambda x:A.f\ x \equiv f : A \to B}$
+	\end{center}
+	
+\end{frame}
+
 \begin{frame}{Po co HoTT? 1}
 \begin{itemize}
 	\item HoTT jest też pomysłem na nowe podstawy matematyki (foundations of mathematics).
@@ -39,8 +82,8 @@
 
 \begin{frame}{Po co HoTT? 2}
 \begin{itemize}
-	\item Dopuszcza niektóre klasyczne aksjomaty, co powinno przypaść do gusty klasykom.
-	\item Jednocześnie podaje dobre filozoficzne podstawy (i formalne doowdy), by niektóre inne klasyczne aksjomaty odrzucić.
+	\item Dopuszcza niektóre klasyczne aksjomaty, co powinno przypaść do gustu klasykom.
+	\item Jednocześnie podaje dobre filozoficzne podstawy (i formalne dowody), by niektóre inne klasyczne aksjomaty odrzucić.
 	\item Z trzeciej strony, pozwala wyrazić w teorii typów niektóre klasyczne aksjomaty, których dotychczas wyrazić nie było można (np. aksjomat wyboru).
 \end{itemize}
 \begin{theorem}
