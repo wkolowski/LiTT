@@ -49,6 +49,7 @@
 \end{frame}
 
 \begin{frame}{Teoria typów 3}
+
 \begin{itemize}
 	\item Przykład: reguły dla typu funkcyjnego. Ćwiczenie: nazwij każdą z reguł.
 \end{itemize}
@@ -68,7 +69,57 @@
 	\begin{center}
 		$\displaystyle \frac{\Gamma \vdash f : A \to B}{\Gamma \vdash \lambda x:A.f\ x \equiv f : A \to B}$
 	\end{center}
-	
+\end{frame}
+
+\begin{frame}{Teoria typów 4}
+\begin{itemize}
+	\item wut
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Teoria homotopii 1}
+\begin{itemize}
+	\item Co to jest homotopia?
+	\item Zgodnie z wikipedią, jeżeli $f$ i $g$ są funkcjami ciągłymi z przestrzeni topologicznej $X$ w przestrzeń topologiczną $Y$, to $H: X \times [0; 1] \to Y$ jest homotopią, gdy jest funkcją ciągłą spełniającą $H(0, x) = f(x) \land H(1, x) = g(x)$.
+	\item Jeżeli nieco pogmeramy w symbolach, to możemy to zapisać tak: $H: [0; 1] \to (X \to Y)$ jest homotopią, gdy jest ciągła i spełnia $H(0) = f \land H(1) = g$.
+	\item Nie przejmuj się, jeżeli definicja cię nie oświeca. Moim zdaniem władowanie jej do nazwy całej teorii jest głupie.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Teoria homotopii 2}
+\begin{itemize}
+	\item Bardziej podstawowym pojęciem jest ścieżka.
+	\item Ścieżka w przestrzeni topologicznej $X$ to funkcja ciągła z $[0; 1]$ w $X$.
+	\item Łatwo to sobie wyobrazić: odcinek $[0; 1]$ z pewnością jest ścieżką prowadzącą od $0$ do $1$. Jego obrazem, czyli ścieżką, jest więc pewien ciąły zawijasek, który prowadzi z $f(0)$ do $f(1)$.
+	\item Ostatecznie możemy powiedzieć, że homotopia to ścieżka między funkcjami.
+	\item Teoria homotopii nie jest jednak teorią ścieżek między funkcjami. Jest to raczej po prostu teoria ścieżek.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Teoria homotopii 3}
+\begin{itemize}
+	\item Po co to wszystko?
+	\item Topologia jest całkiem użyteczna. Ostatnio popularna robi się topologiczna analiza danych. Zamiast prymitywnie przypasowywać do danych proste (regresja liniowa), ludzie próbują lepiej opisywać kształt danych. Topologia bada kształty, więc pasuje jak ulał.
+	\item Chcemy więc wiedzieć więcej o topologii, np. czy dwie przestrzenie są takie same czy inne. Tutaj wkracza topologia algebraiczna, czyli dziedzina badająca przestrzenie topologiczne za pomocą metod algebraicznych.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Teoria homotopii 4}
+\begin{itemize}
+	\item Pętla w punkcie $x$ to ścieżka, która zaczyna się i kończy w punkcie $x$.
+	\item Grupa podstawowa przestrzeni $X$ w punkcie $x$ to grupa, której nośnikiem jest zbiór wszystkich pętli w punkcie $x$. Działaniem grupowym jest sklejanie pętli (najpierw pójdź pierwszą pętlą, a potem drugą). Odwrotność to pójście pętlą w przeciwnym kierunku. Element neutralny to stanie w miejscu.
+	\item Grupa podstawowa jest fajna, bo jeżeli przestrzenie są izomorficzne, to ich grupy podstawowe też są. Wobec tego jeżeli grupy podstawowe (w dowolnym punkcie) są różne, to przestrzenie też są różne.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Teoria homotopii 5}
+\begin{itemize}
+	\item Okrąg to taka przestrzeń topologiczna, że... wyobraź sobie, pewnie kiedyś widziałeś okrąg.
+	\item Grupa podstawowa okręgu w dowolnym punkcie jest izomorficzna z grupą liczb całkowitych z dodawaniem.
+	\item Stanie w miejscu reprezentuje $0$.
+	\item $n$ okrążeń zgodnie z ruchem wskazówek zegara reprezentuje liczbę $n$.
+	\item $n$ okrążeń przeciwnie do ruchu wskazówek zegara reprezentuje liczbę $-n$.
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Po co HoTT? 1}
