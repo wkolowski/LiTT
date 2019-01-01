@@ -21,11 +21,14 @@
 
 \section{O co chodzi}
 
-\begin{frame}{Odległe związki}
+\begin{frame}{Czym jest HoTT?}
 \begin{itemize}
-	\item Homotopiczna teoria typów to połączenie teorii homotopii i teorii typów.
-	\item Teorii typów nie trzeba nikomu przedstawiać.
-	\item Teoria homotopii... TODO.
+	\item Homotopiczna teoria typów (w skrócie HoTT) to połączenie teorii typów i teorii homotopii.
+	\item Jest kolejnym stadium ewolucji teorii typów.
+	\item Jest syntetyczną teorią homotopii, dającą nam łatwy dostęp do skomplikowanych pojęć topologicznych.
+	\item Jest pomysłem na nowe podstawy matematyki, alternatywne wobec teorii zbiorów.
+	\item Jest bardzo potężnym funkcyjnym językiem programowania.
+	\item Podstawowym źródłem wiedzy jest książka \url{https://homotopytypetheory.org/book/}
 \end{itemize}
 \end{frame}
 
@@ -34,7 +37,7 @@
 	\item Teorię typów w ujęciu HoTTowym można opisać jako system formalny, który za pomocą reguł (osądów) opisuje byty zwane typami. Kluczową innowacją HoTT jest interpretacja typów i wymyślone na jej podstawie aksjomaty rzucające światło na naturę kosmosu.
 	\item Reguły dzielą się na ciekawe i nieciekawe.
 	\item Nieciekawe to te, które muszą być, żeby wszystko działało, np. do zamieniania kolejności rzeczy w kontekście.
-	\item Ciekawe - to te, które faktycznie opisują typy. Jest ich pięć rodzajów: reguły formacji, wprowadzania, eliminacji, obliczania i unikalności.
+	\item Ciekawe to te, które faktycznie opisują typy. Jest ich pięć rodzajów: reguły formacji, wprowadzania, eliminacji, obliczania i unikalności.
 \end{itemize}
 \end{frame}
 
@@ -69,12 +72,6 @@
 	\begin{center}
 		$\displaystyle \frac{\Gamma \vdash f : A \to B}{\Gamma \vdash \lambda x:A.f\ x \equiv f : A \to B}$
 	\end{center}
-\end{frame}
-
-\begin{frame}{Teoria typów 4}
-\begin{itemize}
-	\item wut
-\end{itemize}
 \end{frame}
 
 \begin{frame}{Teoria homotopii 1}
@@ -122,33 +119,43 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Po co HoTT? 1}
+\begin{frame}{Innowacje HoTT}
 \begin{itemize}
-	\item HoTT jest też pomysłem na nowe podstawy matematyki (foundations of mathematics).
-	\item Jest teorią typów, więc świetnie nadaje się do formalizacji za pomocą komputerów, czego nie można powiedzieć o teorii zbiorów.
-	\item Jest syntetyczną teorią homotopii, co pozwala łatwo formalizować całkiem ezoteryczną matematykę.
-	\item Jest konstruktywna, co powinno podobać się konstruktywistom. Co więcej, dzięki wyższym typom induktywnym pozwala na konstruktywne rozwiązanie problemów, które dotąd wymagały podejścia klasycznego.
+	\item Homotopiczna interpretacja teorii typów, mocno wspomagająca wyobraźnię zarówno w rozumowaniu, jak i pozwalająca dogłębnie zrozumieć różne detale teorii typów.
+	\item Aksjomat uniwalencji $(A \simeq B) \simeq (A = B)$, który głosi, że rzeczy mające tę samą strukturę są identyczne. Rozwiązuje to odwieczny problem nieformalnego utożsamiania poprzez nadużycie języka.
+	\item Wyższe typy induktywne, pozwalające w teorii typów zdefiniować wiele niemożliwych dotychczas obiektów, np. typy ilorazowe, konstruktywnie rozwiązać wiele problemów, które dotychczas wymagały rozumowań klasycznych oraz wyrazić pojęcia czysto logiczne z niemożliwą wcześniej w teorii typów precyzją.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Po co HoTT? 2}
+\begin{frame}{Innowacje HoTT w przykładach 1}
 \begin{itemize}
-	\item Dopuszcza niektóre klasyczne aksjomaty, co powinno przypaść do gustu klasykom.
-	\item Jednocześnie podaje dobre filozoficzne podstawy (i formalne dowody), by niektóre inne klasyczne aksjomaty odrzucić.
-	\item Z trzeciej strony, pozwala wyrazić w teorii typów niektóre klasyczne aksjomaty, których dotychczas wyrazić nie było można (np. aksjomat wyboru).
+	\item Dlaczego w teorii typów (np. w rachunku konstrukcji) nie da się udowodnić, że dla każdego typu $A$ i elementu $x : A$ oraz dowodu równości $p : x = x$ zachodzi $p = refl_x$?
 \end{itemize}
+\end{frame}
+
+\begin{frame}{Innowacje HoTT w przykładach 2}
+\begin{itemize}
+	\item Niech typ $\mathbb{N}$ będzie zdefiniowany przez następujące reguły:
+	\item Niech $\text{nat} :\equiv 0 \: | \: S\ \text{nat}$
+	\item Niech $\text{nat'} :\equiv 0' \: | \: S'\ \text{nat'}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Innowacje HoTT w przykładach 3}
 \begin{theorem}
-$\textstyle
-	\prod (A : \mathcal{U}) (B : A \to \mathcal{U}) (R : \Pi x : A, B\ x \to \mathcal{U}),$ \\
-		$(\prod x : A, \sum y : B\ x, R\ x\ y) \to$ \\
-			$\sum f : (\Pi x : A, B x), \Pi x : A, R\ x\ (f\ x)$
+TODO: formatowanie
+$\textstyle \prod (A : \mathcal{U}) (B : A \to \mathcal{U}) (R : \Pi x : A, B\ x \to \mathcal{U}),$ \\
+	$\textstyle \quad (\prod x : A, \sum y : B\ x, R\ x\ y) \to$ \\
+		$\textstyle \qquad \sum f : (\Pi x : A, B x), \Pi x : A, R\ x\ (f\ x)$
 \end{theorem}
-\end{frame}
 
+\begin{itemize}
+	\item Jak w teorii typów wyrazić aksjomat wyboru? Zauważmy, że powyższa formulacja nie jest aksjomatem, ale twierdzeniem.
+\end{itemize}
+\end{frame}
 
 \begin{frame}{Pomysły}
 \begin{itemize}
-	\item O co chodzi z teorią homotopii i topologią algebraiczną? Grupa podstawowa okręgu.
 	\item Hierarchia n-typów: unit, funkcje sortujące, pusty, zbiory, grupoidy, okrąg, uniwersum.
 	
 \end{itemize}
