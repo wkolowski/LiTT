@@ -127,31 +127,52 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Innowacje HoTT w przykładach 1}
+\begin{frame}{Innowacje HoTT w przykładach - interpretacja}
 \begin{itemize}
 	\item Dlaczego w teorii typów (np. w rachunku konstrukcji) nie da się udowodnić, że dla każdego typu $A$ i elementu $x : A$ oraz dowodu równości $p : x = x$ zachodzi $p = refl_x$?
+	\item Odpowiedź klasyczna: bo istnieją modele, w których tak nie jest.
+	\item Odpowiedź HoTTowa: nie każda ścieżka jest trywialna.
+	\item Mimo, że taka odpowiedź jest jedynie parafrazą pytania, to zaspokaja ona wyobraźnię i sprawia, że tajemniczy dotychczas fakt staje się banalny i oczywisty.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Innowacje HoTT w przykładach 2}
+\begin{frame}{Innowacje HoTT w przykładach - uniwalencja 1}
 \begin{itemize}
-	\item Niech typ $\mathbb{N}$ będzie zdefiniowany przez następujące reguły:
-	\item Niech $\text{nat} :\equiv 0 \: | \: S\ \text{nat}$
-	\item Niech $\text{nat'} :\equiv 0' \: | \: S'\ \text{nat'}$
+	\item Rozważmy dwa poniższe typy (tak naprawdę powinniśmy też podać reguły eliminacji i obliczania, ale nie są one istotne dla przykładu).
+	\item Niech $\mathbb{N} :\equiv 0 \: | \: S\ \mathbb{N}$ i niech $\mathbb{N}' :\equiv 0' \: | \: S'\ \mathbb{N}'$
+	\item Rodzi się pytanie: czy $\mathbb{N}$ i $\mathbb{N}'$ to to samo, czy coś innego?
+	\item Odpowiedź klasyczna: istnieje oczywisty izomorfizm $\mathbb{N} \cong \mathbb{N}'$. Na mocy nadużycia języka będziemy utożsamiać $\mathbb{N}$ i $\mathbb{N}'$, tzn. traktować je tak, jakby $\mathbb{N} = \mathbb{N}'$ mimo, że formalnie tak nie jest.
+	\item Odpowiedź HoTTowa: istnieje oczywista równoważność $e : \mathbb{N} \simeq \mathbb{N}'$. Wobec tego na mocy aksjomatu uniwalencji mamy ścieżkę $\text{ua}(e) : \mathbb{N} = \mathbb{N}'$.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Innowacje HoTT w przykładach 3}
-\begin{theorem}
-TODO: formatowanie
+\begin{frame}{Innowacje HoTT w przykładach - uniwalencja 2}
+\begin{itemize}
+	\item Aksjomat uniwalencji nie tylko usuwa nieprzyjemny filozoficzny smrodek, ale daje nam też nowe sposoby rozumowania.
+	\item Przykład: każda równoważność jest monomorfizmem.
+	\item Dowód klasyczny: każda równoważność ma odwrotność. Użyj jej.
+	\item Dowód HoTTowy: każda równoważność pochodzi od jakiejś ścieżki. Na mocy indukcji po ścieżkach możemy założyć, że ścieżka ta jest trywialna, a zatem nasza równoważność jest identycznością.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Innowacje HoTT w przykładach - logika 1}
+\begin{itemize}
+	\item Znaczenie klasycznej dysjunkcji jest inne, niż konstruktywnej. Klasycznie $P \lor Q$ znaczy, że zachodzi $P$ lub $Q$ lub oba na raz, ale nie wiemy, które. Konstruktywnie $P \lor Q$ znaczy, że zachodzi $P$ lub $Q$ i wiemy, z którym przypadkiem mamy do czynienia
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Innowacje HoTT w przykładach - logika 1}
+\begin{theorem}[Aksjomat wyboru]
 $\textstyle \prod (A : \mathcal{U}) (B : A \to \mathcal{U}) (R : \Pi x : A, B\ x \to \mathcal{U}),$ \\
 	$\textstyle \quad (\prod x : A, \sum y : B\ x, R\ x\ y) \to$ \\
-		$\textstyle \qquad \sum f : (\Pi x : A, B x), \Pi x : A, R\ x\ (f\ x)$
+		$\textstyle \qquad \sum f : (\Pi x : A, B\ x), \Pi x : A, R\ x\ (f\ x)$
 \end{theorem}
+\begin{proof}
+	Na tablicy.
+\end{proof}
 
-\begin{itemize}
-	\item Jak w teorii typów wyrazić aksjomat wyboru? Zauważmy, że powyższa formulacja nie jest aksjomatem, ale twierdzeniem.
-\end{itemize}
+Powyższe twierdzenie jest problematyczne, gdyż wygląda jak aksjomat wyboru, ale nie ma tutaj żadnego wybierania.
+
 \end{frame}
 
 \begin{frame}{Pomysły}
