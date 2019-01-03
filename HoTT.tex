@@ -19,7 +19,7 @@
 
 \frame{\tableofcontents}
 
-\section{O co chodzi}
+\section{Wstęp}
 
 \begin{frame}{Czym jest HoTT?}
 \begin{itemize}
@@ -31,6 +31,16 @@
 	\item Podstawowym źródłem wiedzy jest książka \url{https://homotopytypetheory.org/book/}
 \end{itemize}
 \end{frame}
+
+\begin{frame}{Innowacje HoTT}
+\begin{itemize}
+	\item Homotopiczna interpretacja teorii typów, mocno wspomagająca wyobraźnię zarówno w rozumowaniu, jak i pozwalająca dogłębnie zrozumieć różne detale teorii typów.
+	\item Aksjomat uniwalencji $(A \simeq B) \simeq (A = B)$, który głosi, że rzeczy mające tę samą strukturę są identyczne. Rozwiązuje to odwieczny problem nieformalnego utożsamiania poprzez nadużycie języka.
+	\item Wyższe typy induktywne, pozwalające w teorii typów zdefiniować wiele niemożliwych dotychczas obiektów, np. typy ilorazowe, konstruktywnie rozwiązać wiele problemów, które dotychczas wymagały rozumowań klasycznych oraz wyrazić pojęcia czysto logiczne z niemożliwą wcześniej w teorii typów precyzją.
+\end{itemize}
+\end{frame}
+
+\section{Teoria typów}
 
 \begin{frame}{Teoria typów 1}
 \begin{itemize}
@@ -54,7 +64,8 @@
 \begin{frame}{Teoria typów 3}
 
 \begin{itemize}
-	\item Przykład: reguły dla typu funkcyjnego. Ćwiczenie: nazwij każdą z reguł.
+	\item Przykład: reguły dla typu funkcyjnego.
+	\item Ćwiczenie: nazwij każdą z reguł (tzn. która to reguła formacji, która obliczania etc.)
 \end{itemize}
 
 	\begin{center}
@@ -73,6 +84,29 @@
 		$\displaystyle \frac{\Gamma \vdash f : A \to B}{\Gamma \vdash \lambda x:A.f\ x \equiv f : A \to B}$
 	\end{center}
 \end{frame}
+
+\begin{frame}{Teoria typów 4}
+\begin{itemize}
+	\item Każdy typ musi mieć regułę formacji - inaczej nie byłby typem.
+	\item Jednak nie każdy typ musi mieć pozostałe reguły.
+	\item Typ $\mathbf{0}$ nie ma reguły wprowadzania, bo jest pusty i nie ma żadnych elementów.
+	\item Uniwersum nie ma reguły eliminacji.
+	\item Typ $\mathbf{0}$ nie ma także reguły obliczania, co jest oczywiste - nie może jej mieć, skoro nie ma reguły wprowadzania.
+	\item Wiele typów, np. sumy i produkty, nie mają reguły unikalności. W zamian za to mają one zdaniową regułę unikalności, tzn. można udowodnić twierdzenie wyglądające dokładnie jak reguła unikalności.
+	\item Reguła formacji zawsze jest jedna, bo każdy typ można sformować tylko na jeden sposób. Pozostałych reguł może być więcej. Sumy mają 2 reguły wprowadzania, a produkty 2 reguły eliminacji i wobec tego 2 reguły obliczania.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Teoria typów 5}
+\begin{itemize}
+	\item Formalnie rzeczy definiujemy za pomocą reguł wprowadzania i eliminacji.
+	\item Przykład: funkcję $\text{swap} : \Pi A\ B : \U. A \times B \to B \times A$ możemy zdefiniować jako $\text{swap} :\equiv \lambda A : \U.\lambda B : \U.\lambda x : A \times B. (\pi_2\ x, \pi_1\ x)$
+	\item Zamiast tego często będziemy jednak definiować poprzez dopasowanie do wzorca, jednocześnie pomijając argumenty, które można wywnioskować z kontekstu: $\text{swap}\ (a, b) :\equiv (b, a)$
+	\item Możemy też definiować słownie: niech $\text{swap}$ będzie funkcją, która zamienia miejscami elementy pary. Ten sposób będziemy wykorzystywać do dowodzenia twierdzeń.
+\end{itemize}
+\end{frame}
+
+\section{Teoria homotopii}
 
 \begin{frame}{Teoria homotopii 1}
 \begin{itemize}
@@ -119,13 +153,41 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Innowacje HoTT}
+\section{Interpretacja homotopiczna}
+
+\begin{frame}{Interpretacja typów 1}
 \begin{itemize}
-	\item Homotopiczna interpretacja teorii typów, mocno wspomagająca wyobraźnię zarówno w rozumowaniu, jak i pozwalająca dogłębnie zrozumieć różne detale teorii typów.
-	\item Aksjomat uniwalencji $(A \simeq B) \simeq (A = B)$, który głosi, że rzeczy mające tę samą strukturę są identyczne. Rozwiązuje to odwieczny problem nieformalnego utożsamiania poprzez nadużycie języka.
-	\item Wyższe typy induktywne, pozwalające w teorii typów zdefiniować wiele niemożliwych dotychczas obiektów, np. typy ilorazowe, konstruktywnie rozwiązać wiele problemów, które dotychczas wymagały rozumowań klasycznych oraz wyrazić pojęcia czysto logiczne z niemożliwą wcześniej w teorii typów precyzją.
+	\item Jak interpretować/rozumieć typy?
+	\item Najprostszy sposób każe nam myśleć, że typy to po prostu zbiory.
+	\item W takim ujęciu typ $\mathbb{N}$ to taki worek, w którym jest $0, 1, 2, \dots$ etc.
+	\item Takie rozumienie było przez długi czas dominujące. Jest ono dość intuicyjne i powszechne przy myśleniu nieformalnym.
+	\item Były też inne dziwne interpretacje, jak (chyba) częściowe relacje równoważności, ale kogo to obchodzi.
 \end{itemize}
 \end{frame}
+
+\begin{frame}{Interpretacja typów 2}
+\begin{itemize}
+	\item Aż tu nagle w pracy z 1995 zatytułowanej ``The groupoid interpretation of type theory'' panowie Hofmann i Streicher wpadli na pomysł, żeby zinterpretować typy jako grupoidy.
+	\item Upraszczając, grupoid to graf skierowany, w którym:
+	\begin{itemize}
+		\item Każdy wierzhołek ma krawędź do samego siebie.
+		\item Jeżeli jest krawędź z $A$ do $B$, to jest krawędź z $B$ do $A$.
+		\item Jeżeli jest krawędź z $A$ do $B$ i z $B$ do $C$, to jest krawędź z $A$ do $C$.
+	\end{itemize}
+	\item Jeszcze bardziej upraszczając: grupoid to kolekcja kropek, między którymi są strzałki spełniające pewne warunki.
+	\item Wymyślenie ciągu dalszego tej bajki zajęło dobre 15 lat.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Interpretacja typów 3}
+\begin{itemize}
+	\item Aż tu nagle w okolicach 2010 roku Awodey i Warren (a także trochę Voevodsky) wpadli na pomysł, żeby zinterpretować typy jako $\omega$-grupoidy.
+	\item $\omega$-grupoid to kolekcja kropek, między którymi są strzałki spełniające warunki jak dla grupoidu. Co więcej, między strzałkami też mogą być strzałki spełniające te warunki. Są też strzałki między strzałkami między strzałkami i tak dalej aż do nieskończoności.
+	\item Jeżeli pomyślimy o naszych ``strzałkach'' jak o ścieżkach w przestrzeni, to dostajemy homotopiczną interpretację teorii typów. W zasadzie to każdy $\omega$-grupoid jest reprezentacją jakiejś przestrzeni topologicznej.
+\end{itemize}
+\end{frame}
+
+
 
 \begin{frame}{Innowacje HoTT w przykładach - interpretacja}
 \begin{itemize}
