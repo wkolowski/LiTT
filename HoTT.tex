@@ -2,11 +2,13 @@
 \usepackage[utf8]{inputenc}
 \usepackage{polski}
 \usepackage[polish]{babel}
+\usepackage{graphicx}
 \usetheme{Darmstadt}
 
 \newcommand{\impl}{\rightarrow}
 \renewcommand{\implies}{\rightarrow}
 \newcommand{\U}{\mathcal{U}}
+\newcommand{\refl}[1]{\text{refl}_{#1}}
 
 \title{Homotopiczna teoria typów}
 
@@ -37,16 +39,16 @@
 	\item Aksjomat uniwalencji $(A \simeq B) \simeq (A = B)$, który głosi, że rzeczy mające tę samą strukturę są identyczne. Rozwiązuje to odwieczny problem nieformalnego utożsamiania poprzez nadużycie języka.
 	\item Wyższe typy induktywne, pozwalające w teorii typów:
 	\begin{itemize}
-		\item Zdefiniować wiele niemożliwych dotychczas obiektów, np. typy ilorazowe.
+		\item Zdefiniować wiele niemożliwych dotychczas obiektów, np. typy ilorazowe albo prezentacje obiektów algebraicznych.
 		\item Konstruktywnie rozwiązać wiele problemów, które dotychczas wymagały logiki klasycznej (konstrukcja liczb rzeczywistych Cauchy'ego)
-		\item Wyrazić pojęcia logiczne z niemożliwą wcześniej w teorii typów precyzją. Możemy np. zdefiniować klasyczną dysjunkcję i klasyczny kwantyfikator egzystencjalny, a także podać klasyczne sformułowanie aksjomatu wyboru.
+		\item Wyrazić klasyczne pojęcia logiczne (dysjunkcja, kwantyfikator egzystencjalny, aksjomat wyboru) z niemożliwą wcześniej w teorii typów precyzją.
 	\end{itemize}
 \end{itemize}
 \end{frame}
 
 \section{Teoria homotopii}
 
-\begin{frame}{Teoria homotopii 1}
+\begin{frame}{Teoria homotopii 1 - homotopia}
 \begin{itemize}
 	\item Co to jest homotopia?
 	\item Zgodnie z wikipedią, jeżeli $f$ i $g$ są funkcjami ciągłymi z przestrzeni topologicznej $X$ w przestrzeń topologiczną $Y$, to $H: X \times [0; 1] \to Y$ jest homotopią, gdy jest funkcją ciągłą spełniającą $H(0, x) = f(x) \land H(1, x) = g(x)$.
@@ -55,7 +57,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Teoria homotopii 2}
+\begin{frame}{Teoria homotopii 2 - ścieżka}
 \begin{itemize}
 	\item Bardziej podstawowym pojęciem jest ścieżka.
 	\item Ścieżka w przestrzeni topologicznej $X$ to funkcja ciągła z $[0; 1]$ w $X$.
@@ -65,7 +67,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Teoria homotopii 3}
+\begin{frame}{Teoria homotopii 3 - topologia (algebraiczna)}
 \begin{itemize}
 	\item Po co to wszystko?
 	\item Topologia jest całkiem użyteczna. Ostatnio popularna robi się topologiczna analiza danych. Zamiast prymitywnie przypasowywać do danych proste (regresja liniowa), ludzie próbują lepiej opisywać kształt danych. Topologia bada kształty, więc pasuje jak ulał.
@@ -73,7 +75,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Teoria homotopii 4}
+\begin{frame}{Teoria homotopii 4 - grupa podstawowa}
 \begin{itemize}
 	\item Pętla w punkcie $x$ to ścieżka, która zaczyna się i kończy w punkcie $x$.
 	\item Grupa podstawowa przestrzeni $X$ w punkcie $x$ to grupa, której nośnikiem jest zbiór wszystkich pętli w punkcie $x$. Działaniem grupowym jest sklejanie pętli (najpierw pójdź pierwszą pętlą, a potem drugą). Odwrotność to pójście pętlą w przeciwnym kierunku. Element neutralny to stanie w miejscu.
@@ -81,7 +83,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Teoria homotopii 5}
+\begin{frame}{Teoria homotopii 5 - okrąg i liczby całkowite}
 \begin{itemize}
 	\item Okrąg to taka przestrzeń topologiczna, że... wyobraź sobie, pewnie kiedyś widziałeś okrąg.
 	\item Grupa podstawowa okręgu w dowolnym punkcie jest izomorficzna z grupą liczb całkowitych z dodawaniem.
@@ -93,7 +95,7 @@
 
 \section{Teoria typów}
 
-\begin{frame}{Teoria typów 1}
+\begin{frame}{Teoria typów 1 - podstawy}
 \begin{itemize}
 	\item Teorię typów w ujęciu HoTTowym można opisać jako system formalny, który za pomocą reguł (osądów) opisuje byty zwane typami. Kluczową innowacją HoTT jest interpretacja typów i wymyślone na jej podstawie aksjomaty rzucające światło na naturę kosmosu.
 	\item Reguły dzielą się na ciekawe i nieciekawe.
@@ -102,7 +104,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Teoria typów 2}
+\begin{frame}{Teoria typów 2 - pięć rodzajów reguł}
 \begin{itemize}
 	\item Reguły formacji mówią, skąd się biorą typy.
 	\item Reguły wprowadzania mówią, jak zrobić elementy danego typu.
@@ -112,10 +114,9 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Teoria typów 3}
+\begin{frame}{Teoria typów 3 - reguły dla funkcji}
 
 \begin{itemize}
-	\item Przykład: reguły dla typu funkcyjnego.
 	\item Ćwiczenie: nazwij każdą z reguł (tzn. która to reguła formacji, która obliczania etc.)
 \end{itemize}
 
@@ -136,7 +137,7 @@
 	\end{center}
 \end{frame}
 
-\begin{frame}{Teoria typów 4}
+\begin{frame}{Teoria typów 4 - ciekawostki o regułach}
 \begin{itemize}
 	\item Każdy typ musi mieć regułę formacji - inaczej nie byłby typem.
 	\item Jednak nie każdy typ musi mieć pozostałe reguły.
@@ -148,7 +149,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Teoria typów 5}
+\begin{frame}{Teoria typów 5 - trzy style definiowania}
 \begin{itemize}
 	\item Formalnie rzeczy definiujemy za pomocą reguł wprowadzania i eliminacji.
 	\item Przykład: funkcję $\text{swap} : \Pi A\ B : \U. A \times B \to B \times A$ możemy zdefiniować jako $\text{swap} :\equiv \lambda A : \U.\lambda B : \U.\lambda x : A \times B. (\pi_2\ x, \pi_1\ x)$
@@ -159,7 +160,7 @@
 
 \section{Interpretacja homotopiczna}
 
-\begin{frame}{Interpretacja typów 1}
+\begin{frame}{Interpretacja typów 1 - zbiory}
 \begin{itemize}
 	\item Jak interpretować/rozumieć typy?
 	\item Najprostszy sposób każe nam myśleć, że typy to po prostu zbiory.
@@ -169,7 +170,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Interpretacja typów 2}
+\begin{frame}{Interpretacja typów 2 - grupoidy}
 \begin{itemize}
 	\item Aż tu nagle w pracy z 1995 zatytułowanej ``The groupoid interpretation of type theory'' panowie Hofmann i Streicher wpadli na pomysł, żeby zinterpretować typy jako grupoidy.
 	\item Upraszczając, grupoid to graf skierowany, w którym:
@@ -183,7 +184,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Interpretacja typów 3}
+\begin{frame}{Interpretacja typów 3 - $\omega$-grupoidy}
 \begin{itemize}
 	\item Aż tu nagle w okolicach roku 2010 Awodey i Warren (a także Voevodsky, van den Berg i Garner) wpadli na pomysł, żeby zinterpretować typy jako $\omega$-grupoidy.
 	\item $\omega$-grupoid to kolekcja kropek, między którymi są strzałki spełniające warunki jak dla grupoidu. Co więcej, między strzałkami też mogą być strzałki spełniające te warunki. Są też strzałki między strzałkami między strzałkami i tak dalej aż do nieskończoności.
@@ -191,31 +192,62 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{1.12 Ścieżki 1}
+\begin{frame}{1.12 Ścieżki 1 - reguły}
+\makebox[\linewidth]{\parbox{12cm}
+{
+	\includegraphics[scale=0.25]{IdentityTypesSmall.png}}
+}
+Powyższe reguły opisują rodzinę typów, która zazwyczaj nazywana bywa typem identycznościowym (ang. identity type), ale zgodnie z interpretacją homotopiczną będę go nazywał typem ścieżek.
+\end{frame}
+
+\begin{frame}{1.12 Ścieżki 2 - interpretacja reguł}
 \begin{itemize}
-	\item todo
+	\item Reguła formacji: jeżeli mamy typ $A$ i dwa jego elementy $a, b$, to możemy sformować typ $a =_A b$. Jest to typ, którego elementami są ścieżki z $a$ do $b$. Jeżeli mamy element tego typu, to $a$ i $b$ są równe.
+	\item Reguła wprowadzania: każda rzecz jest równa sama sobie. Ścieżka poświadczająca ten fakt nazywa się $\text{refl}$. Jest to skrót od ang. reflexivity, czyli zwrotność.
+	\item Reguła eliminacji: $C$ jest tutaj rodziną typów zależącą od ścieżki $p : x = y$. Reguła głosi, że żeby zdefiniować element $C(x, y, p)$ wystarczy mieć element $C(x, x, \refl{x})$.
+	\item Reguła obliczania: chodzi o to, że jeżeli wyeliminujemy element $C(z, z, \refl{z})$, to dostaniemy go spowrotem, tylko po odpowiednim podstawieniu.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{1.12 Ścieżki 2}
+\begin{frame}{1.12 Ścieżki 3 - indukcja po ścieżkach}
 \begin{itemize}
-	\item todo
+	\item Reguła eliminacji dla ścieżek nosi nazwę indukcji po ścieżkach (ang. path induction).
+	\item Zaprezentowany powyżej wariant precyzyjniej nazywa się unbased path induction. Polega na zastąpieniu dwóch obiektów $a, b$ i ścieżki $p$ przez generyczny obiekt $z$ i ścieżkę $\refl{z}$.
+	\item Inny wariant nosi nazwę based path induction. Polega on na zastąpieniu obiektu $b$ przez obiekt $a$ oraz ścieżki $p : a = b$ przez ścieżkę $\refl{a}$.
+	\item Oba warianty są równoważne. Dowód: HoTT Book, podrozdział 1.12.2.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{1.12 Ścieżki 3}
+\begin{frame}{1.12 Ścieżki 4 - interpretacja indukcji po ścieżkach}
 \begin{itemize}
-	\item todo
+	\item Tak jak indukcję na liczbach naturalnych możemy zobrazować za pomocą domina, tak indukcję po ścieżkach możemy wyobrażać sobie jako ściągnięcie/zwinięcie ścieżki $p : a = b$ do ścieżki trywialnej.
+	\item W wariancie unbased oba końce ścieżki $p$ są wolne. Wybieramy jakiś punkt $z$ na ścieżce i ciągniemy oba końce w jego kierunku. Ostatecznie dostajemy ścieżkę $\refl{z}$.
+	\item W wariancie based lewy koniec ścieżki $p$ jest sztywny, a prawy jest wolny. Chwytamy więc prawy koniec $b$ i ciągniemy go po ścieżce w kierunku lewego końca $a$. Ostatecznie dostajemy ścieżkę $\refl{a}$.
+	\item Zauważmy, że jeżeli oba końce ścieżki są sztywne, to nie możemy robić indukcji - spróbuj pociągnąć linę okręconą wokół latarni. O tym, czy koniec jest sztywny czy wolny, decyduje to, czy jest skwantyfikowany uniwersalnie czy nie.
 \end{itemize}
 \end{frame}
 
-
-\begin{frame}{Innowacje HoTT w przykładach - interpretacja}
+\begin{frame}{1.12 Ścieżki 5 - wątpliwości i ciekawostki}
 \begin{itemize}
-	\item Dlaczego w teorii typów (np. w rachunku konstrukcji) nie da się udowodnić, że dla każdego typu $A$ i elementu $x : A$ oraz dowodu równości $p : x = x$ zachodzi $p = refl_x$?
-	\item Odpowiedź klasyczna: bo istnieją modele, w których tak nie jest.
-	\item Odpowiedź HoTTowa: nie każda ścieżka jest trywialna.
-	\item Mimo, że taka odpowiedź jest jedynie parafrazą pytania, to zaspokaja ona wyobraźnię i sprawia, że tajemniczy dotychczas fakt staje się banalny i oczywisty.
+	\item Reguła eliminacji dla typu $\text{bool}$ intuicyjnie mówi, że jedynymi elementami typu $\text{bool}$ są $\text{true}$ oraz $\text{false}$.
+	\item Czy więc indukcja po ścieżkach mówi, że jedyną ścieżką jest $\text{refl}$?
+	\item Zanim odpowiemy, garść ciekawostek.
+	\item Indukcja po ścieżkach nie jest HoTTową innowacją. Jedynie nazwa jest nowa. W teorii typów bywa często nazywana $J$.
+	\item Zdanie mówiące, że każda ścieżka jest trywialna, nazywa się ``Aksjomat $K$''.
+	\item Związek z facetami w czerni jest przypadkowy.
+	\item Inne zdanie, mówiące że jest tylko jedna ścieżka, nazywa się w ang. UIP, co jest skrótem od ``Uniqueness of Identity Proofs''.
+	\item To właśnie badanie nad tego typu zagadnieniami doprowadziły do homotopicznej interpretacji teorii typów.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{1.12 Ścieżki 6 - rozwianie wątpliwości}
+\begin{itemize}
+	\item Indukcja po ścieżkach nie głosi, że jest tylko jedna ścieżka.
+	\item Formalna różnica jest taka, że typ $\text{bool}$ jest generowany induktywnie, podczas gdy w przypadku ścieżek, które są rodziną typów, to cała rodzina jest generowana induktywnie, a nie pojedynczy typ $x = y$.
+	\item Parafrazując, nie można w tym przypadku rozważać samych ścieżek w oderwaniu od ich końców.
+	\item Nie możemy zatem udowodnić, że każda ścieżka $p : x = x$ jest trywialna.
+	\item Ale możemy udowodnić, że każda ścieżka razem z jej końcami jest trywialna: zachodzi $(x, y, p) = (x, x, \refl{x})$, gdzie równość jest w typie $\Sigma x\ y : A, x = y$. Odpowiada to indukcji po ścieżkach w wersji unbased.
+	\item Podobnie dla ustalonego $a : A$ możemy pokazać, że $(x, p) = (a, \refl{a})$ w typie $\Sigma x : A, a = x$. Odpowiada to indukcji po ścieżkach w wersji based.
 \end{itemize}
 \end{frame}
 
