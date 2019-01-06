@@ -9,6 +9,13 @@
 \renewcommand{\implies}{\rightarrow}
 \newcommand{\U}{\mathcal{U}}
 \newcommand{\refl}[1]{\text{refl}_{#1}}
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}}
+\newcommand{\ap}[2]{\text{ap}_{#1}(#2)}
+\newcommand{\apd}[2]{\text{apd}_{#1}(#2)}
+\newcommand{\qinv}{\text{qinv}}
+\newcommand{\isequiv}{\text{isequiv}}
+\newcommand{\id}{\text{id}}
+\newcommand{\comp}{\circ}
 
 \title{Homotopiczna teoria typów}
 
@@ -149,12 +156,13 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Teoria typów 5 - trzy style definiowania}
+\begin{frame}{Teoria typów 5 - cztery style definiowania}
 \begin{itemize}
 	\item Formalnie rzeczy definiujemy za pomocą reguł wprowadzania i eliminacji.
 	\item Przykład: funkcję $\text{swap} : \Pi A\ B : \U. A \times B \to B \times A$ możemy zdefiniować jako $\text{swap} :\equiv \lambda A : \U.\lambda B : \U.\lambda x : A \times B. (\pi_2\ x, \pi_1\ x)$
 	\item Zamiast tego często będziemy jednak definiować poprzez dopasowanie do wzorca, jednocześnie pomijając argumenty, które można wywnioskować z kontekstu: $\text{swap}\ (a, b) :\equiv (b, a)$
 	\item Możemy też definiować słownie: niech $\text{swap}$ będzie funkcją, która zamienia miejscami elementy pary. Ten sposób będziemy wykorzystywać do dowodzenia twierdzeń.
+	\item Ostatnim stylem jest obrazkowy styl definiowania. Nie jest on używany w książce, ale ja postaram się go wykorzystać podczas tej prezentacji, gdyż dobrze działa na wyobraźnię.
 \end{itemize}
 \end{frame}
 
@@ -195,8 +203,8 @@
 \begin{frame}{1.12 Ścieżki 1 - reguły}
 \makebox[\linewidth]{\parbox{12cm}
 {
-	\includegraphics[scale=0.25]{IdentityTypesSmall.png}}
-}
+	\includegraphics[scale=0.25]{IdentityTypesSmall.png}
+}}
 Powyższe reguły opisują rodzinę typów, która zazwyczaj nazywana bywa typem identycznościowym (ang. identity type), ale zgodnie z interpretacją homotopiczną będę go nazywał typem ścieżek.
 \end{frame}
 
@@ -251,28 +259,234 @@ Powyższe reguły opisują rodzinę typów, która zazwyczaj nazywana bywa typem
 \end{itemize}
 \end{frame}
 
-\begin{frame}{2.1 Typy to wyższe grupoidy}
+\begin{frame}{1.12 Ścieżki 7 - skąd się biorą ścieżki}
 \begin{itemize}
-	\item todo
+	\item Póki co wiemy, że jest ścieżka trywialna.
+	\item Wiemy też, że indukcja po ścieżkach nie wyklucza istnienia innych ścieżek.
+	\item Rodzi się jednak pytanie: skąd się biorą ścieżki?
+	\item Cztery główne źródła ścieżek, które zobaczymy w przyszłości, to:
+	\begin{itemize}
+		\item Aksjomat ekstensjonalności dla funkcji - ścieżki powstają z homotopii.
+		\item Aksjomat uniwalencji - ścieżki powstają z równoważności.
+		\item Wyższe typy induktywne - możemy wrzucić do typu dowolne ścieżki.
+		\item Struktura $\omega$-grupoidu - powyższe trzy rodzaje (potencjalnie) nietrywialnych ścieżek mogą ze sobą oddziaływać za pośrednictwem struktury $\omega$-grupoidu, tworząc jeszcze więcej nietrywialnych ścieżek. 
+	\end{itemize}
 \end{itemize}
 \end{frame}
 
-\begin{frame}{2.2 Funkcje to funktory}
+\begin{frame}{2.1 Typy to wyższe grupoidy 1 - definicje}
+
+\begin{definition}[Lemat 2.1.1 - ścieżka odwrotna]
+$(-)^{-1} : \Pi A : \U. \Pi x\ y : A. x = y \to y = x$ \\
+$\refl{x}^{-1} :\equiv \refl{x}$
+\end{definition}
+
+\begin{definition}[Lemat 2.1.2 - sklejanie ścieżek]
+$\sq : \Pi A : \U. \Pi x\ y\ z : A. x = y \to y = z \to x = z$ \\
+$\refl{x} \sq \refl{x} :\equiv \refl{x}$
+\end{definition}
+
+\includegraphics[scale=0.3]{EqPathGrupoid.png}
+
+\end{frame}
+
+\begin{frame}{2.1 Typy to wyższe grupoidy 2 - właściwości}
+
+\begin{theorem}[Lemat 2.1.4 - właściwości operacji na ścieżkach]
+
+Niech $A : \U$ będzie typem, $a, b, c, d : A$ punktami, zaś $p : a = b, q : b = c, r : c = d$ ścieżkami. Wtedy:
+
 \begin{itemize}
-	\item todo
+	\item $\refl{x} \sq p = p$
+	\item $p \sq \refl{y} = p$
+	\item $p \sq p^{-1} = \refl{x}$
+	\item $p^{-1} \sq p = \refl{y}$
+	\item $p \sq (q \sq r) = (p \sq q) \sq r$
+\end{itemize}
+
+\end{theorem}
+
+Ćwiczenie: udowodnij.
+
+\end{frame}
+
+\begin{frame}{2.1 Typy to wyższe grupoidy 3 - prostujcie ścieżki Pana}
+\begin{itemize}
+	\item Zauważmy, że cała wyższogrupoidowa struktura typów wynika wprost z indukcji po ścieżkach.
+	\item Zauważmy też, że powyższe właściwości operacji na ścieżkach są wyrażone za pomocą ścieżek między ścieżkami.
+	\item Tak naprawdę, to te właściwości są operacjami, które biorą na wejściu ścieżki i zwracają ścieżki między ścieżkami.
+	\item Wobec tego można domniemywać, że te właściwości same spełniają jakieś właściwości, które są wyrażane przez ścieżki jeszcze wyższego rzędu...
+	\item ... i tak do nieskończoności.
+	\item Katolicy bywają zachęcani do tego, żeby ``prostować ścieżki Pana''. Atoli zachęcam ja was: prostujcie $\omega$-grupoid Pana (oczywiście za pomocą indukcji po ścieżkach).
 \end{itemize}
 \end{frame}
 
-\begin{frame}{2.3 Mu synku mu, czyli transport}
+\begin{frame}{2.2 Funkcje to funktory 1 - definicje}
+
+\begin{definition}[Lemat 2.2.1 - aplikacja funkcji do ścieżki]
+
+$\text{ap} : \Pi A\ B : \U. \Pi f : A \to B. x =_A y \to f(x) =_B f(y)$ \\
+$\ap{f}{\refl{x}} :\equiv \refl{f(x)}$
+
+\end{definition}
+
+Klasycznie powyższą definicję moglibyśmy odczytać jako twierdzenie mówiące, że wszystkie funkcje zachowują równość. \\~\
+
+W interpretacji homotopicznej twierdzenie to (które jednocześnie definiuje pewną funkcję) głosi, że funkcje zachowują ścieżki. \\~\
+
+Zauważ też, że również tutaj nie wyczerpujemy tematu. Funkcje zachowują nie tylko ścieżki jednowymiarowe, ale także np. pięciowymiarowe pętle. Podobnie zachowują się funkcje zależne, o których tutaj milczymy.
+
+\end{frame}
+
+\begin{frame}{2.2 Funkcje to funktory 2 - właściwości}
+\makebox[\linewidth]{\parbox{12cm}
+{
+	\includegraphics[scale=0.25]{ap.png}
+}}
+
+Ćwiczenie: udowodnij.
+
+\end{frame}
+
+\begin{frame}{2.3 Mu synku mu, czyli transport 1 - definicja}
+
+\begin{definition}[Lemat 2.3.1 - transport]
+
+$\text{transport} : \Pi A : \U. \Pi B : A \to \U. \Pi x\ y : A. x = y \to P(x) \to P(y)$ \\
+$\text{transport}(\refl{x}) :\equiv \text{id}_{P(x)}$ \\~\
+
+Notacja: $p_* :\equiv \text{transport}(p)$
+
+\end{definition}
+
+Powyższe klasycznie można odczytać jako jedną stronę równoważności, której Leibniz użył do zdefiniowania równości: ``dwie rzeczy są równe wtedy i tylko wtedy, gdy mają takie same właściwości''.\\~\
+
+Homotopicznie sprawa jest nieco ciekawsza: jeżeli mamy ścieżkę $p : x =_A y$ i jakiś obiekt typu $P(x)$, to możemy go przenieść (czyli właśnie przetransportować) do typu $P(y)$ wzdłuż ścieżki $p$.
+
+\end{frame}
+
+\begin{frame}{2.3 Mu synku mu, czyli transport 2 - właściwości}
+
+\makebox[\linewidth]{\parbox{12cm}
+{
+	\includegraphics[scale=0.25]{transport.png}
+}}
+
+Ćwiczenie: udowodnij.
+
+\end{frame}
+
+\begin{frame}{2.3 Aplikacja funkcji zależnych do ścieżek}
+
+\begin{definition}[Lemat 2.3.4]
+
+$\text{apd} : \Pi A : \U. \Pi P : A \to \U. \Pi f : (\Pi x : A. P(x)). \Pi p : x = y. p_*(f(x)) = f(y)$ \\
+$\apd{f}{\refl{x}} :\equiv \refl{f(x)}$
+
+\end{definition}
+
+Aplikacja funkcji zależnych do ścieżek jest analogiczna do aplikacji funkcji niezależnych do ścieżek, ale jest mały twist - musimy użyć transportu, bo wyniki funkcji dla $x$ i $y$ żyją w różnych typach. \\~\
+
+Najłatwiej jest o tym myśleć w ten sposób: funkcje zależne są równoważne funkcjom niezależnym między odpowiednimi $\Sigma$-typami.
+
+\end{frame}
+
+\begin{frame}{2.4 Homotopie}
+
+\makebox[\linewidth]{\parbox{12cm}
+{
+	\includegraphics[scale=0.25]{homotopy.png}
+}}
+
+Ćwiczenie: udowodnij.
+
+\end{frame}
+
+\begin{frame}{2.4 Równoważności 1 - koncert życzeń}
 \begin{itemize}
-	\item todo
+	\item Chcielibyśmy mieć pojęcie mówiące, że dwa typy są równoważne. Oczywiście mamy równość (ścieżki), ale chcemy czegoś fajniejszego.
+	\item Prymitywny pomysł: bijekcja, czyli funkcja będącą surjekcją i injekcją (względnie: dla każdego $y$ istnieje dokładnie jeden $x$...).
+	\item Bardziej wzniosły pomysł: izomorfizm, czyli funkcja mająca obustronną odwrotność.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{2.4 Homotopie i równoważności}
+\begin{frame}{2.4 Równoważności 2 - kwaziodwrotność}
+
+\makebox[\linewidth]{\parbox{11.5cm}
+{
+	\includegraphics[scale=0.25]{qinv.png}
+}}
+
+\end{frame}
+
+\begin{frame}{2.4 Równoważności 3 - pobożne życzenia}
 \begin{itemize}
-	\item todo
+	\item Dlaczego nazwaliśmy pojęcie odpowiadające izomorfizmowi kwaziodwrotnością?
+	\item Jak się okaże, jest ono wadliwe.
+	\item Chcielibyśmy, żeby definicja równoważności $\isequiv$ spełniała następujące warunki:
+	\begin{itemize}
+		\item $\qinv(f) \to \isequiv(f)$
+		\item $\isequiv(f) \to \qinv(f)$
+		\item $\Pi e_1\ e_2 : isequiv(f), e_1 = e_2$
+	\end{itemize}
+	\item Parafrazując: $\isequiv$ to niemal to samo co $\qinv$, ale każda funkcja może być równoważnością na co najwyżej jeden sposób.
 \end{itemize}
+\end{frame}
+
+\begin{frame}{2.4 Równoważności 4 - co poszło nie tak}
+
+$\qinv$ powyższych warunków nie spełnia. Jeżeli narysujemy odpowiednio plastyczny rysunek, to ujrzymy uzasadnienie dla poniższego twierdzenia:
+
+\begin{theorem}[Twierdzenie 4.1.1 - $qinv$ to pętla]
+
+$\Pi A\ B : \U. \Pi f : A \to B. \qinv(f) \to \qinv(f) \simeq \Pi x : A. x = x$
+
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}{2.4 Równoważności 5 - do wyboru do koloru}
+
+Niech $A, B : \U$ będą typami, a $f : A \to B$ funkcją.
+
+\begin{definition}[Równoważność 1]
+$
+\displaystyle
+	\isequiv(f) :\equiv
+		\left(\sum_{g : B \to A} f \comp g \sim \id_B\right) \times
+		\left(\sum_{h : B \to A} h \comp f \sim \id_A\right)
+$
+\end{definition}
+
+\begin{definition}[Równoważność 2]
+$
+\displaystyle
+	\isequiv(f) :\equiv
+		\sum_{g : B \to A} \sum_{\eta : g \comp f \sim \id_A} \sum_{\epsilon : f \comp g \sim \id_B}
+			\prod_{x : A} \ap{f}{\eta(x)} = \epsilon(\ap{f}{x})
+$
+\end{definition}
+
+\begin{definition}[Równoważność 3]
+$
+\displaystyle
+	\isequiv(f) :\equiv
+		\prod_{y : B} \text{isContr}\left(\sum_{x : A} f(x) = y\right)
+$
+\end{definition}
+
+\end{frame}
+
+
+\begin{frame}{2.4 Równowazności 6 - koniec}
+
+\begin{definition}[Równoważność 4]
+$
+\displaystyle
+	\isequiv(f) :\equiv ||\qinv(f)||
+$
+\end{definition}
+
 \end{frame}
 
 \begin{frame}{2.5-2.8 Wyższogrupoidowa struktura typów}
