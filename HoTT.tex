@@ -5,8 +5,8 @@
 \usepackage{graphicx}
 \usetheme{Darmstadt}
 
-\newcommand{\impl}{\rightarrow}
-\renewcommand{\implies}{\rightarrow}
+%\newcommand{\impl}{\rightarrow}
+%\renewcommand{\implies}{\rightarrow}
 \newcommand{\U}{\mathcal{U}}
 \newcommand{\refl}[1]{\text{refl}_{#1}}
 \newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}}
@@ -16,6 +16,7 @@
 \newcommand{\isequiv}{\text{isequiv}}
 \newcommand{\id}{\text{id}}
 \newcommand{\comp}{\circ}
+\newcommand{\transport}{\text{transport}}
 
 \title{Homotopiczna teoria typów}
 
@@ -274,7 +275,7 @@ Powyższe reguły opisują rodzinę typów, która zazwyczaj nazywana bywa typem
 \end{itemize}
 \end{frame}
 
-\begin{frame}{2.1 Typy to wyższe grupoidy 1 - definicje}
+\begin{frame}{Operacje na ścieżkach 1 - definicje}
 
 \begin{definition}[Lemat 2.1.1 - ścieżka odwrotna]
 $(-)^{-1} : \Pi A : \U. \Pi x\ y : A. x = y \to y = x$ \\
@@ -290,7 +291,7 @@ $\refl{x} \sq \refl{x} :\equiv \refl{x}$
 
 \end{frame}
 
-\begin{frame}{2.1 Typy to wyższe grupoidy 2 - właściwości}
+\begin{frame}{Operacje na ścieżkach 2 - właściwości}
 
 \begin{theorem}[Lemat 2.1.4 - właściwości operacji na ścieżkach]
 
@@ -310,7 +311,7 @@ Niech $A : \U$ będzie typem, $a, b, c, d : A$ punktami, zaś $p : a = b, q : b 
 
 \end{frame}
 
-\begin{frame}{2.1 Typy to wyższe grupoidy 3 - prostujcie ścieżki Pana}
+\begin{frame}{Prostujcie ścieżki Pana}
 \begin{itemize}
 	\item Zauważmy, że cała wyższogrupoidowa struktura typów wynika wprost z indukcji po ścieżkach.
 	\item Zauważmy też, że powyższe właściwości operacji na ścieżkach są wyrażone za pomocą ścieżek między ścieżkami.
@@ -321,7 +322,7 @@ Niech $A : \U$ będzie typem, $a, b, c, d : A$ punktami, zaś $p : a = b, q : b 
 \end{itemize}
 \end{frame}
 
-\begin{frame}{2.2 Funkcje to funktory 1 - definicje}
+\begin{frame}{Aplikacja funkcji do ścieżki 1 - definicja}
 
 \begin{definition}[Lemat 2.2.1 - aplikacja funkcji do ścieżki]
 
@@ -338,7 +339,7 @@ Zauważ też, że również tutaj nie wyczerpujemy tematu. Funkcje zachowują ni
 
 \end{frame}
 
-\begin{frame}{2.2 Funkcje to funktory 2 - właściwości}
+\begin{frame}{Aplikacja funkcji do ścieżki 2 - właściwości}
 \makebox[\linewidth]{\parbox{12cm}
 {
 	\includegraphics[scale=0.25]{ap.png}
@@ -348,7 +349,7 @@ Zauważ też, że również tutaj nie wyczerpujemy tematu. Funkcje zachowują ni
 
 \end{frame}
 
-\begin{frame}{2.3 Mu synku mu, czyli transport 1 - definicja}
+\begin{frame}{Transport 1 - definicja}
 
 \begin{definition}[Lemat 2.3.1 - transport]
 
@@ -365,7 +366,7 @@ Homotopicznie sprawa jest nieco ciekawsza: jeżeli mamy ścieżkę $p : x =_A y$
 
 \end{frame}
 
-\begin{frame}{2.3 Mu synku mu, czyli transport 2 - właściwości}
+\begin{frame}{Transport 2 - właściwości}
 
 \makebox[\linewidth]{\parbox{12cm}
 {
@@ -376,7 +377,7 @@ Homotopicznie sprawa jest nieco ciekawsza: jeżeli mamy ścieżkę $p : x =_A y$
 
 \end{frame}
 
-\begin{frame}{2.3 Aplikacja funkcji zależnych do ścieżek}
+\begin{frame}{Aplikacja funkcji zależnej do ścieżki}
 
 \begin{definition}[Lemat 2.3.4]
 
@@ -385,13 +386,11 @@ $\apd{f}{\refl{x}} :\equiv \refl{f(x)}$
 
 \end{definition}
 
-Aplikacja funkcji zależnych do ścieżek jest analogiczna do aplikacji funkcji niezależnych do ścieżek, ale jest mały twist - musimy użyć transportu, bo wyniki funkcji dla $x$ i $y$ żyją w różnych typach. \\~\
-
-Najłatwiej jest o tym myśleć w ten sposób: funkcje zależne są równoważne funkcjom niezależnym między odpowiednimi $\Sigma$-typami.
+Aplikacja funkcji zależnych do ścieżek jest analogiczna do aplikacji funkcji niezależnych do ścieżek, ale jest mały twist - musimy użyć transportu, bo wyniki funkcji dla $x$ i $y$ żyją w różnych typach.
 
 \end{frame}
 
-\begin{frame}{2.4 Homotopie}
+\begin{frame}{Homotopie 1 - definicje i właściwości}
 
 \makebox[\linewidth]{\parbox{12cm}
 {
@@ -402,27 +401,73 @@ Najłatwiej jest o tym myśleć w ten sposób: funkcje zależne są równoważne
 
 \end{frame}
 
-\begin{frame}{2.4 Równoważności 1 - koncert życzeń}
+\begin{frame}{Homotopie 2 - intuicja}
 \begin{itemize}
-	\item Chcielibyśmy mieć pojęcie mówiące, że dwa typy są równoważne. Oczywiście mamy równość (ścieżki), ale chcemy czegoś fajniejszego.
-	\item Prymitywny pomysł: bijekcja, czyli funkcja będącą surjekcją i injekcją (względnie: dla każdego $y$ istnieje dokładnie jeden $x$...).
-	\item Bardziej wzniosły pomysł: izomorfizm, czyli funkcja mająca obustronną odwrotność.
+	\item Klasycznie (czyli płasko) $f \sim g$ możemy czytać jako ``$f$ i $g$ są ekstensjonalnie równe''.
+	\item HoTTowym odpowiednikiem ekstensjonalnej równości jest homotopia, która intuicyjnie znaczy, że dla każdego elementu dziedziny wyniki funkcji $f$ i $g$ są połączone ścieżką w przeciwdziedzinie.
+	\item To pojęcie homotopii różni się jednak od tego zaprezentowanego w pierwszych slajdach, gdyż homotopie i ścieżki między funkcjami nie są a priori tym samym - nie da się tego pokazać w podstawowej wersji naszej teorii.
+	\item Dlatego w bliskiej przyszłości będziemy dążyć do tego, żeby załatać tę sytuację za pomocą aksjomatu ekstensjonalności.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{2.4 Równoważności 2 - kwaziodwrotność}
+\section{Równoważności}
 
-\makebox[\linewidth]{\parbox{11.5cm}
-{
-	\includegraphics[scale=0.25]{qinv.png}
-}}
+\begin{frame}{Równoważności 1 - bardzo poważny filozoficzny problem}
+\begin{itemize}
+	\item Rozważmy dwa poniższe typy (tak naprawdę powinniśmy też podać reguły eliminacji i obliczania, ale nie są one istotne dla przykładu).
+	\item Niech $\mathbb{N} :\equiv 0 \: | \: S\ \mathbb{N}$ i niech $\mathbb{N}' :\equiv 0' \: | \: S'\ \mathbb{N}'$
+	\item Rodzi się pytanie: czy $\mathbb{N}$ i $\mathbb{N}'$ to to samo, czy coś innego?
+	\item Odpowiedź klasyczna: istnieje oczywista bijekcja $\mathbb{N} \cong \mathbb{N}'$. Na mocy nadużycia języka będziemy utożsamiać $\mathbb{N}$ i $\mathbb{N}'$, tzn. traktować je tak, jakby $\mathbb{N} = \mathbb{N}'$ mimo, że formalnie tak nie jest.
+	\item Odpowiedź HoTTowa: istnieje oczywista równoważność $e : \mathbb{N} \simeq \mathbb{N}'$. Wobec tego na mocy aksjomatu uniwalencji mamy ścieżkę $\text{ua}(e) : \mathbb{N} = \mathbb{N}'$.
+	\item Pozostaje nam sformułować pojęcie równoważności i podać aksjomat uniwalencji, łączący równoważności ze ścieżkami w uniwersum.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Równoważności 2 - pomysły}
+
+Jak więc zdefiniować równoważność? Przyjrzyjmy się tradycyjnym pojęciom o podobnym charakterze:
+\begin{itemize}
+	\item Bijekcja - funkcja będąca surjekcją i injekcją.
+	\item Bijekcja v2 - dla każdego elementu przeciwdziedziny istnieje dokładnie jeden element dziedziny.
+	\item Izomorfizm - morfizm mający obustronną odwrotność.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{2.4 Równoważności 3 - kwaziodwrotność}
+
+\begin{definition}
+$\qinv : \Pi A\ B : \U. (A \to B) \to \U$ \\
+$\displaystyle \qinv(f) :\equiv \sum_{g : B \to A} g \comp f \sim \id_A \times f \comp g \sim \id_B$
+\end{definition}
+
+Funkcję mającą odwrotność (wraz z dowodami na to, że faktycznie jest to odwrotność) będziemy nazywać kwaziodwrotnością. \\~\
+
+Ćwiczenio-przykład. Pokaż, że kwaziodwrotnościami są następujące funkcje:
+\begin{itemize}
+	\item $\id_A : A \to A$
+	\item $(p \sq -) : y = z \to x = z$
+	\item $(- \sq q) : x = y \to x = z$
+	\item $\transport(p, -) : P(x) \to P(y)$
+\end{itemize}
 
 \end{frame}
 
-\begin{frame}{2.4 Równoważności 3 - pobożne życzenia}
+\begin{frame}{Równoważności 4 - co poszło nie tak}
+
+Dlaczego nazwaliśmy funkcje mające odwrotność kwaziodwrotnościami, a nie izomorfizmami? Okazuje się, że są one wadliwe. Jeżeli narysujemy odpowiednio plastyczny rysunek, to ujrzymy uzasadnienie dla poniższego twierdzenia:
+
+\begin{theorem}[Twierdzenie 4.1.1 - $qinv$ to pętle]
+
+$\Pi A\ B : \U. \Pi f : A \to B. \qinv(f) \to (\qinv(f) = \Pi x : A. x = x)$
+
+\end{theorem}
+
+Twierdzenie to głosi, że jeżeli funkcja $f$ jest kwaziodwrotnością, to typ $\qinv(f)$ jest równy typowi funkcji zależnych, które każdemu punktowi przyporządkowują jakąś pętlę. Dlaczego twierdzenie to nas niepokoi? Jak już wiemy, pętli w danym punkcie może być wiele. Mimo, że dana funkcja może mieć tylko jedną odwrotność, to dowodów tego faktu (czyli odpowiednich par ścieżek) może być wiele. Wobec tego funkcja może być kwaziodwrotnością na wiele sposobów.
+
+\end{frame}
+
+\begin{frame}{Równoważności 5 - pobożne życzenia}
 \begin{itemize}
-	\item Dlaczego nazwaliśmy pojęcie odpowiadające izomorfizmowi kwaziodwrotnością?
-	\item Jak się okaże, jest ono wadliwe.
 	\item Chcielibyśmy, żeby definicja równoważności $\isequiv$ spełniała następujące warunki:
 	\begin{itemize}
 		\item $\qinv(f) \to \isequiv(f)$
@@ -433,19 +478,7 @@ Najłatwiej jest o tym myśleć w ten sposób: funkcje zależne są równoważne
 \end{itemize}
 \end{frame}
 
-\begin{frame}{2.4 Równoważności 4 - co poszło nie tak}
-
-$\qinv$ powyższych warunków nie spełnia. Jeżeli narysujemy odpowiednio plastyczny rysunek, to ujrzymy uzasadnienie dla poniższego twierdzenia:
-
-\begin{theorem}[Twierdzenie 4.1.1 - $qinv$ to pętla]
-
-$\Pi A\ B : \U. \Pi f : A \to B. \qinv(f) \to \qinv(f) \simeq \Pi x : A. x = x$
-
-\end{theorem}
-
-\end{frame}
-
-\begin{frame}{2.4 Równoważności 5 - do wyboru do koloru}
+\begin{frame}{Równoważności 6 - definicje}
 
 Niech $A, B : \U$ będą typami, a $f : A \to B$ funkcją.
 
@@ -467,6 +500,24 @@ $
 $
 \end{definition}
 
+\end{frame}
+
+
+\begin{frame}{Równoważności 7 - wybór}
+
+Żeby uzyskać definicję $\isequiv$, możemy ``ulepszyć'' definicję $\qinv$. Możemy to zrobić na dwa sposoby:
+
+\begin{itemize}
+	\item Rozdzielamy odwrotność na dwie osobne. Wtedy każda z nich ma swój osobny dowód, że jest odwrotnością i gitara gra.
+	\item Dodajemy dodatkową ścieżkę, która zapewnia, że ścieżki dowodzące odwrotności dobrze się ze sobą zachowują.
+\end{itemize}
+
+Druga definicja zdaje się być korzystniejsza w użyciu, bo łatwiej wyjąć z niej odwrotność. Dużo łatwiej jest też dostrzec, że spełnia ona dwa pierwsze pożądane przez nas warunki. Tego, że spełnia trzeci, nie będziemy dowodzić, bo to nudne.
+
+\end{frame}
+
+\begin{frame}{Równoważności 8 - więcej definicji}
+
 \begin{definition}[Równoważność 3]
 $
 \displaystyle
@@ -475,10 +526,6 @@ $
 $
 \end{definition}
 
-\end{frame}
-
-
-\begin{frame}{2.4 Równowazności 6 - koniec}
 
 \begin{definition}[Równoważność 4]
 $
@@ -487,6 +534,60 @@ $
 $
 \end{definition}
 
+Możliwe są jeszcze dwie inne definicje równoważności, których jednak nie wybierzemy, gdyż zawierają nieznane nam pojęcia.
+
+\begin{itemize}
+	\item Nr 3 odpowiada naszej definicji bijekcji v2: dla każdego elementu przeciwdziedziny istnieje dokładnie jeden element dziedziny (ale musimy zapisać to bardziej homotopicznie).
+	\item Nr 4 to coś w stylu: $\qinv$ nie działa, więc ulepszymy go czarami tak, żeby jednak działał.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Równoważności 9 - refleksja}
+\begin{itemize}
+	\item Oczywiście wszystkie 4 definicje są równoważne.
+	\item Skąd jednak biorą się problemy? Klasyczna definicja izomorfizmu okazała się za słaba, zaś definicję bijekcji v2 również trzeba było odpowiednio stuningować.
+	\item Definicja: zbiór (czasem nazywany też h-zbiorem) to typ, w którym wszystkie ścieżki są trywialne.
+	\item Powód tego jest prosty: klasyczne definicje pochodzą ze świata teorii zbiorów, w którym to świecie wszystko jest h-zbiorem. Wobec tego definicje trzeba nieco unowocześnić.
+	\item ``Stare'' definicje są mimo wszystko poprawne dla h-zbiorów w HoTT.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Wielkie odkrycie 1 - injekcja to surjekcja}
+\begin{itemize}
+	\item W ramach ciekawostki dokonajmy pewnego wesołego odkrycia: injekcja to surjekcja.
+	\item Klasycznie $f$ jest surjekcją, gdy $\forall y \in B. \exists x \in A. f(x) = y$
+	\item Klasycznie $f$ jest injekcją, gdy $\forall x\ y \in A. f(x) = f(y) \implies x = y$
+	\item Przeformułujmy tę definicję na taką bardziej homo, wciskając tam więcej ścieżek: $f$ jest injekcją, gdy $\Pi x\ y : A. \Pi q : f(x) = f(y). \Sigma p : x = y. \ap{f}{p} = q$
+	\item Klasyczną surjekcję możemy rozumieć jako 0-surjekcję, tzn. surjekcję na punktach, zaś klasyczną injekcję jako 1-surjekcję, tzn. surjekcję na ścieżkach między punktami.
+	\item Jak więc widać, klasyczna bijekcja to surjekcja na poziomach $0$ i $1$. A co z wyższymi?
+	\item Próba pogłębienia tej obserwacji prowadzi do ciekawego twierdzenia.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Wielkie odkrycie 2 - wesoła charakteryzacja równoważności}
+
+Niech $A, B : \U$ będą typami, a $f: A \to B$ funkcją.
+
+\begin{definition}[Surjekcja - nieco inaczej niż w książce]
+$f$ jest surjekcją, gdy $\Pi y : B. \Sigma x : A. f(x) = y$
+\end{definition}
+
+\begin{definition}[Zanurzenie]
+$f$ jest zanurzeniem, gdy dla każdego $x, y : A$ funkcja $\text{ap}_f : x = y \to f(x) = f(y)$ jest równoważnością.
+\end{definition}
+
+\begin{theorem}[Wesoła charakteryzacja równoważności]
+$f$ jest równoważnością wtedy i tylko wtedy, gdy jest surjekcją i zanurzeniem.
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}{Wielkie odkrycie 3 - wnioski}
+\begin{itemize}
+	\item $f$ jest równoważnością, gdy jest surjekcją na wszystkich poziomach - na punktach, ścieżkach między punktami, ścieżkach między ścieżkami etc.
+	\item Stąd wnioskujemy, że klasyczne definicje okazują się za słabe, gdyż dotyczą tylko poziomów $0$ i $1$ (czyli punktów i ścieżek), a my mamy do czynienia z potencjalnie nieskończenie wieloma poziomami.
+\end{itemize}
 \end{frame}
 
 \begin{frame}{2.5-2.8 Wyższogrupoidowa struktura typów}
@@ -504,16 +605,6 @@ $
 \begin{frame}{2.10 Uniwalencja}
 \begin{itemize}
 	\item todo
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Innowacje HoTT w przykładach - uniwalencja 1}
-\begin{itemize}
-	\item Rozważmy dwa poniższe typy (tak naprawdę powinniśmy też podać reguły eliminacji i obliczania, ale nie są one istotne dla przykładu).
-	\item Niech $\mathbb{N} :\equiv 0 \: | \: S\ \mathbb{N}$ i niech $\mathbb{N}' :\equiv 0' \: | \: S'\ \mathbb{N}'$
-	\item Rodzi się pytanie: czy $\mathbb{N}$ i $\mathbb{N}'$ to to samo, czy coś innego?
-	\item Odpowiedź klasyczna: istnieje oczywisty izomorfizm $\mathbb{N} \cong \mathbb{N}'$. Na mocy nadużycia języka będziemy utożsamiać $\mathbb{N}$ i $\mathbb{N}'$, tzn. traktować je tak, jakby $\mathbb{N} = \mathbb{N}'$ mimo, że formalnie tak nie jest.
-	\item Odpowiedź HoTTowa: istnieje oczywista równoważność $e : \mathbb{N} \simeq \mathbb{N}'$. Wobec tego na mocy aksjomatu uniwalencji mamy ścieżkę $\text{ua}(e) : \mathbb{N} = \mathbb{N}'$.
 \end{itemize}
 \end{frame}
 
@@ -610,26 +701,6 @@ Powyższe twierdzenie jest problematyczne, gdyż wygląda jak aksjomat wyboru, a
 \end{frame}
 
 \begin{frame}{wut}
-\begin{itemize}
-	\item
-\end{itemize}
-\end{frame}
-
-\section{Równoważności}
-
-\begin{frame}{4.2-4.5 Różne oblicza równoważności}
-\begin{itemize}
-	\item
-\end{itemize}
-\end{frame}
-
-\begin{frame}{4.6 Surjekcje i injekcje}
-\begin{itemize}
-	\item
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Wielkie odkrycie filozoficzne - injekcja to surjekcja}
 \begin{itemize}
 	\item
 \end{itemize}
