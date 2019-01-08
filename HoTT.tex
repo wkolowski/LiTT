@@ -17,6 +17,12 @@
 \newcommand{\id}{\text{id}}
 \newcommand{\comp}{\circ}
 \newcommand{\transport}{\text{transport}}
+\newcommand{\prl}{\text{pr}_1}
+\newcommand{\prr}{\text{pr}_2}
+\newcommand{\happly}{\text{happly}}
+\newcommand{\funext}{\text{funext}}
+\newcommand{\idtoeqv}{\text{idtoeqv}}
+\newcommand{\ua}{\text{ua}}
 
 \title{Homotopiczna teoria typów}
 
@@ -590,21 +596,191 @@ $f$ jest równoważnością wtedy i tylko wtedy, gdy jest surjekcją i zanurzeni
 \end{itemize}
 \end{frame}
 
-\begin{frame}{2.5-2.8 Wyższogrupoidowa struktura typów}
+\begin{frame}{2.5-2.8 Wyższogrupoidowa struktura typów 1 - wprowadzenie}
 \begin{itemize}
-	\item todo
+	\item W klasycznej matematyce mamy twierdzenia mówiące, kiedy jakieś obiekty są równe, np. $(a, b) = (a', b') \iff a = a' \land b = b'$.
+	\item W HoTT mamy podobnie wyglądające twierdzenia: $(a, b) = (a', b') \simeq a = a' \times b = b'$.
+	\item Zgodnie jednak z interpretacją homotopiczną są one dużo ogólniejsze od swoich klasycznych przodków, gdyż charakteryzują one przestrzenie ścieżek w danym typie.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{2.9 Ekstensjonalność}
+\begin{frame}{2.5-2.8 Wyższogrupoidowa struktura typów 2 - plan}
 \begin{itemize}
-	\item todo
+	\item Jakkolwiek sprawa brzmi prosto, zróżnicowanie w tej materii jest spore.
+	\item Za chwilę zobaczymy charakteryzację ścieżek w typach banalnych oraz w typach negatywnych (czyli takich, w których kluczowa jest reguła eliminacji).
+	\item Później zobaczymy, że niektórych pożądanych charakteryzacji nie da się udowodnić i załatamy je aksjomatami.
+	\item Następnie zobaczymy sposób pozwalający charakteryzować ścieżki w typach pozytywnych (czyli takich, w których kluczowe są reguły wprowadzania).
+	\item HoTT pozwala nam jednak zdefiniować typy, dla których charakteryzacja ścieżek jest (częściowo) otwartym problemem badawczym, np. $n$-wymiarowe kule, torusy, podwieszenia i inne skomplikowane przestrzenie.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{2.10 Uniwalencja}
+\begin{frame}{2.5-2.8 Wyższogrupoidowa struktura typów 3 - typy banalne i negatywne}
+
+\begin{theorem}[Ścieżki między elementami typu pustego]
+$\Pi x\ y : \mathbf{0}. (x = y) \simeq \mathbf{0}$
+\end{theorem}
+
+\begin{theorem}[2.8 Ścieżki między elementami typu unit]
+$\Pi x\ y : \mathbf{1}. (x = y) \simeq \mathbf{1}$
+\end{theorem}
+
+\begin{theorem}[2.5.1 Ścieżki między parami]
+$\Pi A\ B : \U. \Pi a\ a' : A. \Pi b\ b': B. ((a, b) = (a', b')) \simeq a = a' \times b = b'$
+\end{theorem}
+
+\begin{theorem}[2.7.2 Ścieżki między parami zależnymi]
+$\Pi A : \U. \Pi B : A \to \U. \Pi w\ w' : \sum_{x : A} B(x).$ \\
+	$\displaystyle \quad (w = w') \simeq \sum_{p : \prl(w) = \prl(w')} p_*(\prr(w)) = \prr(w')$
+\end{theorem}
+
+\end{frame}
+\begin{frame}{2.5-2.8 Wyższogrupoidowa struktura typów 4 - interpretacja}
 \begin{itemize}
-	\item todo
+	\item Nie ma ścieżek między punktami typu $\mathbf{0}$. Jest to dość oczywiste, bo ścieżki muszą być między punktami, a punktów nie ma.
+	\item Między elementami $\mathbf{1}$ jest dokładnie jedna ścieżka.
+	\item Ścieżki między parami to pary ścieżek.
+	\item Ścieżki między parami zależnymi to zależne pary ścieżek.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{2.9 Ekstensjonalność 1 - aksjomat ekstensjonalności}
+
+Jeżeli dwie funkcje są równe, to są też homotopiczne (czyli ekstensjonalnie równe).
+
+\begin{definition}[2.9.2]
+$\happly: \Pi A\ B : \U. \Pi f\ g : A \to B. f = g \to \Pi x : A. f(x) = g(x)$ \\
+$\happly(\refl{f}) = \lambda x : A. \refl{f(x)}$
+\end{definition}
+
+Jednak implikacji w drugą stronę (ani tym bardziej równoważności) nie da się pokazać. Wobec tego wprowadzamy aksjomat:
+
+\begin{definition}[2.9.3 Aksjomat ekstensjonalności dla funkcji]
+Funkcja $\happly$ jest równoważnością.
+\end{definition}
+
+\begin{corollary}[Ładny wzorek]
+$(f = g) \simeq \Pi x : A. f(x) = g(x)$
+\end{corollary}
+
+\end{frame}
+
+\begin{frame}{2.9 Ekstensjonalność 2 - rozbicie na reguły}
+
+Zauważmy, że charakteryzacje ścieżek możemy rozbić na reguły przypominające reguły opisujące typy, w których te ścieżki żyją. Jest to prawdą nie tylko dla aksjomatu ekstensjonalności, ale też np. dla twierdzeń charakteryzujących ścieżki między parami.
+
+\begin{corollary}[Reguły opisujące ścieżki między funkcjami]
+$\funext : \Pi A\ B : \U. \Pi f\ g : A \to B. (\Pi x : A. f(x) = g(x)) \to f = g$ \\
+
+$\happly(\funext(h), x) = h(x)$ \\
+
+$\funext(\lambda x : A. \happly(p, x)) = p$
+\end{corollary}
+
+\end{frame}
+
+\begin{frame}{2.9 Ekstensjonalność 3 - interpretacja}
+\begin{itemize}
+	\item Reguła formacji dla $f = g$ pochodzi bezpośrednio z induktywnej definicji ścieżek.
+	\item Reguła wprowadzania to $\funext$: żeby zrobić ścieżkę $f = g$, wystarczy nam homotopia.
+	\item Reguła eliminacji to $\happly$: jeżeli mamy ścieżkę $f = g$, to możemy uzyskać ścieżkę $f(x) = g(x)$ dla dowolnego $x$ należącego do dziedziny.
+	\item Reguła obliczania mówi, że jeżeli zaaplikujemy do $x : A$ ścieżkę zrobioną z homotopii $h : \Pi x : A. f(x) = g(x)$ za pomocą $\funext$, to dostaniemy $h(x)$.
+	\item Reguła unikalności mówi, że każda ścieżka między funkcjami pochodzi od ekstensjonalności zaaplikowanej do odpowiedniej homotopii.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{2.9 Ekstensjonalność 4 - charakteryzacja operacji}
+
+Możemy scharakteryzować nie tylko ścieżki między funkcjami, ale także operacje na tych ścieżkach.
+
+\begin{theorem}[Charakteryzacja operacji na ścieżkach między funkcjami]
+$\refl{f} = \funext(\lambda x : A. \refl{f(x)})$ \\
+
+$p^{-1} = \funext(\lambda x : A. \happly(p, x)^{-1})$ \\
+
+$p \sq q = \funext(\lambda x : A. \happly(p, x) \sq \happly(q, x))$
+\end{theorem}
+
+Intuicja jest prosta:
+\begin{itemize}
+	\item Funkcja bierze argument i zwraca wynik.
+	\item Ścieżka między funkcjami to funkcja biorąca argument i zwracająca ścieżkę między wynikami.
+	\item Operacja na ścieżkach między funkcjami pochodzi na mocy ekstensjonalności od funkcji biorącej argument i wykonującej operację na ścieżkach między wynikami.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{2.9 Ekstensjonalność 5 - charakteryzacja transportu}
+
+Możemy też scharakteryzować transport w rodzinach typów postaci $\lambda x : X. A(x) \to B(x)$. \\~\
+
+Dla typu $X : \U$, rodzin typów $A, B : X \to \U$, elementów $x_1, x_2 : X$, funkcji $f : A(x_1) \to B(x_1)$ oraz ścieżki $p : x_1 = x_2$ mamy:
+
+\begin{theorem}[Charakteryzacja transportu dla funkcji]
+$\transport^{\lambda x : X. A(x) \to B(x)}(p, f) =$ \\
+$\quad \lambda a : A(x_2). \transport^B(p, f(\transport^A(p^{-1}, a)))$
+\end{theorem}
+
+Interpretacja twierdzenia jest łatwa: chcemy zrobić funkcję typu $A(x_2) \to B(x_2)$. Bierzemy więc element $a : A(x_2)$, transportujemy go ścieżka $p$ w tył do typu $A(x_1)$, używamy funkcji $f$ by dostać element typu $B(x_1)$ i transportujemy go wzdłuż $p$ do typu $B(x_2)$.
+
+\end{frame}
+
+\begin{frame}{2.10 Uniwalencja 1 - aksjomat uniwalencji}
+
+Jeżeli dwa typy są równe, to są też równoważne.
+
+\begin{definition}[2.10.2]
+$\idtoeqv: \Pi A\ B. A = B \to A \simeq B$ \\
+$\idtoeqv(p) = \transport^{\id_\U}(p)$ \\
+
+Słownie: $\idtoeqv$ to specjalny przypadek transportu. Trzeba jeszcze przez indukcję po ścieżkach pokazać, że jest to równoważność.
+\end{definition}
+
+Podobnie jak w przypadku ekstensjonalności dla funkcji, w drugą stronę implikacji pokazać się nie da i stąd aksjomat.
+
+\begin{definition}[2.10.3 Aksjomat uniwalencji]
+Funkcja $\idtoeqv$ jest równoważnością.
+\end{definition}
+
+\begin{corollary}[Ładne wzorki]
+$(A = B) \simeq (A \simeq B)$ lub równoważnie $(A = B) = (A \simeq B)$
+\end{corollary}
+
+\end{frame}
+
+\begin{frame}{2.10 Uniwalencja 2 - reguły i charakteryzacje}
+
+\begin{corollary}[Reguły opisujące ścieżki między typami]
+$\ua : \Pi A\ B : \U. (A \simeq B) \to A = B$ \\
+
+$\idtoeqv(\ua(e)) = e$ \\
+
+$\ua(\idtoeqv(p)) = p$
+\end{corollary}
+
+\begin{theorem}[Charakteryzacja operacji na ścieżkach między funkcjami]
+$\refl{f} = \ua(\id_A)$ \\
+
+$p^{-1} = \ua(\idtoeqv(p)^{-1})$ \\
+
+$p \sq q = \ua(\idtoeqv(q) \comp \idtoeqv(p))$
+\end{theorem}
+
+Dla rodziny typów $B : A \to \U$, punktów $x, y : A$, ścieżki $p : x = y$ i elementu $u : B(x)$ mamy:
+
+\begin{theorem}[Charakteryzacja transportu dla typów]
+$\transport^{\lambda X : \U.X}(p, f) = \idtoeqv(\ap{B}{p})(u)$
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}{Filozoficzna interpretacja równoważności i aksjomatów}
+\begin{itemize}
+	\item Jak widać, równoważność $A \simeq B$ możemy zinterpretować jako zestaw czterech reguł opisujących typ $A$ (albo $B$) po prostu ją rozpakowując.
+	\item Funkcja $f^{-1} : B \to A$ to reguła wprowadzania dla $A$.
+	\item Funkcja $f : A \to B$ to reguła eliminacji.
+	\item Homotopia będąca świadkiem $f(f^{-1}(x)) = x$ to (zdaniowa) reguła obliczania.
+	\item Homotopia będąca świadkiem $f^{-1}(f(x)) = x$ to (zdaniowa) reguła unikalności.
+	\item Dzięki 
 \end{itemize}
 \end{frame}
 
