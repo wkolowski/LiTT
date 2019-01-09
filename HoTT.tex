@@ -1,28 +1,43 @@
 \documentclass{beamer}
+
 \usepackage[utf8]{inputenc}
 \usepackage{polski}
 \usepackage[polish]{babel}
 \usepackage{graphicx}
+
 \usetheme{Darmstadt}
 
-%\newcommand{\impl}{\rightarrow}
-%\renewcommand{\implies}{\rightarrow}
+\newcommand{\defn}{:\equiv}
+
 \newcommand{\U}{\mathcal{U}}
-\newcommand{\refl}[1]{\text{refl}_{#1}}
-\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}}
-\newcommand{\ap}[2]{\text{ap}_{#1}(#2)}
-\newcommand{\apd}[2]{\text{apd}_{#1}(#2)}
-\newcommand{\qinv}{\text{qinv}}
-\newcommand{\isequiv}{\text{isequiv}}
+
 \newcommand{\id}{\text{id}}
 \newcommand{\comp}{\circ}
+\newcommand{\finv}[1]{#1^{-1}}
+
+\newcommand{\refl}[1]{\text{refl}_{#1}}
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\sq}{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}}
+
+\newcommand{\ap}[2]{\text{ap}_{#1}(#2)}
+\newcommand{\apd}[2]{\text{apd}_{#1}(#2)}
 \newcommand{\transport}{\text{transport}}
+
+\newcommand{\qinv}{\text{qinv}}
+\newcommand{\isequiv}{\text{isequiv}}
+
 \newcommand{\prl}{\text{pr}_1}
 \newcommand{\prr}{\text{pr}_2}
+
 \newcommand{\happly}{\text{happly}}
 \newcommand{\funext}{\text{funext}}
+
 \newcommand{\idtoeqv}{\text{idtoeqv}}
 \newcommand{\ua}{\text{ua}}
+
+\newcommand{\code}{\text{code}}
+\newcommand{\encode}{\text{encode}}
+\newcommand{\decode}{\text{decode}}
 
 \title{Homotopiczna teoria typów}
 
@@ -65,7 +80,7 @@
 \begin{frame}{Teoria homotopii 1 - homotopia}
 \begin{itemize}
 	\item Co to jest homotopia?
-	\item Zgodnie z wikipedią, jeżeli $f$ i $g$ są funkcjami ciągłymi z przestrzeni topologicznej $X$ w przestrzeń topologiczną $Y$, to $H: X \times [0; 1] \to Y$ jest homotopią, gdy jest funkcją ciągłą spełniającą $H(0, x) = f(x) \land H(1, x) = g(x)$.
+	\item Zgodnie z wikipedią, jeżeli $f$ i $g$ są funkcjami ciągłymi z przestrzeni topologicznej $X$ w przestrzeń topologiczną $Y$, to $H : X \times [0; 1] \to Y$ jest homotopią, gdy jest funkcją ciągłą spełniającą $H(0, x) = f(x) \land H(1, x) = g(x)$.
 	\item Jeżeli nieco pogmeramy w symbolach, to możemy to zapisać tak: $H: [0; 1] \to (X \to Y)$ jest homotopią, gdy jest ciągła i spełnia $H(0) = f \land H(1) = g$.
 	\item Nie przejmuj się, jeżeli definicja cię nie oświeca. Moim zdaniem władowanie jej do nazwy całej teorii jest głupie.
 \end{itemize}
@@ -166,8 +181,8 @@
 \begin{frame}{Teoria typów 5 - cztery style definiowania}
 \begin{itemize}
 	\item Formalnie rzeczy definiujemy za pomocą reguł wprowadzania i eliminacji.
-	\item Przykład: funkcję $\text{swap} : \Pi A\ B : \U. A \times B \to B \times A$ możemy zdefiniować jako $\text{swap} :\equiv \lambda A : \U.\lambda B : \U.\lambda x : A \times B. (\pi_2\ x, \pi_1\ x)$
-	\item Zamiast tego często będziemy jednak definiować poprzez dopasowanie do wzorca, jednocześnie pomijając argumenty, które można wywnioskować z kontekstu: $\text{swap}\ (a, b) :\equiv (b, a)$
+	\item Przykład: funkcję $\text{swap} : \Pi A\ B : \U. A \times B \to B \times A$ możemy zdefiniować jako $\text{swap} \defn \lambda A : \U.\lambda B : \U.\lambda x : A \times B. (\prr(x), \prl(x))$
+	\item Zamiast tego często będziemy jednak definiować poprzez dopasowanie do wzorca, jednocześnie pomijając argumenty, które można wywnioskować z kontekstu: $\text{swap}\ (a, b) \defn (b, a)$
 	\item Możemy też definiować słownie: niech $\text{swap}$ będzie funkcją, która zamienia miejscami elementy pary. Ten sposób będziemy wykorzystywać do dowodzenia twierdzeń.
 	\item Ostatnim stylem jest obrazkowy styl definiowania. Nie jest on używany w książce, ale ja postaram się go wykorzystać podczas tej prezentacji, gdyż dobrze działa na wyobraźnię.
 \end{itemize}
@@ -208,11 +223,14 @@
 \end{frame}
 
 \begin{frame}{1.12 Ścieżki 1 - reguły}
+
 \makebox[\linewidth]{\parbox{12cm}
 {
 	\includegraphics[scale=0.25]{IdentityTypesSmall.png}
 }}
+
 Powyższe reguły opisują rodzinę typów, która zazwyczaj nazywana bywa typem identycznościowym (ang. identity type), ale zgodnie z interpretacją homotopiczną będę go nazywał typem ścieżek.
+
 \end{frame}
 
 \begin{frame}{1.12 Ścieżki 2 - interpretacja reguł}
@@ -284,13 +302,13 @@ Powyższe reguły opisują rodzinę typów, która zazwyczaj nazywana bywa typem
 \begin{frame}{Operacje na ścieżkach 1 - definicje}
 
 \begin{definition}[Lemat 2.1.1 - ścieżka odwrotna]
-$(-)^{-1} : \Pi A : \U. \Pi x\ y : A. x = y \to y = x$ \\
-$\refl{x}^{-1} :\equiv \refl{x}$
+$\inv{(-)} : \Pi A : \U. \Pi x\ y : A. x = y \to y = x$ \\
+$\inv{\refl{x}} \defn \refl{x}$
 \end{definition}
 
 \begin{definition}[Lemat 2.1.2 - sklejanie ścieżek]
 $\sq : \Pi A : \U. \Pi x\ y\ z : A. x = y \to y = z \to x = z$ \\
-$\refl{x} \sq \refl{x} :\equiv \refl{x}$
+$\refl{x} \sq \refl{x} \defn \refl{x}$
 \end{definition}
 
 \includegraphics[scale=0.3]{EqPathGrupoid.png}
@@ -306,8 +324,8 @@ Niech $A : \U$ będzie typem, $a, b, c, d : A$ punktami, zaś $p : a = b, q : b 
 \begin{itemize}
 	\item $\refl{x} \sq p = p$
 	\item $p \sq \refl{y} = p$
-	\item $p \sq p^{-1} = \refl{x}$
-	\item $p^{-1} \sq p = \refl{y}$
+	\item $p \sq \inv{p} = \refl{x}$
+	\item $\inv{p} \sq p = \refl{y}$
 	\item $p \sq (q \sq r) = (p \sq q) \sq r$
 \end{itemize}
 
@@ -333,7 +351,7 @@ Niech $A : \U$ będzie typem, $a, b, c, d : A$ punktami, zaś $p : a = b, q : b 
 \begin{definition}[Lemat 2.2.1 - aplikacja funkcji do ścieżki]
 
 $\text{ap} : \Pi A\ B : \U. \Pi f : A \to B. x =_A y \to f(x) =_B f(y)$ \\
-$\ap{f}{\refl{x}} :\equiv \refl{f(x)}$
+$\ap{f}{\refl{x}} \defn \refl{f(x)}$
 
 \end{definition}
 
@@ -360,9 +378,9 @@ Zauważ też, że również tutaj nie wyczerpujemy tematu. Funkcje zachowują ni
 \begin{definition}[Lemat 2.3.1 - transport]
 
 $\text{transport} : \Pi A : \U. \Pi B : A \to \U. \Pi x\ y : A. x = y \to P(x) \to P(y)$ \\
-$\text{transport}(\refl{x}) :\equiv \text{id}_{P(x)}$ \\~\
+$\text{transport}(\refl{x}) \defn \text{id}_{P(x)}$ \\~\
 
-Notacja: $p_* :\equiv \text{transport}(p)$
+Notacja: $p_* \defn \text{transport}(p)$
 
 \end{definition}
 
@@ -388,7 +406,7 @@ Homotopicznie sprawa jest nieco ciekawsza: jeżeli mamy ścieżkę $p : x =_A y$
 \begin{definition}[Lemat 2.3.4]
 
 $\text{apd} : \Pi A : \U. \Pi P : A \to \U. \Pi f : (\Pi x : A. P(x)). \Pi p : x = y. p_*(f(x)) = f(y)$ \\
-$\apd{f}{\refl{x}} :\equiv \refl{f(x)}$
+$\apd{f}{\refl{x}} \defn \refl{f(x)}$
 
 \end{definition}
 
@@ -418,20 +436,10 @@ Aplikacja funkcji zależnych do ścieżek jest analogiczna do aplikacji funkcji 
 
 \section{Równoważności}
 
-\begin{frame}{Równoważności 1 - bardzo poważny filozoficzny problem}
-\begin{itemize}
-	\item Rozważmy dwa poniższe typy (tak naprawdę powinniśmy też podać reguły eliminacji i obliczania, ale nie są one istotne dla przykładu).
-	\item Niech $\mathbb{N} :\equiv 0 \: | \: S\ \mathbb{N}$ i niech $\mathbb{N}' :\equiv 0' \: | \: S'\ \mathbb{N}'$
-	\item Rodzi się pytanie: czy $\mathbb{N}$ i $\mathbb{N}'$ to to samo, czy coś innego?
-	\item Odpowiedź klasyczna: istnieje oczywista bijekcja $\mathbb{N} \cong \mathbb{N}'$. Na mocy nadużycia języka będziemy utożsamiać $\mathbb{N}$ i $\mathbb{N}'$, tzn. traktować je tak, jakby $\mathbb{N} = \mathbb{N}'$ mimo, że formalnie tak nie jest.
-	\item Odpowiedź HoTTowa: istnieje oczywista równoważność $e : \mathbb{N} \simeq \mathbb{N}'$. Wobec tego na mocy aksjomatu uniwalencji mamy ścieżkę $\text{ua}(e) : \mathbb{N} = \mathbb{N}'$.
-	\item Pozostaje nam sformułować pojęcie równoważności i podać aksjomat uniwalencji, łączący równoważności ze ścieżkami w uniwersum.
-\end{itemize}
-\end{frame}
+\begin{frame}{Równoważności 1 - pomysły}
 
-\begin{frame}{Równoważności 2 - pomysły}
+Homotopicznie zinterpretowawszy typy, zdążajmy teraz ku aksjomatowi uniwalencji. Żeby go sformułować, potrzebne nam będzie pojęcie równoważności typów. Przyjrzyjmy się zatem tradycyjnym pojęciom o podobnym charakterze:
 
-Jak więc zdefiniować równoważność? Przyjrzyjmy się tradycyjnym pojęciom o podobnym charakterze:
 \begin{itemize}
 	\item Bijekcja - funkcja będąca surjekcją i injekcją.
 	\item Bijekcja v2 - dla każdego elementu przeciwdziedziny istnieje dokładnie jeden element dziedziny.
@@ -439,11 +447,11 @@ Jak więc zdefiniować równoważność? Przyjrzyjmy się tradycyjnym pojęciom 
 \end{itemize}
 \end{frame}
 
-\begin{frame}{2.4 Równoważności 3 - kwaziodwrotność}
+\begin{frame}{Równoważności 2 - kwaziodwrotność}
 
 \begin{definition}
 $\qinv : \Pi A\ B : \U. (A \to B) \to \U$ \\
-$\displaystyle \qinv(f) :\equiv \sum_{g : B \to A} g \comp f \sim \id_A \times f \comp g \sim \id_B$
+$\displaystyle \qinv(f) \defn \sum_{g : B \to A} g \comp f \sim \id_A \times f \comp g \sim \id_B$
 \end{definition}
 
 Funkcję mającą odwrotność (wraz z dowodami na to, że faktycznie jest to odwrotność) będziemy nazywać kwaziodwrotnością. \\~\
@@ -458,7 +466,7 @@ Funkcję mającą odwrotność (wraz z dowodami na to, że faktycznie jest to od
 
 \end{frame}
 
-\begin{frame}{Równoważności 4 - co poszło nie tak}
+\begin{frame}{Równoważności 3 - co poszło nie tak}
 
 Dlaczego nazwaliśmy funkcje mające odwrotność kwaziodwrotnościami, a nie izomorfizmami? Okazuje się, że są one wadliwe. Jeżeli narysujemy odpowiednio plastyczny rysunek, to ujrzymy uzasadnienie dla poniższego twierdzenia:
 
@@ -472,7 +480,7 @@ Twierdzenie to głosi, że jeżeli funkcja $f$ jest kwaziodwrotnością, to typ 
 
 \end{frame}
 
-\begin{frame}{Równoważności 5 - pobożne życzenia}
+\begin{frame}{Równoważności 4 - pobożne życzenia}
 \begin{itemize}
 	\item Chcielibyśmy, żeby definicja równoważności $\isequiv$ spełniała następujące warunki:
 	\begin{itemize}
@@ -484,14 +492,14 @@ Twierdzenie to głosi, że jeżeli funkcja $f$ jest kwaziodwrotnością, to typ 
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Równoważności 6 - definicje}
+\begin{frame}{Równoważności 5 - definicje}
 
 Niech $A, B : \U$ będą typami, a $f : A \to B$ funkcją.
 
 \begin{definition}[Równoważność 1]
 $
 \displaystyle
-	\isequiv(f) :\equiv
+	\isequiv(f) \defn
 		\left(\sum_{g : B \to A} f \comp g \sim \id_B\right) \times
 		\left(\sum_{h : B \to A} h \comp f \sim \id_A\right)
 $
@@ -500,7 +508,7 @@ $
 \begin{definition}[Równoważność 2]
 $
 \displaystyle
-	\isequiv(f) :\equiv
+	\isequiv(f) \defn
 		\sum_{g : B \to A} \sum_{\eta : g \comp f \sim \id_A} \sum_{\epsilon : f \comp g \sim \id_B}
 			\prod_{x : A} \ap{f}{\eta(x)} = \epsilon(\ap{f}{x})
 $
@@ -509,7 +517,7 @@ $
 \end{frame}
 
 
-\begin{frame}{Równoważności 7 - wybór}
+\begin{frame}{Równoważności 6 - wybór}
 
 Żeby uzyskać definicję $\isequiv$, możemy ``ulepszyć'' definicję $\qinv$. Możemy to zrobić na dwa sposoby:
 
@@ -522,12 +530,12 @@ Druga definicja zdaje się być korzystniejsza w użyciu, bo łatwiej wyjąć z 
 
 \end{frame}
 
-\begin{frame}{Równoważności 8 - więcej definicji}
+\begin{frame}{Równoważności 7 - więcej definicji}
 
 \begin{definition}[Równoważność 3]
 $
 \displaystyle
-	\isequiv(f) :\equiv
+	\isequiv(f) \defn
 		\prod_{y : B} \text{isContr}\left(\sum_{x : A} f(x) = y\right)
 $
 \end{definition}
@@ -536,26 +544,30 @@ $
 \begin{definition}[Równoważność 4]
 $
 \displaystyle
-	\isequiv(f) :\equiv ||\qinv(f)||
+	\isequiv(f) \defn ||\qinv(f)||
 $
 \end{definition}
 
 Możliwe są jeszcze dwie inne definicje równoważności, których jednak nie wybierzemy, gdyż zawierają nieznane nam pojęcia.
 
-\begin{itemize}
-	\item Nr 3 odpowiada naszej definicji bijekcji v2: dla każdego elementu przeciwdziedziny istnieje dokładnie jeden element dziedziny (ale musimy zapisać to bardziej homotopicznie).
-	\item Nr 4 to coś w stylu: $\qinv$ nie działa, więc ulepszymy go czarami tak, żeby jednak działał.
-\end{itemize}
+\end{frame}
 
+\begin{frame}{Równoważności 8 - interpretacja reszty definciji}
+\begin{itemize}
+	\item Definicja nr 4 to coś w stylu: $\qinv$ nie działa, więc ulepszymy go czarami tak, żeby jednak działał (więcej dowiemy się później).
+	\item Definicja nr 3 odpowiada naszej definicji bijekcji v2 (dla każdego elementu przeciwdziedziny istnieje dokładnie jeden element dziedziny), ale musimy zapisać to bardziej homotopicznie.
+	\item Jest tak dlatego, że interesują nas nie tylko punkty, ale też ścieżki na każdym możliwym poziomie.
+	\item Definicję tę można czytać tak: dla każdego punktu przeciwdziedziny istnieje tylko jeden punkt dziedziny i jedna pętla na nim, i jedna pętla na tej pętli, i jedna pętli na tej pętli i tak dalej na każdym poziomie.
+	\item Prościej: przeciwobraz każdego punktu przeciwdziedziny jest równoważny typowi $\mathbf{1}$.
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Równoważności 9 - refleksja}
 \begin{itemize}
 	\item Oczywiście wszystkie 4 definicje są równoważne.
 	\item Skąd jednak biorą się problemy? Klasyczna definicja izomorfizmu okazała się za słaba, zaś definicję bijekcji v2 również trzeba było odpowiednio stuningować.
-	\item Definicja: zbiór (czasem nazywany też h-zbiorem) to typ, w którym wszystkie ścieżki są trywialne.
-	\item Powód tego jest prosty: klasyczne definicje pochodzą ze świata teorii zbiorów, w którym to świecie wszystko jest h-zbiorem. Wobec tego definicje trzeba nieco unowocześnić.
-	\item ``Stare'' definicje są mimo wszystko poprawne dla h-zbiorów w HoTT.
+	\item Powód tego jest prosty: klasyczne definicje pochodzą ze świata teorii zbiorów, w którym to świecie mamy tylko worki z kropkami. W świecie, w którym kropki mogą być połączone, definicje trzeba unowocześnić.
+	\item Żeby lepiej zrozumieć różnicę, dokonajmy pewnego wielkiego odkrycia.
 \end{itemize}
 \end{frame}
 
@@ -591,12 +603,27 @@ $f$ jest równoważnością wtedy i tylko wtedy, gdy jest surjekcją i zanurzeni
 
 \begin{frame}{Wielkie odkrycie 3 - wnioski}
 \begin{itemize}
-	\item $f$ jest równoważnością, gdy jest surjekcją na wszystkich poziomach - na punktach, ścieżkach między punktami, ścieżkach między ścieżkami etc.
-	\item Stąd wnioskujemy, że klasyczne definicje okazują się za słabe, gdyż dotyczą tylko poziomów $0$ i $1$ (czyli punktów i ścieżek), a my mamy do czynienia z potencjalnie nieskończenie wieloma poziomami.
+	\item Nasze twierdzenie możemy odwinąć: $f$ jest równoważnością gdy jest surjekcją i $\text{ap}_f$ jest surjekcją i $\text{ap}_{\text{ap}_f}$ jest surjekcją etc.
+	\item Wobec tego $f$ jest równoważnością, gdy jest surjekcją na wszystkich poziomach - na punktach, ścieżkach między punktami, ścieżkach między ścieżkami etc.
+	\item Stąd wnioskujemy, że klasyczne definicje okazują się za słabe, gdyż dotyczą tylko punktów (surjekcja) i ścieżek (injekcja), a zatem poziomów $0$ i $1$, a my mamy do czynienia z potencjalnie nieskończenie wieloma poziomami.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{2.5-2.8 Wyższogrupoidowa struktura typów 1 - wprowadzenie}
+\begin{frame}{Filozoficzna interpretacja równoważności}
+\begin{itemize}
+	\item Przypomnijmy, że z dowolnej definicji równoważności jesteśmy w stanie uzyskać następujące rzeczy: funkcje $f : A \to B$ i $\inv{f} : B \to A$ oraz homotopie $\eta : \inv{f} \comp f \sim \id_A$ i $\epsilon : f \comp \inv{f} \sim \id_B$
+	\item Okazuje się, że równoważność $A \simeq B$ możemy zinterpretować jako zestaw czterech reguł opisujących typ $B$ w terminach typu $A$.
+	\item Funkcja $f : A \to B$ to reguła wprowadzania.
+	\item Funkcja $\finv{f} : B \to A$ to reguła eliminacji.
+	\item Homotopia $\eta$ to zdaniowa reguła obliczania.
+	\item Homotopia $\epsilon$ to zdaniowa reguła unikalności.
+	\item Powyższe rozważania okażą się przydatne za chwilę, gdy będziemy chcieli scharakteryzować przestrzenie ścieżek dla różnych typów.
+\end{itemize}
+\end{frame}
+
+\section{Charakteryzacje ścieżek}
+
+\begin{frame}{Charakteryzacje ścieżek 1 - wprowadzenie}
 \begin{itemize}
 	\item W klasycznej matematyce mamy twierdzenia mówiące, kiedy jakieś obiekty są równe, np. $(a, b) = (a', b') \iff a = a' \land b = b'$.
 	\item W HoTT mamy podobnie wyglądające twierdzenia: $(a, b) = (a', b') \simeq a = a' \times b = b'$.
@@ -604,7 +631,7 @@ $f$ jest równoważnością wtedy i tylko wtedy, gdy jest surjekcją i zanurzeni
 \end{itemize}
 \end{frame}
 
-\begin{frame}{2.5-2.8 Wyższogrupoidowa struktura typów 2 - plan}
+\begin{frame}{Charakteryzacje ścieżek 2 - plan}
 \begin{itemize}
 	\item Jakkolwiek sprawa brzmi prosto, zróżnicowanie w tej materii jest spore.
 	\item Za chwilę zobaczymy charakteryzację ścieżek w typach banalnych oraz w typach negatywnych (czyli takich, w których kluczowa jest reguła eliminacji).
@@ -614,7 +641,7 @@ $f$ jest równoważnością wtedy i tylko wtedy, gdy jest surjekcją i zanurzeni
 \end{itemize}
 \end{frame}
 
-\begin{frame}{2.5-2.8 Wyższogrupoidowa struktura typów 3 - typy banalne i negatywne}
+\begin{frame}{Charakteryzacje ścieżek 3 - typy banalne i negatywne}
 
 \begin{theorem}[Ścieżki między elementami typu pustego]
 $\Pi x\ y : \mathbf{0}. (x = y) \simeq \mathbf{0}$
@@ -634,7 +661,7 @@ $\Pi A : \U. \Pi B : A \to \U. \Pi w\ w' : \sum_{x : A} B(x).$ \\
 \end{theorem}
 
 \end{frame}
-\begin{frame}{2.5-2.8 Wyższogrupoidowa struktura typów 4 - interpretacja}
+\begin{frame}{Charakteryzacje ścieżek 4 - interpretacja}
 \begin{itemize}
 	\item Nie ma ścieżek między punktami typu $\mathbf{0}$. Jest to dość oczywiste, bo ścieżki muszą być między punktami, a punktów nie ma.
 	\item Między elementami $\mathbf{1}$ jest dokładnie jedna ścieżka.
@@ -643,7 +670,7 @@ $\Pi A : \U. \Pi B : A \to \U. \Pi w\ w' : \sum_{x : A} B(x).$ \\
 \end{itemize}
 \end{frame}
 
-\begin{frame}{2.9 Ekstensjonalność 1 - aksjomat ekstensjonalności}
+\begin{frame}{Ekstensjonalność 1 - aksjomat ekstensjonalności}
 
 Jeżeli dwie funkcje są równe, to są też homotopiczne (czyli ekstensjonalnie równe).
 
@@ -664,7 +691,7 @@ $(f = g) \simeq \Pi x : A. f(x) = g(x)$
 
 \end{frame}
 
-\begin{frame}{2.9 Ekstensjonalność 2 - rozbicie na reguły}
+\begin{frame}{Ekstensjonalność 2 - rozbicie na reguły}
 
 Zauważmy, że charakteryzacje ścieżek możemy rozbić na reguły przypominające reguły opisujące typy, w których te ścieżki żyją. Jest to prawdą nie tylko dla aksjomatu ekstensjonalności, ale też np. dla twierdzeń charakteryzujących ścieżki między parami.
 
@@ -678,7 +705,7 @@ $\funext(\lambda x : A. \happly(p, x)) = p$
 
 \end{frame}
 
-\begin{frame}{2.9 Ekstensjonalność 3 - interpretacja}
+\begin{frame}{Ekstensjonalność 3 - interpretacja}
 \begin{itemize}
 	\item Reguła formacji dla $f = g$ pochodzi bezpośrednio z induktywnej definicji ścieżek.
 	\item Reguła wprowadzania to $\funext$: żeby zrobić ścieżkę $f = g$, wystarczy nam homotopia.
@@ -688,14 +715,14 @@ $\funext(\lambda x : A. \happly(p, x)) = p$
 \end{itemize}
 \end{frame}
 
-\begin{frame}{2.9 Ekstensjonalność 4 - charakteryzacja operacji}
+\begin{frame}{Ekstensjonalność 4 - charakteryzacja operacji}
 
 Możemy scharakteryzować nie tylko ścieżki między funkcjami, ale także operacje na tych ścieżkach.
 
 \begin{theorem}[Charakteryzacja operacji na ścieżkach między funkcjami]
 $\refl{f} = \funext(\lambda x : A. \refl{f(x)})$ \\
 
-$p^{-1} = \funext(\lambda x : A. \happly(p, x)^{-1})$ \\
+$\inv{p} = \funext(\lambda x : A.\inv{\happly(p, x)})$ \\
 
 $p \sq q = \funext(\lambda x : A. \happly(p, x) \sq \happly(q, x))$
 \end{theorem}
@@ -709,7 +736,7 @@ Intuicja jest prosta:
 
 \end{frame}
 
-\begin{frame}{2.9 Ekstensjonalność 5 - charakteryzacja transportu}
+\begin{frame}{Ekstensjonalność 5 - charakteryzacja transportu}
 
 Możemy też scharakteryzować transport w rodzinach typów postaci $\lambda x : X. A(x) \to B(x)$. \\~\
 
@@ -717,14 +744,14 @@ Dla typu $X : \U$, rodzin typów $A, B : X \to \U$, elementów $x_1, x_2 : X$, f
 
 \begin{theorem}[Charakteryzacja transportu dla funkcji]
 $\transport^{\lambda x : X. A(x) \to B(x)}(p, f) =$ \\
-$\quad \lambda a : A(x_2). \transport^B(p, f(\transport^A(p^{-1}, a)))$
+$\quad \lambda a : A(x_2). \transport^B(p, f(\transport^A(\inv{p}, a)))$
 \end{theorem}
 
 Interpretacja twierdzenia jest łatwa: chcemy zrobić funkcję typu $A(x_2) \to B(x_2)$. Bierzemy więc element $a : A(x_2)$, transportujemy go ścieżka $p$ w tył do typu $A(x_1)$, używamy funkcji $f$ by dostać element typu $B(x_1)$ i transportujemy go wzdłuż $p$ do typu $B(x_2)$.
 
 \end{frame}
 
-\begin{frame}{2.10 Uniwalencja 1 - aksjomat uniwalencji}
+\begin{frame}{Uniwalencja 1 - aksjomat uniwalencji}
 
 Jeżeli dwa typy są równe, to są też równoważne.
 
@@ -747,7 +774,7 @@ $(A = B) \simeq (A \simeq B)$ lub równoważnie $(A = B) = (A \simeq B)$
 
 \end{frame}
 
-\begin{frame}{2.10 Uniwalencja 2 - reguły i charakteryzacje}
+\begin{frame}{Uniwalencja 2 - reguły i charakteryzacje}
 
 \begin{corollary}[Reguły opisujące ścieżki między typami]
 $\ua : \Pi A\ B : \U. (A \simeq B) \to A = B$ \\
@@ -760,7 +787,7 @@ $\ua(\idtoeqv(p)) = p$
 \begin{theorem}[Charakteryzacja operacji na ścieżkach między funkcjami]
 $\refl{f} = \ua(\id_A)$ \\
 
-$p^{-1} = \ua(\idtoeqv(p)^{-1})$ \\
+$\inv{p} = \ua(\inv{\idtoeqv(p)})$ \\
 
 $p \sq q = \ua(\idtoeqv(q) \comp \idtoeqv(p))$
 \end{theorem}
@@ -773,30 +800,153 @@ $\transport^{\lambda X : \U.X}(p, f) = \idtoeqv(\ap{B}{p})(u)$
 
 \end{frame}
 
-\begin{frame}{Filozoficzna interpretacja równoważności i aksjomatów}
+\begin{frame}{Uniwalencja 3 - przykład filozoficzny}
 \begin{itemize}
-	\item Jak widać, równoważność $A \simeq B$ możemy zinterpretować jako zestaw czterech reguł opisujących typ $A$ (albo $B$) po prostu ją rozpakowując.
-	\item Funkcja $f^{-1} : B \to A$ to reguła wprowadzania dla $A$.
-	\item Funkcja $f : A \to B$ to reguła eliminacji.
-	\item Homotopia będąca świadkiem $f(f^{-1}(x)) = x$ to (zdaniowa) reguła obliczania.
-	\item Homotopia będąca świadkiem $f^{-1}(f(x)) = x$ to (zdaniowa) reguła unikalności.
-	\item Dzięki 
+	\item Rozważmy dwa poniższe typy (tak naprawdę powinniśmy też podać reguły eliminacji i obliczania, ale nie są one istotne dla przykładu).
+	\item Niech $\mathbb{N} \defn 0 \: | \: S\ \mathbb{N}$ i niech $\mathbb{N}' \defn 0' \: | \: S'\ \mathbb{N}'$
+	\item Rodzi się pytanie: czy $\mathbb{N}$ i $\mathbb{N}'$ to to samo, czy coś innego?
+	\item Odpowiedź klasyczna: istnieje oczywista bijekcja $\mathbb{N} \cong \mathbb{N}'$. Na mocy nadużycia języka będziemy utożsamiać $\mathbb{N}$ i $\mathbb{N}'$, tzn. traktować je tak, jakby $\mathbb{N} = \mathbb{N}'$ mimo, że formalnie tak nie jest.
+	\item Odpowiedź HoTTowa: istnieje oczywista równoważność $e : \mathbb{N} \simeq \mathbb{N}'$. Wobec tego na mocy aksjomatu uniwalencji mamy ścieżkę $\text{ua}(e) : \mathbb{N} = \mathbb{N}'$.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Innowacje HoTT w przykładach - uniwalencja 2}
+\begin{frame}{Uniwalencja 4 - przykład praktyczny}
 \begin{itemize}
 	\item Aksjomat uniwalencji nie tylko usuwa nieprzyjemny filozoficzny smrodek, ale daje nam też nowe sposoby rozumowania.
-	\item Przykład: każda równoważność jest monomorfizmem.
+	\item Definicja: $f : B \to C$ jest monomorfizmem gdy dla dowolnych $g, h : A \to B$ jeżeli $f \comp g = f \comp h$ to $g = h$.
+	\item Twierdzenie: każda równoważność jest monomorfizmem.
 	\item Dowód klasyczny: każda równoważność ma odwrotność. Użyj jej.
-	\item Dowód HoTTowy: każda równoważność pochodzi od jakiejś ścieżki. Na mocy indukcji po ścieżkach możemy założyć, że ścieżka ta jest trywialna, a zatem nasza równoważność jest identycznością.
+	\item Dowód HoTTowy: na mocy uniwalencji każda równoważność pochodzi od jakiejś ścieżki. Na mocy indukcji po ścieżkach możemy założyć, że ścieżka ta jest trywialna, a zatem nasza równoważność jest identycznością. Wtedy nasze założenie zamienia się na $\id_B \comp g = \id_B \comp h$ i oblicza się do $g = h$, co mieliśmy pokazać.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{2.14 Przykład: równość struktur}
+\begin{frame}{Filozoficzna interpretacja charakteryzacji i aksjomatów}
 \begin{itemize}
-	\item todo
+	\item Na mocy naszej interpretacji równoważności nasze charakteryzacje opisują przestrzenie ścieżek tak dokładnie, jakby były one osobnymi typami zdefiniowanymi za pomocą reguł.
+	\item W przypadkach, w których nie jesteśmy w stanie udowodnić charakteryzacji, dajemy sobie protezę w postaci odpowiednich aksjomatów.
+	\item Tak więc aksjomat ekstensjonalności dla funkcji możemy postrzegać jako charakteryzację ścieżek między funkcjami za pomocą reguł.
+	\item Podobnie aksjomat uniwalencji możemy postrzegać jako aksjomat ekstensjonalności dla uniwersum, czyli charakteryzację ścieżek między typami za pomocą reguł.
 \end{itemize}
+\end{frame}
+
+\begin{frame}{Metoda encode-decode 1 - wstęp}
+\begin{itemize}
+	\item Ogólna metoda pozwalająca scharakteryzować ścieżki (niektórych) typów  (głównie pozytywnych) nosi nazwę encode-decode.
+	\item Metoda składa się z czterech kroków.
+	\item Krok 1: definiujemy rodzinę typów $\code : A \to A \to \U$, której celem jest opisanie typu $x =_A y$ w bardziej ludzki sposób.
+	\item Krok 2: deiniujemy funkcję $\encode : \Pi x\ y : A. x = y \to \code(x, y)$
+	\item Krok 3: definiujemy funkcję $\decode : \Pi x\ y : A. code(x, y) \to x = y$
+	\item Krok 4: pokazujemy, że $\encode$ i $\decode$ są swoimi odwrotnościami.
+	\item Dzięki temu dostajemy charakteryzację postaci $\Pi x\ y : A. (x = y) \simeq \code(x, y)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Metoda encode-decode 2 - definicje dla bool}
+	
+Scharakteryzujmy ścieżki w typie $\mathbf{2}$.
+
+\begin{definition}[$\code$]
+$\code(0_\mathbf{2}, 0_\mathbf{2}) \defn \mathbf{1}$ \\
+$\code(1_\mathbf{2}, 1_\mathbf{2}) \defn \mathbf{1}$ \\
+$\code(\_, \_) \defn \mathbf{0}$
+\end{definition}
+
+\begin{definition}[$\encode$]
+$\encode(\refl{0_\mathbf{2}}) \defn *$ \\
+$\encode(\refl{1_\mathbf{2}}) \defn *$
+\end{definition}
+
+\begin{definition}[$\decode$]
+$\decode_{0_\mathbf{2}, 0_\mathbf{2}}(*) \defn \refl{0_\mathbf{2}}$ \\
+$\decode_{1_\mathbf{2}, 1_\mathbf{2}}(*) \defn \refl{1_\mathbf{2}}$ \\
+$\decode_{0_\mathbf{2}, 1_\mathbf{2}}(x) \defn \text{ind}_\mathbf{0}(\lambda \_. 0_\mathbf{2} = 1_\mathbf{2}, x)$ (czyli sprzeczność) \\
+$\decode_{1_\mathbf{2}, 0_\mathbf{2}}(x) \defn \text{też sprzeczność}$
+\end{definition}
+
+\end{frame}
+
+\begin{frame}{Metoda encode-decode 3 - twierdzenia dla bool}
+
+\begin{theorem}[encode-decode]
+$\encode(\decode(c)) = c$
+\end{theorem}
+	
+\begin{theorem}[decode-encode]
+$\decode(\encode(p)) = p$
+\end{theorem}
+
+\begin{corollary}
+$\Pi x\ y : \mathbf{2}. (x = y) \simeq \code(x, y)$
+\end{corollary}
+
+\begin{corollary}
+$0_\mathbf{2} \neq 1_\mathbf{2}$
+\end{corollary}
+
+Ćwiczenie: udowodnij.
+
+\end{frame}
+
+\begin{frame}{Metoda encode-decode 4 - interpretacja dla bool}
+\begin{itemize}
+	\item Podobnie jak poprzednio, naszą charakteryzację możemy zinterpretować regułowo.
+	\item $\decode$ jest tutaj regułą wprowadzania. Dokładnie opisuje ona, jak zrobić każdą z 4 potencjalnie możliwych ścieżek, np. jeżeli chcesz zrobić ścieżkę $0_\mathbf{2} = 0_\mathbf{2}$ to daj mi $* : \mathbf{1}$, a jeżeli chcesz zrobić ścieżkę $0_\mathbf{2} = 1_\mathbf{2}$, to daj mi $x : \mathbf{0}$.
+	\item $\encode$ to reguła eliminacji. Dla faktycznie równych argumentów nie mówi nam ona nic ciekawego. Dla różnych argumentów daje nam ona natomiast sprzeczność.
+	\item Twierdzenie decode-encode to reguła obliczania, a twierdzenie encode-decode to reguła unikalności.
+	\item Reguły obliczania i unikalności są mało ciekawe, a dodatkowo mogą się różnić w zależności od sposobu, w jaki udowodniono twierdzenie. W naszym przypadku akurat jest tylko jeden słuszny sposób, ale w przypadku bardziej skomplikowanych typów niekoniecznie.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Ścieżki między ścieżkami 1 - twierdzenie i przykłady}
+
+\begin{theorem}
+Jeżeli $f : A \to B$ jest równoważnością, to dla dowolnych $x, y : A$ funkcja $\text{ap}_f : x = y \to f(x) = f(y)$ też jest równoważnością.
+\end{theorem}
+
+\begin{proof}
+Odwrotnością $\text{ap}_f$ jest oczywiście $\text{ap}_{\finv{f}}$.
+\end{proof}
+
+\makebox[\linewidth]{\parbox{12cm}
+{
+	\includegraphics[scale=0.25]{2paths.png}
+}}
+
+\end{frame}
+
+\begin{frame}{Ścieżki między ścieżkami 2 - interpretacja}
+\begin{itemize}
+	\item Z powyższego twierdzenia płyną daleko idące wnioski.
+	\item Jeżeli mamy charakteryzację typu $A$ za pomocą równowazności $A \simeq B$, to mamy też charakteryzację ścieżek w $A$ (na dowolnym poziomie) za pomocą ścieżek w $B$.
+	\item Jeżeli mamy charakteryzację ścieżek między punktami w $A$, to mamy charakteryzację dowolnych ścieżek w $A$.
+	\item Tak więc ścieżki między ścieżkami między parami to pary ścieżek między ścieżkami między komponentami par.
+	\item Ścieżki między ścieżkami między funkcjami to homotopie na $\happly$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Strukturalizm 1 - ścieżki między półgrupami}
+
+\begin{definition}[Półgrupa]
+$\displaystyle \text{Semigroup} \defn \sum_{A : \U} \sum_{m : A \to A \to A} \prod_{x\ y\ z : A} m(x, m(y, z)) = m(m(x, y), z)$
+\end{definition}
+
+\begin{itemize}
+	\item Półgrupa to typ wraz z działaniem binarnym, które jest łączne.
+	\item Z charakteryzacji ścieżek dla par zależnych, funkcji oraz z aksjomatu uniwalencji wynika, że typ ścieżek między półgrupami jest równoważny typowi równoważności na ich nośnikach, które zachowują działanie $m$.
+	\item Tak więc ścieżka między półgrupami to homomorficzna równoważność, czyli, w klasycznym rozumieniu, izomorfizm półgrup.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Strukturalizm 2 - filozofia w praktyce}
+\begin{itemize}
+	\item Strukturalizm to filozofia matematyki, która twierdzi teorie matematyczne opisują strukturę obiektów matematycznych.
+	\item Strukturę obiektu można rozumieć jako związki łączące go z innymi obiektami.
+	\item Wobec tego obiekty matematyczne nie posiadają żadnych wewnętrznych właściwości i są zdeterminowane przez swoją strukturę.
+	\item W praktyce znaczy to na przykład, że ze strkturalistycznego punktu widzenia izomorficzne półgrupy są identyczne.
+	\item HoTT świetnie realizuje filozoficzne założenia strukturalizmu - jak się przekonaliśmy, izomorficzne półgrupy faktycznie są równe, czyli połączone ścieżką w typie półgrup. 
+\end{itemize}
+
 \end{frame}
 
 \section{Zbiory i logika}
@@ -805,12 +955,6 @@ $\transport^{\lambda X : \U.X}(p, f) = \idtoeqv(\ap{B}{p})(u)$
 \begin{itemize}
 	\item Hierarchia n-typów: unit, funkcje sortujące, pusty, zbiory, grupoidy, okrąg, uniwersum.
 	
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Metoda encode-decode dla liczb naturalnych}
-\begin{itemize}
-	\item todo - przenieść to w miejsce, gdzie już wiadomo, co to zbiory
 \end{itemize}
 \end{frame}
 
