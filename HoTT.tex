@@ -39,6 +39,10 @@
 \newcommand{\encode}{\text{encode}}
 \newcommand{\decode}{\text{decode}}
 
+\newcommand{\isContr}{\text{isContr}}
+\newcommand{\isProp}{\text{isProp}}
+\newcommand{\isSet}{\text{isSet}}
+
 \title{Homotopiczna teoria typów}
 
 \author{Zeimer}
@@ -949,30 +953,115 @@ $\displaystyle \text{Semigroup} \defn \sum_{A : \U} \sum_{m : A \to A \to A} \pr
 
 \end{frame}
 
-\section{Zbiory i logika}
+\section{Zdania, zbiory, grupoidy}
 
 \begin{frame}{Hierarchia n-typów}
 \begin{itemize}
-	\item Hierarchia n-typów: unit, funkcje sortujące, pusty, zbiory, grupoidy, okrąg, uniwersum.
-	
+	\item W HoTT poza punktami mamy też różne, mniej lub bardziej skomplikowane ścieżki.
+	\item Wobec tego mądrym pomysłem wydaje się klasyfikowanie typów ze względu na złożoność ścieżek, jakie w nich występują.
+	\item $n$-typ, to typ, w którym wszystkie ścieżki powyżej $n$-tego poziomu są trywialne. $n$-typy bywają też nazywane typami $n$-obciętymi (ang. $n$-truncated).
+	\item Dualnym pojęciem jest pojęcie $n$-spójności (ang. $n$-connectedness).
+	\item Typ $n$-spójny to taki, w którym wszystkie ścieżki poniżej $n$-tego poziomu są trywialne.
+	\item My zajmiemy się tylko typami $n$-obciętymi.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{3.11 Kontraktowalność}
+\begin{frame}{Ściągalność 1 - definicja i intuicja}
+
+\begin{definition}[Ściągalność]
+$
+\displaystyle
+\isContr(A) \defn \sum_{c : A} \prod_{x : A} c = x
+$
+\end{definition}
+
+Typ jest ściągalny, jeżeli ma ``centrum'', które jest połączone ścieżką z każdym innym punktem tego typu. \\~\
+
+Nazwa ściągalny (ang. contractible) bierze się stąd, że intuicyjnie typ jest ściągalny, gdy możemy go ściągnąć do punktu poprzez ``ściąganie'' ścieżek.
+
+\end{frame}
+
+\begin{frame}{Ściągalność 2 - właściwości}
 \begin{itemize}
-	\item todo
+	\item $\isContr(A) \to A \simeq \mathbf{1}$
+	\item Oczywiście $\mathbf{1}$ jest ściągalny.
+	\item Jeżeli $A$ i $B$ są ściągalne, to $A \times B$ oraz $A \to B$ też są, ale $A + B$ nie jest.
+	\item Niech $A : \U$ i $B : A \to \U$, Jeżeli dla $x : A$ typ $B(x)$ jest ściągalny, to typ $\Pi x : A. B(x)$ też jest ściągalny (stwierdzenie to jest równoważne aksjomatowi ekstensjonalności).
+	\item Jeżeli dla każdego $x : A$ typ $B(x)$ jest ściągalny, to $\sum_{x : A} B(x) \simeq A$
+	\item Jeżeli typ $A$ jest ściągalny, to $\sum_{x : A} B(x) \simeq B(c)$, gdzie $c$ jest centrum ściągalności typu $A$.
+	\item Jeżeli $A$ jest ściągalny, to $\isContr(A)$ też jest ściągalny.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{3.3 Zdania}
+\begin{frame}{Ściągalność 3 - filozofowanie}
 \begin{itemize}
-	\item todo
+	\item Mogłoby się wydawać, że ściągalność jest nieciekawa, skoro typy ściągalne są równoważne (czyli równe) typowi $\mathbf{1}$.
+	\item Kluczowy jest jednak fakt, że typy, które same w sobie są wysoce nietrywialne i z pewnością nie są ściągalne, złożone do kupy mogą dać typ, który jest ściągalny.
+	\item Jest tak dlatego, że wzajemne zależności między obiektami mogą wykluczyć wszystkie kombinacje poza jedną.
+	\item Najprostszym przykładem tego rodzaju jest sparowanie jakiegoś obiektu ze specyfikacją, która charakterzyuje go unikalnie.
+	\item Co ważne, nawet jeżeli typ jest ściągalny, to zachowuje swoje właściwości obliczeniowe.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{3.1 Zbiory}
+\begin{frame}{Ściągalność 4 - przykłady}
 \begin{itemize}
-	\item todo
+	\item Ściągalny jest typ funkcji sortujących. Mimo, że funkcji między listami oraz algorytmów sortujących jest dużo, to dobrze wyrażona specyfikacja sortowania charateryzuje je unikalnie.
+	\item Dla dowolnego $a : A$ typ $\sum_{x : A} a = x$ jest ściągalny i dlatego właśnie indukcja po ścieżkach działa.
+	\item Jeżeli $f$ ma odwrotność, to ściągalny jest typ $\displaystyle \left(\sum_{g : B \to A} g \comp f \sim \id_A\right) \times \left(\sum_{h : B \to A} f \comp h \sim \id_B\right)$ mimo, że zupełnie podobny typ $\qinv(f)$ nie jest ściągalny.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{$n$-typy}
+
+Na mocy pewnych zaszłości historycznych numerowanie $n$-typów zaczyna się od $-2$, a nie od $0$.
+
+\begin{definition}[$n$-typ]
+$A$ jest $-2$-typem, gdy $\isContr(A)$ \\
+$A$ jest $(n + 1)$-typem, gdy dla $x, y : A$ typ $x = y$ jest $n$-typem.
+\end{definition}
+
+Idea jest prosta. Najtrywialniejsze typy to typy ściągalne, zaś typ na poziomie $n + 1$ może mieć dowolnie dużó punktów, ale wszystkie ścieżki między nimi są trywialne.
+\end{frame}
+
+\begin{frame}{Zdania 1 - definicja i intuicja}
+
+$-1$-typy są zwane zdaniami. Odwijając definicję, dostajemy:
+
+\begin{definition}[Zdanie]
+$\isProp(A) \defn \prod_{x, y : A} x = y$
+\end{definition}
+
+Parafrazując, zdania to typy, które mogą mieć co najwyżej jeden element. Liczby się zatem istnienie elementu, a nie jego specyfika. Sytuacja ta przypomina klasyczne rozumienie logiki, gdzie liczy się przeprowadzenie dowodu, a nie jego postać.
+
+\end{frame}
+
+\begin{frame}{Zdania 2 - przykłady}
+\begin{itemize}
+	\item Oczywiście $\mathbf{0}$ i $\mathbf{1}$ są zdaniami. Odpowiadają one fałszowi i prawdzie.
+	\item Każdy typ ściągalny jest zdaniem.
+	\item Jeżeli $A$ jest zdaniem, to $\isProp(A)$ też jest zdaniem.
+	\item Produkty, funkcje i funkcje zależne zachowują bycie zdaniem.
+	\item Jednak suma i suma zależna nie zachowują bycia zdaniem. Świadczy to o tym, że są ``zbyt konstruktywne''.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Zbiory 1 - definicja i intuicja}
+
+W HoTT możemy zdefiniować także zbiory. Są to $0$-typy.
+
+\begin{definition}[Zbiór]
+$\isSet(A) \defn \prod_{x, y : A} \prod_{p, q : x = y} p = q$
+\end{definition}
+
+Intuicja jest prosta: zbiór to worek z kropkami. Wszystkie ścieżki między kropkami są trywialne.
+
+\end{frame}
+
+\begin{frame}{Zbiory - przykłady}
+\begin{itemize}
+	\item Każde zdanie jest zbiorem, więc w szczególności $\mathbf{0}$ i $\mathbf{1}$.
+	\item Na mocy naszej charakteryzacji typ $\mathbf{2}$ jest zbiorem.
+	\item Typ $\mathbb{N}$ jest zbiorem.
 \end{itemize}
 \end{frame}
 
