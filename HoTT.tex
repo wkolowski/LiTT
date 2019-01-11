@@ -42,11 +42,18 @@
 \newcommand{\isContr}{\text{isContr}}
 \newcommand{\isProp}{\text{isProp}}
 \newcommand{\isSet}{\text{isSet}}
+\newcommand{\isGrpd}{\text{isGrpd}}
+
+\newcommand{\Contr}{\text{Contr}}
+\newcommand{\Prop}{\text{Prop}}
+\newcommand{\Set}{\text{Set}}
+\newcommand{\Grpd}{\text{Grpd}}
+\newcommand{\Type}{\text{Type}}
 
 \title{Homotopiczna teoria typów}
 
 \author{Zeimer}
-\date{13 stycznia 2019}
+\date{14 stycznia 2019}
 
 \begin{document}
 
@@ -79,54 +86,7 @@
 \end{itemize}
 \end{frame}
 
-\section{Teoria homotopii}
-
-\begin{frame}{Teoria homotopii 1 - homotopia}
-\begin{itemize}
-	\item Co to jest homotopia?
-	\item Zgodnie z wikipedią, jeżeli $f$ i $g$ są funkcjami ciągłymi z przestrzeni topologicznej $X$ w przestrzeń topologiczną $Y$, to $H : X \times [0; 1] \to Y$ jest homotopią, gdy jest funkcją ciągłą spełniającą $H(0, x) = f(x) \land H(1, x) = g(x)$.
-	\item Jeżeli nieco pogmeramy w symbolach, to możemy to zapisać tak: $H: [0; 1] \to (X \to Y)$ jest homotopią, gdy jest ciągła i spełnia $H(0) = f \land H(1) = g$.
-	\item Nie przejmuj się, jeżeli definicja cię nie oświeca. Moim zdaniem władowanie jej do nazwy całej teorii jest głupie.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Teoria homotopii 2 - ścieżka}
-\begin{itemize}
-	\item Bardziej podstawowym pojęciem jest ścieżka.
-	\item Ścieżka w przestrzeni topologicznej $X$ to funkcja ciągła z $[0; 1]$ w $X$.
-	\item Łatwo to sobie wyobrazić: odcinek $[0; 1]$ z pewnością jest ścieżką prowadzącą od $0$ do $1$. Jego obrazem, czyli ścieżką, jest więc pewien ciąły zawijasek, który prowadzi z $f(0)$ do $f(1)$.
-	\item Ostatecznie możemy powiedzieć, że homotopia to ścieżka między funkcjami.
-	\item Teoria homotopii nie jest jednak teorią ścieżek między funkcjami. Jest to raczej po prostu teoria ścieżek.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Teoria homotopii 3 - topologia (algebraiczna)}
-\begin{itemize}
-	\item Po co to wszystko?
-	\item Topologia jest całkiem użyteczna. Ostatnio popularna robi się topologiczna analiza danych. Zamiast prymitywnie przypasowywać do danych proste (regresja liniowa), ludzie próbują lepiej opisywać kształt danych. Topologia bada kształty, więc pasuje jak ulał.
-	\item Chcemy więc wiedzieć więcej o topologii, np. czy dwie przestrzenie są takie same czy inne. Tutaj wkracza topologia algebraiczna, czyli dziedzina badająca przestrzenie topologiczne za pomocą metod algebraicznych.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Teoria homotopii 4 - grupa podstawowa}
-\begin{itemize}
-	\item Pętla w punkcie $x$ to ścieżka, która zaczyna się i kończy w punkcie $x$.
-	\item Grupa podstawowa przestrzeni $X$ w punkcie $x$ to grupa, której nośnikiem jest zbiór wszystkich pętli w punkcie $x$. Działaniem grupowym jest sklejanie pętli (najpierw pójdź pierwszą pętlą, a potem drugą). Odwrotność to pójście pętlą w przeciwnym kierunku. Element neutralny to stanie w miejscu.
-	\item Grupa podstawowa jest fajna, bo jeżeli przestrzenie są izomorficzne, to ich grupy podstawowe też są. Wobec tego jeżeli grupy podstawowe (w dowolnym punkcie) są różne, to przestrzenie też są różne.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Teoria homotopii 5 - okrąg i liczby całkowite}
-\begin{itemize}
-	\item Okrąg to taka przestrzeń topologiczna, że... wyobraź sobie, pewnie kiedyś widziałeś okrąg.
-	\item Grupa podstawowa okręgu w dowolnym punkcie jest izomorficzna z grupą liczb całkowitych z dodawaniem.
-	\item Stanie w miejscu reprezentuje $0$.
-	\item $n$ okrążeń zgodnie z ruchem wskazówek zegara reprezentuje liczbę $n$.
-	\item $n$ okrążeń przeciwnie do ruchu wskazówek zegara reprezentuje liczbę $-n$.
-\end{itemize}
-\end{frame}
-
-\section{Teoria typów}
+\section{Typy}
 
 \begin{frame}{Teoria typów 1 - podstawy}
 \begin{itemize}
@@ -193,6 +153,51 @@
 \end{frame}
 
 \section{Interpretacja homotopiczna}
+
+\begin{frame}{Teoria homotopii 1 - homotopia}
+\begin{itemize}
+	\item Co to jest homotopia?
+	\item Zgodnie z wikipedią, jeżeli $f$ i $g$ są funkcjami ciągłymi z przestrzeni topologicznej $X$ w przestrzeń topologiczną $Y$, to $H : X \times [0; 1] \to Y$ jest homotopią, gdy jest funkcją ciągłą spełniającą $H(0, x) = f(x) \land H(1, x) = g(x)$.
+	\item Jeżeli nieco pogmeramy w symbolach, to możemy to zapisać tak: $H: [0; 1] \to (X \to Y)$ jest homotopią, gdy jest ciągła i spełnia $H(0) = f \land H(1) = g$.
+	\item Nie przejmuj się, jeżeli definicja cię nie oświeca. Moim zdaniem władowanie jej do nazwy całej teorii jest głupie.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Teoria homotopii 2 - ścieżka}
+\begin{itemize}
+	\item Bardziej podstawowym pojęciem jest ścieżka.
+	\item Ścieżka w przestrzeni topologicznej $X$ to funkcja ciągła z $[0; 1]$ w $X$.
+	\item Łatwo to sobie wyobrazić: odcinek $[0; 1]$ z pewnością jest ścieżką prowadzącą od $0$ do $1$. Jego obrazem, czyli ścieżką, jest więc pewien ciąły zawijasek, który prowadzi z $f(0)$ do $f(1)$.
+	\item Ostatecznie możemy powiedzieć, że homotopia to ścieżka między funkcjami.
+	\item Teoria homotopii nie jest jednak teorią ścieżek między funkcjami. Jest to raczej po prostu teoria ścieżek.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Teoria homotopii 3 - topologia (algebraiczna)}
+\begin{itemize}
+	\item Po co to wszystko?
+	\item Topologia jest całkiem użyteczna. Ostatnio popularna robi się topologiczna analiza danych. Zamiast prymitywnie przypasowywać do danych proste (regresja liniowa), ludzie próbują lepiej opisywać kształt danych. Topologia bada kształty, więc pasuje jak ulał.
+	\item Chcemy więc wiedzieć więcej o topologii, np. czy dwie przestrzenie są takie same czy inne. Tutaj wkracza topologia algebraiczna, czyli dziedzina badająca przestrzenie topologiczne za pomocą metod algebraicznych.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Teoria homotopii 4 - grupa podstawowa}
+\begin{itemize}
+	\item Pętla w punkcie $x$ to ścieżka, która zaczyna się i kończy w punkcie $x$.
+	\item Grupa podstawowa przestrzeni $X$ w punkcie $x$ to grupa, której nośnikiem jest zbiór wszystkich pętli w punkcie $x$. Działaniem grupowym jest sklejanie pętli (najpierw pójdź pierwszą pętlą, a potem drugą). Odwrotność to pójście pętlą w przeciwnym kierunku. Element neutralny to stanie w miejscu.
+	\item Grupa podstawowa jest fajna, bo jeżeli przestrzenie są izomorficzne, to ich grupy podstawowe też są. Wobec tego jeżeli grupy podstawowe (w dowolnym punkcie) są różne, to przestrzenie też są różne.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Teoria homotopii 5 - okrąg i liczby całkowite}
+\begin{itemize}
+	\item Okrąg to taka przestrzeń topologiczna, że... wyobraź sobie, pewnie kiedyś widziałeś okrąg.
+	\item Grupa podstawowa okręgu w dowolnym punkcie jest izomorficzna z grupą liczb całkowitych z dodawaniem.
+	\item Stanie w miejscu reprezentuje $0$.
+	\item $n$ okrążeń zgodnie z ruchem wskazówek zegara reprezentuje liczbę $n$.
+	\item $n$ okrążeń przeciwnie do ruchu wskazówek zegara reprezentuje liczbę $-n$.
+\end{itemize}
+\end{frame}
 
 \begin{frame}{Interpretacja typów 1 - zbiory}
 \begin{itemize}
@@ -751,7 +756,7 @@ $\transport^{\lambda x : X. A(x) \to B(x)}(p, f) =$ \\
 $\quad \lambda a : A(x_2). \transport^B(p, f(\transport^A(\inv{p}, a)))$
 \end{theorem}
 
-Interpretacja twierdzenia jest łatwa: chcemy zrobić funkcję typu $A(x_2) \to B(x_2)$. Bierzemy więc element $a : A(x_2)$, transportujemy go ścieżka $p$ w tył do typu $A(x_1)$, używamy funkcji $f$ by dostać element typu $B(x_1)$ i transportujemy go wzdłuż $p$ do typu $B(x_2)$.
+Interpretacja twierdzenia jest łatwa: chcemy zrobić funkcję typu $A(x_2) \to B(x_2)$. Bierzemy więc element $a : A(x_2)$, transportujemy go ścieżką $p$ w tył do typu $A(x_1)$, używamy funkcji $f$ by dostać element typu $B(x_1)$ i transportujemy go wzdłuż $p$ do typu $B(x_2)$.
 
 \end{frame}
 
@@ -944,7 +949,7 @@ $\displaystyle \text{Semigroup} \defn \sum_{A : \U} \sum_{m : A \to A \to A} \pr
 
 \begin{frame}{Strukturalizm 2 - filozofia w praktyce}
 \begin{itemize}
-	\item Strukturalizm to filozofia matematyki, która twierdzi teorie matematyczne opisują strukturę obiektów matematycznych.
+	\item Strukturalizm to filozofia matematyki, która twierdzi, że teorie matematyczne opisują strukturę obiektów matematycznych.
 	\item Strukturę obiektu można rozumieć jako związki łączące go z innymi obiektami.
 	\item Wobec tego obiekty matematyczne nie posiadają żadnych wewnętrznych właściwości i są zdeterminowane przez swoją strukturę.
 	\item W praktyce znaczy to na przykład, że ze strkturalistycznego punktu widzenia izomorficzne półgrupy są identyczne.
@@ -953,20 +958,21 @@ $\displaystyle \text{Semigroup} \defn \sum_{A : \U} \sum_{m : A \to A \to A} \pr
 
 \end{frame}
 
-\section{Zdania, zbiory, grupoidy}
+\section{$n$-typy}
 
-\begin{frame}{Hierarchia n-typów}
+\begin{frame}{Klasyfikacja typów}
 \begin{itemize}
-	\item W HoTT poza punktami mamy też różne, mniej lub bardziej skomplikowane ścieżki.
+	\item W HoTT poza punktami mamy też różne mniej lub bardziej skomplikowane ścieżki.
 	\item Wobec tego mądrym pomysłem wydaje się klasyfikowanie typów ze względu na złożoność ścieżek, jakie w nich występują.
-	\item $n$-typ, to typ, w którym wszystkie ścieżki powyżej $n$-tego poziomu są trywialne. $n$-typy bywają też nazywane typami $n$-obciętymi (ang. $n$-truncated).
-	\item Dualnym pojęciem jest pojęcie $n$-spójności (ang. $n$-connectedness).
-	\item Typ $n$-spójny to taki, w którym wszystkie ścieżki poniżej $n$-tego poziomu są trywialne.
-	\item My zajmiemy się tylko typami $n$-obciętymi.
+	\item $n$-typ, to (w przybliżeniu) typ, w którym wszystkie ścieżki powyżej $n$-tego poziomu są trywialne. $n$-typy bywają też nazywane typami $n$-obciętymi (ang. $n$-truncated).
+	\item Dualnym pojęciem jest pojęcie $n$-spójności (ang. $n$-connectedness). Typ $n$-spójny to taki, w którym wszystkie ścieżki poniżej $n$-tego poziomu są trywialne.
+	\item My zajmiemy się tylko typami $n$-obciętymi. Zanim jednak omówimy je w ogólności, zobaczmy kilka pierwszych poziomów.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Ściągalność 1 - definicja i intuicja}
+
+Typ jest ściągalny to taki, który ma punkt centralny, który jest połączony ścieżką z każdym innym punktem tego typu.
 
 \begin{definition}[Ściągalność]
 $
@@ -975,21 +981,13 @@ $
 $
 \end{definition}
 
-Typ jest ściągalny, jeżeli ma ``centrum'', które jest połączone ścieżką z każdym innym punktem tego typu. \\~\
-
-Nazwa ściągalny (ang. contractible) bierze się stąd, że intuicyjnie typ jest ściągalny, gdy możemy go ściągnąć do punktu poprzez ``ściąganie'' ścieżek.
-
 \end{frame}
 
 \begin{frame}{Ściągalność 2 - właściwości}
 \begin{itemize}
-	\item $\isContr(A) \to A \simeq \mathbf{1}$
-	\item Oczywiście $\mathbf{1}$ jest ściągalny.
-	\item Jeżeli $A$ i $B$ są ściągalne, to $A \times B$ oraz $A \to B$ też są, ale $A + B$ nie jest.
-	\item Niech $A : \U$ i $B : A \to \U$, Jeżeli dla $x : A$ typ $B(x)$ jest ściągalny, to typ $\Pi x : A. B(x)$ też jest ściągalny (stwierdzenie to jest równoważne aksjomatowi ekstensjonalności).
+	\item $\isContr(A) \to A = \mathbf{1}$
 	\item Jeżeli dla każdego $x : A$ typ $B(x)$ jest ściągalny, to $\sum_{x : A} B(x) \simeq A$
 	\item Jeżeli typ $A$ jest ściągalny, to $\sum_{x : A} B(x) \simeq B(c)$, gdzie $c$ jest centrum ściągalności typu $A$.
-	\item Jeżeli $A$ jest ściągalny, to $\isContr(A)$ też jest ściągalny.
 \end{itemize}
 \end{frame}
 
@@ -1005,65 +1003,114 @@ Nazwa ściągalny (ang. contractible) bierze się stąd, że intuicyjnie typ jes
 
 \begin{frame}{Ściągalność 4 - przykłady}
 \begin{itemize}
+	\item Oczywiście $\mathbf{1}$ jest ściągalny.
 	\item Ściągalny jest typ funkcji sortujących. Mimo, że funkcji między listami oraz algorytmów sortujących jest dużo, to dobrze wyrażona specyfikacja sortowania charateryzuje je unikalnie.
 	\item Dla dowolnego $a : A$ typ $\sum_{x : A} a = x$ jest ściągalny i dlatego właśnie indukcja po ścieżkach działa.
-	\item Jeżeli $f$ ma odwrotność, to ściągalny jest typ $\displaystyle \left(\sum_{g : B \to A} g \comp f \sim \id_A\right) \times \left(\sum_{h : B \to A} f \comp h \sim \id_B\right)$ mimo, że zupełnie podobny typ $\qinv(f)$ nie jest ściągalny.
 \end{itemize}
-\end{frame}
-
-\begin{frame}{$n$-typy}
-
-Na mocy pewnych zaszłości historycznych numerowanie $n$-typów zaczyna się od $-2$, a nie od $0$.
-
-\begin{definition}[$n$-typ]
-$A$ jest $-2$-typem, gdy $\isContr(A)$ \\
-$A$ jest $(n + 1)$-typem, gdy dla $x, y : A$ typ $x = y$ jest $n$-typem.
-\end{definition}
-
-Idea jest prosta. Najtrywialniejsze typy to typy ściągalne, zaś typ na poziomie $n + 1$ może mieć dowolnie dużó punktów, ale wszystkie ścieżki między nimi są trywialne.
 \end{frame}
 
 \begin{frame}{Zdania 1 - definicja i intuicja}
 
-$-1$-typy są zwane zdaniami. Odwijając definicję, dostajemy:
-
 \begin{definition}[Zdanie]
-$\isProp(A) \defn \prod_{x, y : A} x = y$
+$\isProp(A) \defn \prod_{x, y : A} x = y$ \\
+$\Prop \defn \sum_{A : \U} \isProp(A)$
 \end{definition}
 
-Parafrazując, zdania to typy, które mogą mieć co najwyżej jeden element. Liczby się zatem istnienie elementu, a nie jego specyfika. Sytuacja ta przypomina klasyczne rozumienie logiki, gdzie liczy się przeprowadzenie dowodu, a nie jego postać.
+Zdania to typy, które mogą mieć co najwyżej jeden element. Liczy się zatem istnienie elementu, a nie jego specyfika. Sytuacja ta przypomina klasyczne rozumienie logiki, gdzie liczy się przeprowadzenie dowodu, a nie jego postać.
 
 \end{frame}
 
 \begin{frame}{Zdania 2 - przykłady}
 \begin{itemize}
-	\item Oczywiście $\mathbf{0}$ i $\mathbf{1}$ są zdaniami. Odpowiadają one fałszowi i prawdzie.
-	\item Każdy typ ściągalny jest zdaniem.
-	\item Jeżeli $A$ jest zdaniem, to $\isProp(A)$ też jest zdaniem.
-	\item Produkty, funkcje i funkcje zależne zachowują bycie zdaniem.
-	\item Jednak suma i suma zależna nie zachowują bycia zdaniem. Świadczy to o tym, że są ``zbyt konstruktywne''.
+	\item $\mathbf{0}$ i $\mathbf{1}$ są zdaniami. Odpowiadają one fałszowi i prawdzie.
+	\item Typ $\isequiv(f)$ jest zdaniem.
+	\item Typ $\qinv(f)$ może nie być zdaniem i dlatego właśnie mieliśmy problem.
+	\item Produkty, funkcje i funkcje zależne zachowują bycie zdaniem, ale suma i suma zależna NIE zachowują bycia zdaniem.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Zbiory 1 - definicja i intuicja}
 
-W HoTT możemy zdefiniować także zbiory. Są to $0$-typy.
-
 \begin{definition}[Zbiór]
-$\isSet(A) \defn \prod_{x, y : A} \prod_{p, q : x = y} p = q$
+$\isSet(A) \defn \prod_{x, y : A} \prod_{p, q : x = y} p = q$ \\
+$\Set \defn \sum_{A : \U} isSet(A)$
 \end{definition}
 
-Intuicja jest prosta: zbiór to worek z kropkami. Wszystkie ścieżki między kropkami są trywialne.
+Poetycko mówiąc: zbiór to worek z kropkami. Wszystkie ścieżki między kropkami są trywialne.
 
 \end{frame}
 
-\begin{frame}{Zbiory - przykłady}
+\begin{frame}{Zbiory 2 - przykłady}
 \begin{itemize}
 	\item Każde zdanie jest zbiorem, więc w szczególności $\mathbf{0}$ i $\mathbf{1}$.
 	\item Na mocy naszej charakteryzacji typ $\mathbf{2}$ jest zbiorem.
-	\item Typ $\mathbb{N}$ jest zbiorem.
+	\item Typ $\mathbb{N}$ jest zbiorem (ćwiczenie: udowodnij za pomocą metody encode-decode).
+	\item Wszystko, co jesteśmy w stanie zdefiniować za typów induktywnych (takich jak np. w Coqu) jest zbiorem, pod warunkiem że jako argumenty konstruktorów również bierze zbiory.
+	\item W szczególności, suma (rozłączna) zbiorów jest zbiorem.
 \end{itemize}
 \end{frame}
+
+\begin{frame}{Grupoidy}
+
+Grupoid to typ żyjący na poziomie $1$. Może on mieć punkty i ścieżki między punktami, ale nie ścieżki między ścieżkami.
+
+\begin{definition}
+$\isGrpd(A) \defn \prod_{x, y : A} \prod_{p, q : x = y} \prod{r, s : p = q} r = s$ \\
+$\Grpd \defn \sum_{A : \U} \isGrpd(A)$
+\end{definition}
+
+Przykłady:
+\begin{itemize}
+	\item Uniwersum wszystkich zbiorów $\Set$ jest grupoidem.
+	\item Okrąg $\mathbb{S}^1$ jest grupoidem.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{$n$-typy 1 - definicja}
+
+Na mocy pewnych zaszłości historycznych numerowanie $n$-typów zaczyna się od $-2$, a nie od $0$.
+
+\begin{definition}[$n$-typ]
+$\text{is-}(-2)\text{-Type}(A) \defn \sum_{c : A} \prod_{x : A} c = x$ \\
+$\text{is-}(n + 1)\text{-Type}(A) \defn \prod_{x, y : A} \text{is-}n\text{-Type}(x = y)$ \\
+$n\text{-Type} \defn \sum_{A : \U} \text{is-}n\text{-Type}(A)$
+\end{definition}
+
+Widać, że:
+\begin{itemize}
+	\item $-2$-typy to typy ściągalne.
+	\item $-1$-typy to zdania.
+	\item $0$-typy to zbiory.
+	\item $1$-typy to grupoidy.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{$n$-typy 2 - właściwości}
+\begin{itemize}
+	\item Jeżeli $A$ jest $n$-typem, to jest też $(n + 1)$-typem. Intuicyjnie: skoro $A$ ma trywialną strukturę powyżej poziomu $n$, to ma też trywialną strukturę powyżej poziomu $(n + 1)$
+	\item Jeżeli $A : \U$ jest $n$-typem i $B : A \to \U$ jest rodziną $n$-typów, to $\sum_{x : A} B(x)$ oraz $\prod_{x : A} B(x)$ także są $n$-typami.
+	\item W szczególności jeżeli $A$ i $B$ są $n$-typami, to $A \times B$ oraz $A \to B$ także są $n$-typami.
+	\item Jeżeli $A$ i $B$ są $n$-typami dla $n \geq 0$, to $A + B$ jest $n$-typem.
+	\item Uwaga: jeżeli $A$ i $B$ są $-2$-typami, to $A + B$ jest $0$-typem. Podobnie jeżeli $A$ i $B$ są $-1$-typami, to $A + B$ może być $-2$-typem, $-1$-typem lub $0$-typem.
+	\item Typ $\text{is-}n\text{-Type}$ jest zdaniem.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{$n$-typy 3 - (kontr)przykłady}
+\begin{itemize}
+	\item Typ $\mathbf{1}$ jest $n$-typem dla każdego $n$.
+	\item Typ $n\text{-Type}$ jest $(n + 1)$-typem.
+	\item Jednak ważniejsze jest to, jakie typy nie są $n$-typami.
+	\item $n$-te uniwersum $\U_n$ nie jest $n$-typem.
+	\item W klasycznej teorii homotopii $k$-wymiarowa kula $\mathbb{S}^k$ nie jest $n$-typem dla żadnego $k \geq 2$. W HoTTbooku nie ma na to dowodu.
+	\item Jeżeli powyższe jest prawdą, to żadne uniwersum nie jest $n$-typem, bo zawiera kulę.
+	\item Konkretny (kontr)przykład (8.8.6): Niech $A \defn \prod_{n : \mathbb{N}} B(n)$, gdzie $B : \mathbb{N} \to \U$ jest taką rodziną typów, że typ $B(n)$ zawiera $n$-pętlę, które nie jest równa $n$-pętli trywialnej. Wtedy $A$ nie jest $n$-typem dla żadnego $n : \mathbb{N}$.
+\end{itemize}
+\end{frame}
+
+\section{Logika}
 
 \begin{frame}{3.7 Trunkacja}
 \begin{itemize}
@@ -1073,7 +1120,7 @@ Intuicja jest prosta: zbiór to worek z kropkami. Wszystkie ścieżki między kr
 
 \begin{frame}{3.4 Logika klasyczna i intuicjonistyczna}
 \begin{itemize}
-	\item todo
+	\item  Świadczy to o tym, że są ``zbyt konstruktywne'', tzn. zawierają w sobie za dużo informacji. Stoi to w sprzeczności z tradycyjną logiką, gdzie spójniki logiczne przekształcają zdania w zdania.
 \end{itemize}
 \end{frame}
 
