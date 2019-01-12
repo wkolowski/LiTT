@@ -7,4 +7,4 @@
 *.gz
 *fls
 *fdb_latexmk
-*synctex(busy)
+*.synctex(busy)

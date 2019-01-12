@@ -50,6 +50,15 @@
 \newcommand{\Grpd}{\text{Grpd}}
 \newcommand{\Type}{\text{Type}}
 
+\newcommand{\hS}{\mathbb{S}^1}
+\newcommand{\base}{\text{base}}
+\newcommand{\looop}{\text{loop}}
+
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\IZ}{0_\mathbb{I}}
+\newcommand{\II}{1_\mathbb{I}}
+\newcommand{\seg}{\text{seg}}
+
 \title{Homotopiczna teoria typów}
 
 \author{Zeimer}
@@ -1107,6 +1116,115 @@ Widać, że:
 	\item W klasycznej teorii homotopii $k$-wymiarowa kula $\mathbb{S}^k$ nie jest $n$-typem dla żadnego $k \geq 2$. W HoTTbooku nie ma na to dowodu.
 	\item Jeżeli powyższe jest prawdą, to żadne uniwersum nie jest $n$-typem, bo zawiera kulę.
 	\item Konkretny (kontr)przykład (8.8.6): Niech $A \defn \prod_{n : \mathbb{N}} B(n)$, gdzie $B : \mathbb{N} \to \U$ jest taką rodziną typów, że typ $B(n)$ zawiera $n$-pętlę, które nie jest równa $n$-pętli trywialnej. Wtedy $A$ nie jest $n$-typem dla żadnego $n : \mathbb{N}$.
+\end{itemize}
+\end{frame}
+
+\section{HITy}
+
+\begin{frame}{Typy induktywne 1 - przypomnienie}
+\begin{itemize}
+	\item Typ induktywny to typ wygenerowany w sposób ``wolny'' przez kolekcję konstruktorów.
+	\item Typ $\mathbf{0}$ jest generowany przez brak konstruktorów.
+	\item Typ $\mathbf{1}$ jest generowany przez konstruktor $* : \mathbf{1}$
+	\item Typ $\mathbf{2}$ jest generowany przez konstruktory $0_\mathbf{2} : \mathbf{2}$ oraz $1_\mathbf{2} : \mathbf{2}$.
+	\item Typ $\mathbb{N}$ jest generowany przez konstruktory $0$ oraz $\text{succ} : \mathbb{N} \to \mathbb{N}$
+	\item $\text{List}$ to parametryczna rodzina typów generowana przez konstruktory $\text{Nil} : \Pi A : \U. \text{List}(A)$ oraz $\text{Cons} : \Pi A : \U. A \to \text{List}(A) \to \text{List}(A)$
+	\item $=$ to indeksowana rodzina typów generowana tak jak było napisane na wcześniejszych slajdach.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Typy induktywne 2 - więcej przykładów}
+
+Za pomocą typów induktywnych da się zdefiniować dużo różnych rzeczy. Ćwiczenie: spróbuj zdefiniować:
+\begin{itemize}
+	\item Rodzinę $\text{Tree}$ drzew trzymających elementy danego typu wyłącznie w liściach (drzewo może być puste).
+	\item Rodzinę $\text{Sorted}$ taką, że $\text{Sorted}(R, l)$ ma element, gdy lista $l$ jest posortowana według relacji porządku $R$ i nie ma elementu w przeciwnym razie.
+	\item Rodzinę $\text{Perm}$ taką, że $\text{Perm}(l_1, l_2)$ ma element, gdy $l_1$ jest permutacją $l_2$ i nie ma elementu, gdy $l_1$ nie jest permutacją $l_2$.
+	\item Rodzinę $\text{FreeMon}$ taką, że typ $\text{FreeMon}(A)$ jest wolnym monoidem na typie $A$. Uwaga: podchwytliwe.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Wyższe typy induktywne 1 - motywacja}
+
+Typy induktywne nie są jednak wszechmocne. Niektórych rzeczy zdefiniować się nie da:
+\begin{itemize}
+	\item Nie da się zdefiniować typów ilorazowych, np. nie da się zdefiniować liczb wymiernych $\mathbb{Q}$ jako par $\mathbb{Z} \times \mathbb{Z}$ podzielonych przez relację równoważności $\sim$ zdefiniowaną jako $(a, b) \sim (a', b') \defn ab' = a'b$.
+	\item Nie da się zdefiniować rodziny $\text{FreeGrp}$, która reprezentuje grupę wolną na danym typie.
+	\item W ogólności, nie da się zdefiniować niczego, co wymaga utożsamienia ze sobą dwóch elementów danego typu. Wynika to z faktu, że konstruktory typów induktywnych są injektywne.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Wyższe typy induktywne 2 - sposób}
+\begin{itemize}
+	\item Wyższe typy induktywne generalizują typy induktywne w następujący sposób.
+	\item Pozwalamy sobie na to, że poza zwykłymi konstruktyorami (które od teraz będziemy nazywać konstruktorami punktów) możemy robić też konstruktory ścieżek, które wkładają do typu nowe ścieżki.
+	\item Ponieważ ścieżki to równość, możemy dzięki temu utożsamiać ze sobą różne punkty i w ten sposób zdefiniować rzeczy z powyższego slajdu.
+	\item Ale otwierają się przed nami również inne możliwości: możemy bezpośrednio definiować przestrzenie topologiczne takie jak odcinek albo okrąg, wesołe konstrukcje logiczne takie jak $n$-trunkacja, która przekształca dany typ w $n$-typ, oraz rzeczy przydatne w teorii kategorii, np. kogranice.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Wyższe typy induktywne 3 - filozofia}
+\begin{itemize}
+	\item Przypomnijmy, że w typach zdefiniowanych przez wyższą indukcję mogą być rzeczy, których tam nie włożyliśmy. Np. jeżeli wrzucimy do typu jakąś ścieżkę $p$, to pojawi się w nim także ścieżka $p^{-1}$.
+	\item A priori nie wiadomo, jak się zachowują włożone przez nas ścieżki. Mogą one być trywialne albo i nie.
+	\item Mimo, że możemy do typu dodawać ścieżki, to wciąż definiujemy pojedynczy typ - nie redefiniujemy typu $=$. Definiowany przez nas typ dostanie swoją właśną regułę indukcji, a reguła indukcji po ścieżkach pozostanie taka jak była - nowe ścieżki nie mają na nią wpływu.
+	\item Wymiar konstruktora ma nikły wpływ na strukturę ścieżek: jeżeli definiując $B$ dodamy konstruktor punktów typu $A \to B$, to wszystkie ścieżki z $A$ zostają wstrzyknięte do $B$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Odcinek 1 - definicja}
+
+
+\end{frame}
+
+\begin{frame}{Odcinek 2 - właściwości}
+	
+\begin{theorem}[Lemat 6.3.1 Odcinek jest ściągalny]
+$\isContr(\I)$
+\end{theorem}
+
+\end{frame}
+
+
+
+\begin{frame}{Okrąg 1 - definicja}
+
+\makebox[\linewidth]{\parbox{12cm}
+{
+	\includegraphics[scale=0.25]{circle.png}
+}}
+
+\end{frame}
+
+\begin{frame}{Okrąg 2 - właściwości}
+	
+\begin{theorem}[Lemat 6.2.9 Okrąg to faktycznie okrąg]
+$(\hS \to A) \simeq \sum_{x : A} x = x$
+\end{theorem}
+
+\begin{theorem}[Lemat 6.4.1]
+$\looop \neq \refl{\base}$
+\end{theorem}
+\begin{proof}
+Załóżmy, że $\looop = \refl{\base}$. Weźmy dowolne typ $A$ z punktem $x : A$ i pętlą $p : x = x$ (są takie). Wtedy na mocy rekursora dla $\hS$ możemy zdefiniować funkcję $f : \hS \to A$ następująco: \\
+
+$f(\base) \defn x$ \\
+$\ap{f}{\looop} := p$ \\
+
+Mamy stąd $p = \ap{f}{\looop} = \ap{f}{\refl{\base}} = \refl{f(\base)} = \refl{x}$. Wobec tego każdy typ mający choć jeden punkt jest zbiorem, co jest sprzeczne (bo np. uniwersum nie jest zbiorem).
+\end{proof}
+
+\end{frame}
+
+\begin{frame}{HIT}
+\begin{itemize}
+	\item todo
+\end{itemize}
+\end{frame}
+
+\begin{frame}{HIT}
+\begin{itemize}
+	\item todo
 \end{itemize}
 \end{frame}
 
