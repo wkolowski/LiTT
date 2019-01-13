@@ -6,6 +6,10 @@
 \usepackage{graphicx}
 
 \usetheme{Darmstadt}
+\useoutertheme[subsection=false]{miniframes}
+\makeatletter
+  \beamer@compressfalse
+\makeatother
 
 \newcommand{\defn}{:\equiv}
 
@@ -59,6 +63,9 @@
 \newcommand{\II}{1_\mathbb{I}}
 \newcommand{\seg}{\text{seg}}
 
+\newcommand{\trf}[1]{||#1||}
+\newcommand{\tri}[1]{|#1|}
+
 \title{Homotopiczna teoria typów}
 
 \author{Zeimer}
@@ -68,6 +75,7 @@
 
 \frame{\titlepage}
 
+\addtocontents{toc}{\setcounter{tocdepth}{1}}
 \frame{\tableofcontents}
 
 \section{Wstęp}
@@ -122,21 +130,22 @@
 	\item Ćwiczenie: nazwij każdą z reguł (tzn. która to reguła formacji, która obliczania etc.)
 \end{itemize}
 
-	\begin{center}
-		$\displaystyle \frac{\Gamma \vdash A : \U \quad \Gamma \vdash B : \U}{\Gamma \vdash A \to B : \U}$
-	\end{center}
-	\begin{center}
-		$\displaystyle \frac{\Gamma, x : A \vdash b : B}{\Gamma \vdash \lambda x:A.b : A \to B}$
-	\end{center}
-	\begin{center}
-		$\displaystyle \frac{\Gamma \vdash f : A \to B \quad \Gamma \vdash x : A}{\Gamma \vdash f\ x : B}$
-	\end{center}
-	\begin{center}
-		$\displaystyle \frac{\Gamma, x : A \vdash b : B \quad \Gamma \vdash a : A}{\Gamma \vdash (\lambda x:A.b)\ a \equiv b[x := a] : B}$
-	\end{center}
-	\begin{center}
-		$\displaystyle \frac{\Gamma \vdash f : A \to B}{\Gamma \vdash \lambda x:A.f\ x \equiv f : A \to B}$
-	\end{center}
+\begin{center}
+	$\displaystyle \frac{\Gamma \vdash A : \U \quad \Gamma \vdash B : \U}{\Gamma \vdash A \to B : \U}$
+\end{center}
+\begin{center}
+	$\displaystyle \frac{\Gamma, x : A \vdash b : B}{\Gamma \vdash \lambda x:A.b : A \to B}$
+\end{center}
+\begin{center}
+	$\displaystyle \frac{\Gamma \vdash f : A \to B \quad \Gamma \vdash x : A}{\Gamma \vdash f\ x : B}$
+\end{center}
+\begin{center}
+	$\displaystyle \frac{\Gamma, x : A \vdash b : B \quad \Gamma \vdash a : A}{\Gamma \vdash (\lambda x:A.b)\ a \equiv b[x := a] : B}$
+\end{center}
+\begin{center}
+	$\displaystyle \frac{\Gamma \vdash f : A \to B}{\Gamma \vdash \lambda x:A.f\ x \equiv f : A \to B}$
+\end{center}
+
 \end{frame}
 
 \begin{frame}{Teoria typów 4 - ciekawostki o regułach}
@@ -162,6 +171,8 @@
 \end{frame}
 
 \section{Interpretacja homotopiczna}
+
+\subsection{Część 1}
 
 \begin{frame}{Teoria homotopii 1 - homotopia}
 \begin{itemize}
@@ -240,7 +251,9 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{1.12 Ścieżki 1 - reguły}
+\subsection{Część 2}
+
+\begin{frame}{Ścieżki 1 - reguły}
 
 \makebox[\linewidth]{\parbox{12cm}
 {
@@ -251,7 +264,7 @@ Powyższe reguły opisują rodzinę typów, która zazwyczaj nazywana bywa typem
 
 \end{frame}
 
-\begin{frame}{1.12 Ścieżki 2 - interpretacja reguł}
+\begin{frame}{Ścieżki 2 - interpretacja reguł}
 \begin{itemize}
 	\item Reguła formacji: jeżeli mamy typ $A$ i dwa jego elementy $a, b$, to możemy sformować typ $a =_A b$. Jest to typ, którego elementami są ścieżki z $a$ do $b$. Jeżeli mamy element tego typu, to $a$ i $b$ są równe.
 	\item Reguła wprowadzania: każda rzecz jest równa sama sobie. Ścieżka poświadczająca ten fakt nazywa się $\text{refl}$. Jest to skrót od ang. reflexivity, czyli zwrotność.
@@ -260,7 +273,7 @@ Powyższe reguły opisują rodzinę typów, która zazwyczaj nazywana bywa typem
 \end{itemize}
 \end{frame}
 
-\begin{frame}{1.12 Ścieżki 3 - indukcja po ścieżkach}
+\begin{frame}{Ścieżki 3 - indukcja po ścieżkach}
 \begin{itemize}
 	\item Reguła eliminacji dla ścieżek nosi nazwę indukcji po ścieżkach (ang. path induction).
 	\item Zaprezentowany powyżej wariant precyzyjniej nazywa się unbased path induction. Polega na zastąpieniu dwóch obiektów $a, b$ i ścieżki $p$ przez generyczny obiekt $z$ i ścieżkę $\refl{z}$.
@@ -269,7 +282,7 @@ Powyższe reguły opisują rodzinę typów, która zazwyczaj nazywana bywa typem
 \end{itemize}
 \end{frame}
 
-\begin{frame}{1.12 Ścieżki 4 - interpretacja indukcji po ścieżkach}
+\begin{frame}{Ścieżki 4 - interpretacja indukcji po ścieżkach}
 \begin{itemize}
 	\item Tak jak indukcję na liczbach naturalnych możemy zobrazować za pomocą domina, tak indukcję po ścieżkach możemy wyobrażać sobie jako ściągnięcie/zwinięcie ścieżki $p : a = b$ do ścieżki trywialnej.
 	\item W wariancie unbased oba końce ścieżki $p$ są wolne. Wybieramy jakiś punkt $z$ na ścieżce i ciągniemy oba końce w jego kierunku. Ostatecznie dostajemy ścieżkę $\refl{z}$.
@@ -278,7 +291,7 @@ Powyższe reguły opisują rodzinę typów, która zazwyczaj nazywana bywa typem
 \end{itemize}
 \end{frame}
 
-\begin{frame}{1.12 Ścieżki 5 - wątpliwości i ciekawostki}
+\begin{frame}{Ścieżki 5 - wątpliwości i ciekawostki}
 \begin{itemize}
 	\item Reguła eliminacji dla typu $\text{bool}$ intuicyjnie mówi, że jedynymi elementami typu $\text{bool}$ są $\text{true}$ oraz $\text{false}$.
 	\item Czy więc indukcja po ścieżkach mówi, że jedyną ścieżką jest $\text{refl}$?
@@ -291,7 +304,7 @@ Powyższe reguły opisują rodzinę typów, która zazwyczaj nazywana bywa typem
 \end{itemize}
 \end{frame}
 
-\begin{frame}{1.12 Ścieżki 6 - rozwianie wątpliwości}
+\begin{frame}{Ścieżki 6 - rozwianie wątpliwości}
 \begin{itemize}
 	\item Indukcja po ścieżkach nie głosi, że jest tylko jedna ścieżka.
 	\item Formalna różnica jest taka, że typ $\text{bool}$ jest generowany induktywnie, podczas gdy w przypadku ścieżek, które są rodziną typów, to cała rodzina jest generowana induktywnie, a nie pojedynczy typ $x = y$.
@@ -302,7 +315,7 @@ Powyższe reguły opisują rodzinę typów, która zazwyczaj nazywana bywa typem
 \end{itemize}
 \end{frame}
 
-\begin{frame}{1.12 Ścieżki 7 - skąd się biorą ścieżki}
+\begin{frame}{Ścieżki 7 - skąd się biorą ścieżki}
 \begin{itemize}
 	\item Póki co wiemy, że jest ścieżka trywialna.
 	\item Wiemy też, że indukcja po ścieżkach nie wyklucza istnienia innych ścieżek.
@@ -454,6 +467,8 @@ Aplikacja funkcji zależnych do ścieżek jest analogiczna do aplikacji funkcji 
 
 \section{Równoważności}
 
+\subsection{Część 1}
+
 \begin{frame}{Równoważności 1 - pomysły}
 
 Homotopicznie zinterpretowawszy typy, zdążajmy teraz ku aksjomatowi uniwalencji. Żeby go sformułować, potrzebne nam będzie pojęcie równoważności typów. Przyjrzyjmy się zatem tradycyjnym pojęciom o podobnym charakterze:
@@ -504,7 +519,7 @@ Twierdzenie to głosi, że jeżeli funkcja $f$ jest kwaziodwrotnością, to typ 
 	\begin{itemize}
 		\item $\qinv(f) \to \isequiv(f)$
 		\item $\isequiv(f) \to \qinv(f)$
-		\item $\Pi e_1\ e_2 : isequiv(f), e_1 = e_2$
+		\item $\prod_{e_1, e_2 : \isequiv(f)}, e_1 = e_2$
 	\end{itemize}
 	\item Parafrazując: $\isequiv$ to niemal to samo co $\qinv$, ale każda funkcja może być równoważnością na co najwyżej jeden sposób.
 \end{itemize}
@@ -589,6 +604,8 @@ Możliwe są jeszcze dwie inne definicje równoważności, których jednak nie w
 \end{itemize}
 \end{frame}
 
+\subsection{Część 2}
+
 \begin{frame}{Wielkie odkrycie 1 - injekcja to surjekcja}
 \begin{itemize}
 	\item W ramach ciekawostki dokonajmy pewnego wesołego odkrycia: injekcja to surjekcja.
@@ -640,6 +657,8 @@ $f$ jest równoważnością wtedy i tylko wtedy, gdy jest surjekcją i zanurzeni
 \end{frame}
 
 \section{Charakteryzacje ścieżek}
+
+\subsection{Część 1}
 
 \begin{frame}{Charakteryzacje ścieżek 1 - wprowadzenie}
 \begin{itemize}
@@ -847,6 +866,8 @@ $\transport^{\lambda X : \U.X}(p, f) = \idtoeqv(\ap{B}{p})(u)$
 \end{itemize}
 \end{frame}
 
+\subsection{Część 2}
+
 \begin{frame}{Metoda encode-decode 1 - wstęp}
 \begin{itemize}
 	\item Ogólna metoda pozwalająca scharakteryzować ścieżki (niektórych) typów  (głównie pozytywnych) nosi nazwę encode-decode.
@@ -967,159 +988,9 @@ $\displaystyle \text{Semigroup} \defn \sum_{A : \U} \sum_{m : A \to A \to A} \pr
 
 \end{frame}
 
-\section{$n$-typy}
-
-\begin{frame}{Klasyfikacja typów}
-\begin{itemize}
-	\item W HoTT poza punktami mamy też różne mniej lub bardziej skomplikowane ścieżki.
-	\item Wobec tego mądrym pomysłem wydaje się klasyfikowanie typów ze względu na złożoność ścieżek, jakie w nich występują.
-	\item $n$-typ, to (w przybliżeniu) typ, w którym wszystkie ścieżki powyżej $n$-tego poziomu są trywialne. $n$-typy bywają też nazywane typami $n$-obciętymi (ang. $n$-truncated).
-	\item Dualnym pojęciem jest pojęcie $n$-spójności (ang. $n$-connectedness). Typ $n$-spójny to taki, w którym wszystkie ścieżki poniżej $n$-tego poziomu są trywialne.
-	\item My zajmiemy się tylko typami $n$-obciętymi. Zanim jednak omówimy je w ogólności, zobaczmy kilka pierwszych poziomów.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Ściągalność 1 - definicja i intuicja}
-
-Typ jest ściągalny to taki, który ma punkt centralny, który jest połączony ścieżką z każdym innym punktem tego typu.
-
-\begin{definition}[Ściągalność]
-$
-\displaystyle
-\isContr(A) \defn \sum_{c : A} \prod_{x : A} c = x
-$
-\end{definition}
-
-\end{frame}
-
-\begin{frame}{Ściągalność 2 - właściwości}
-\begin{itemize}
-	\item $\isContr(A) \to A = \mathbf{1}$
-	\item Jeżeli dla każdego $x : A$ typ $B(x)$ jest ściągalny, to $\sum_{x : A} B(x) \simeq A$
-	\item Jeżeli typ $A$ jest ściągalny, to $\sum_{x : A} B(x) \simeq B(c)$, gdzie $c$ jest centrum ściągalności typu $A$.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Ściągalność 3 - filozofowanie}
-\begin{itemize}
-	\item Mogłoby się wydawać, że ściągalność jest nieciekawa, skoro typy ściągalne są równoważne (czyli równe) typowi $\mathbf{1}$.
-	\item Kluczowy jest jednak fakt, że typy, które same w sobie są wysoce nietrywialne i z pewnością nie są ściągalne, złożone do kupy mogą dać typ, który jest ściągalny.
-	\item Jest tak dlatego, że wzajemne zależności między obiektami mogą wykluczyć wszystkie kombinacje poza jedną.
-	\item Najprostszym przykładem tego rodzaju jest sparowanie jakiegoś obiektu ze specyfikacją, która charakterzyuje go unikalnie.
-	\item Co ważne, nawet jeżeli typ jest ściągalny, to zachowuje swoje właściwości obliczeniowe.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Ściągalność 4 - przykłady}
-\begin{itemize}
-	\item Oczywiście $\mathbf{1}$ jest ściągalny.
-	\item Ściągalny jest typ funkcji sortujących. Mimo, że funkcji między listami oraz algorytmów sortujących jest dużo, to dobrze wyrażona specyfikacja sortowania charateryzuje je unikalnie.
-	\item Dla dowolnego $a : A$ typ $\sum_{x : A} a = x$ jest ściągalny i dlatego właśnie indukcja po ścieżkach działa.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Zdania 1 - definicja i intuicja}
-
-\begin{definition}[Zdanie]
-$\isProp(A) \defn \prod_{x, y : A} x = y$ \\
-$\Prop \defn \sum_{A : \U} \isProp(A)$
-\end{definition}
-
-Zdania to typy, które mogą mieć co najwyżej jeden element. Liczy się zatem istnienie elementu, a nie jego specyfika. Sytuacja ta przypomina klasyczne rozumienie logiki, gdzie liczy się przeprowadzenie dowodu, a nie jego postać.
-
-\end{frame}
-
-\begin{frame}{Zdania 2 - przykłady}
-\begin{itemize}
-	\item $\mathbf{0}$ i $\mathbf{1}$ są zdaniami. Odpowiadają one fałszowi i prawdzie.
-	\item Typ $\isequiv(f)$ jest zdaniem.
-	\item Typ $\qinv(f)$ może nie być zdaniem i dlatego właśnie mieliśmy problem.
-	\item Produkty, funkcje i funkcje zależne zachowują bycie zdaniem, ale suma i suma zależna NIE zachowują bycia zdaniem.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Zbiory 1 - definicja i intuicja}
-
-\begin{definition}[Zbiór]
-$\isSet(A) \defn \prod_{x, y : A} \prod_{p, q : x = y} p = q$ \\
-$\Set \defn \sum_{A : \U} isSet(A)$
-\end{definition}
-
-Poetycko mówiąc: zbiór to worek z kropkami. Wszystkie ścieżki między kropkami są trywialne.
-
-\end{frame}
-
-\begin{frame}{Zbiory 2 - przykłady}
-\begin{itemize}
-	\item Każde zdanie jest zbiorem, więc w szczególności $\mathbf{0}$ i $\mathbf{1}$.
-	\item Na mocy naszej charakteryzacji typ $\mathbf{2}$ jest zbiorem.
-	\item Typ $\mathbb{N}$ jest zbiorem (ćwiczenie: udowodnij za pomocą metody encode-decode).
-	\item Wszystko, co jesteśmy w stanie zdefiniować za typów induktywnych (takich jak np. w Coqu) jest zbiorem, pod warunkiem że jako argumenty konstruktorów również bierze zbiory.
-	\item W szczególności, suma (rozłączna) zbiorów jest zbiorem.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Grupoidy}
-
-Grupoid to typ żyjący na poziomie $1$. Może on mieć punkty i ścieżki między punktami, ale nie ścieżki między ścieżkami.
-
-\begin{definition}
-$\isGrpd(A) \defn \prod_{x, y : A} \prod_{p, q : x = y} \prod{r, s : p = q} r = s$ \\
-$\Grpd \defn \sum_{A : \U} \isGrpd(A)$
-\end{definition}
-
-Przykłady:
-\begin{itemize}
-	\item Uniwersum wszystkich zbiorów $\Set$ jest grupoidem.
-	\item Okrąg $\mathbb{S}^1$ jest grupoidem.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}{$n$-typy 1 - definicja}
-
-Na mocy pewnych zaszłości historycznych numerowanie $n$-typów zaczyna się od $-2$, a nie od $0$.
-
-\begin{definition}[$n$-typ]
-$\text{is-}(-2)\text{-Type}(A) \defn \sum_{c : A} \prod_{x : A} c = x$ \\
-$\text{is-}(n + 1)\text{-Type}(A) \defn \prod_{x, y : A} \text{is-}n\text{-Type}(x = y)$ \\
-$n\text{-Type} \defn \sum_{A : \U} \text{is-}n\text{-Type}(A)$
-\end{definition}
-
-Widać, że:
-\begin{itemize}
-	\item $-2$-typy to typy ściągalne.
-	\item $-1$-typy to zdania.
-	\item $0$-typy to zbiory.
-	\item $1$-typy to grupoidy.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}{$n$-typy 2 - właściwości}
-\begin{itemize}
-	\item Jeżeli $A$ jest $n$-typem, to jest też $(n + 1)$-typem. Intuicyjnie: skoro $A$ ma trywialną strukturę powyżej poziomu $n$, to ma też trywialną strukturę powyżej poziomu $(n + 1)$
-	\item Jeżeli $A : \U$ jest $n$-typem i $B : A \to \U$ jest rodziną $n$-typów, to $\sum_{x : A} B(x)$ oraz $\prod_{x : A} B(x)$ także są $n$-typami.
-	\item W szczególności jeżeli $A$ i $B$ są $n$-typami, to $A \times B$ oraz $A \to B$ także są $n$-typami.
-	\item Jeżeli $A$ i $B$ są $n$-typami dla $n \geq 0$, to $A + B$ jest $n$-typem.
-	\item Uwaga: jeżeli $A$ i $B$ są $-2$-typami, to $A + B$ jest $0$-typem. Podobnie jeżeli $A$ i $B$ są $-1$-typami, to $A + B$ może być $-2$-typem, $-1$-typem lub $0$-typem.
-	\item Typ $\text{is-}n\text{-Type}$ jest zdaniem.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{$n$-typy 3 - (kontr)przykłady}
-\begin{itemize}
-	\item Typ $\mathbf{1}$ jest $n$-typem dla każdego $n$.
-	\item Typ $n\text{-Type}$ jest $(n + 1)$-typem.
-	\item Jednak ważniejsze jest to, jakie typy nie są $n$-typami.
-	\item $n$-te uniwersum $\U_n$ nie jest $n$-typem.
-	\item W klasycznej teorii homotopii $k$-wymiarowa kula $\mathbb{S}^k$ nie jest $n$-typem dla żadnego $k \geq 2$. W HoTTbooku nie ma na to dowodu.
-	\item Jeżeli powyższe jest prawdą, to żadne uniwersum nie jest $n$-typem, bo zawiera kulę.
-	\item Konkretny (kontr)przykład (8.8.6): Niech $A \defn \prod_{n : \mathbb{N}} B(n)$, gdzie $B : \mathbb{N} \to \U$ jest taką rodziną typów, że typ $B(n)$ zawiera $n$-pętlę, które nie jest równa $n$-pętli trywialnej. Wtedy $A$ nie jest $n$-typem dla żadnego $n : \mathbb{N}$.
-\end{itemize}
-\end{frame}
-
 \section{HITy}
+
+\subsection{Część 1}
 
 \begin{frame}{Typy induktywne 1 - przypomnienie}
 \begin{itemize}
@@ -1172,19 +1043,111 @@ Typy induktywne nie są jednak wszechmocne. Niektórych rzeczy zdefiniować si�
 \end{itemize}
 \end{frame}
 
+\subsection{Część 2}
+
 \begin{frame}{Odcinek 1 - definicja}
 
+\begin{center}
+$\displaystyle
+	\frac{}{\Gamma \vdash \I : \U}
+$
+\end{center}
+
+\begin{center}
+$\displaystyle
+	\frac{}{\Gamma \vdash \IZ : \I}
+$ \quad
+$\displaystyle
+	\frac{}{\Gamma \vdash \II : \I}
+$ \quad
+$\displaystyle
+	\frac{}{\Gamma \vdash \seg : \IZ = \II}
+$
+\end{center}
+
+\begin{center}
+$\displaystyle
+	\dfrac{\Gamma \vdash A   : \I \to \U			\quad
+		  \Gamma \vdash a_0 : A(\IZ)			\quad
+		  \Gamma \vdash a_1 : A(\II)			\quad
+		  \Gamma \vdash p   : \seg_*(a_0) = a_1
+		 }
+		 {\Gamma \vdash \text{ind}_\I(A, a_0, a_1, p) : \Pi i : \I. A(i)}
+$
+\end{center}
+
+\begin{center}
+$\displaystyle
+	\dfrac{\Gamma \vdash A   : \I \to \U			\quad
+		  \Gamma \vdash a_0 : A(\IZ)			\quad
+		  \Gamma \vdash a_1 : A(\II)			\quad
+		  \Gamma \vdash p   : \seg_*(a_0) = a_1
+		 }
+		 {\Gamma \vdash \text{ind}_\I(A, a_0, a_1, p, \IZ) \equiv a_0 : A(\IZ)}
+$
+\end{center}
+
+\begin{center}
+$\displaystyle
+	\dfrac{\Gamma \vdash A   : \I \to \U			\quad
+		  \Gamma \vdash a_0 : A(\IZ)			\quad
+		  \Gamma \vdash a_1 : A(\II)			\quad
+		  \Gamma \vdash p   : \seg_*(a_0) = a_1
+		 }
+		 {\Gamma \vdash \text{ind}_\I(A, a_0, a_1, p, \II) \equiv a_1 : A(\II)}
+$
+\end{center}
+
+\begin{center}
+$\displaystyle
+	\dfrac{\Gamma \vdash A   : \I \to \U			\quad
+		  \Gamma \vdash a_0 : A(\IZ)			\quad
+		  \Gamma \vdash a_1 : A(\II)			\quad
+		  \Gamma \vdash p   : \seg_*(a_0) = a_1
+		 }
+		 {\Gamma \vdash \text{wut} : \apd{\text{ind}_\I(A, a_0, a_1, p)}{\seg} = p}
+$
+\end{center}
 
 \end{frame}
 
-\begin{frame}{Odcinek 2 - właściwości}
+\begin{frame}{Odcinek 2 - uwagi}
+\begin{itemize}
+	\item Dla wyższych typów tak jak i dla zwykłych mamy 5 rodzajów reguł.
+	\item Reguły formacji i eliminacji pozostają bez zmian.
+	\item Reguły wprowadzania mogą robić ścieżki między punktami definiowanego typu.
+	\item Reguły obliczania dla punktów również nie ulegają zmianom. Musimy jednak zadbać o to, żeby napisać reguły obliczania dla ścieżek. Robimy to za pomocą funkcji $\text{ap}$ (dla rekursora) i $\text{apd}$ (dla reguły indukcji). Ponieważ $\text{apd}$ został zdefiniowany wewnątrz naszej teorii, a reguły żyją na metapoziomie, to reguły obliczania dla ścieżek nie są definicyjne (tzn. $\equiv$), tylko same są ścieżkami i wobec tego musimy je jakoś nazwać.
+	\item Wobec tego definiując za pomocą równań i dopasowania do wzorca w przypadku ścieżek będziemy używać hybrydowej notacji $:=$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Odcinek 3 - właściwości}
 	
 \begin{theorem}[Lemat 6.3.1 Odcinek jest ściągalny]
 $\isContr(\I)$
 \end{theorem}
 
+\begin{theorem}[Lemat 6.3.2 Odcinek implikuje ekstensjonalność]
+Niech $f, g : A \to B$ będą funkcjami i niech $H : \Pi x : A. f(x) = g(x)$ będzie homotopią. Wtedy $f = g$ bez używania aksjomatu ekstensjonalności.
+\end{theorem}
+
 \end{frame}
 
+\begin{frame}{Odcinek 4 - dowód lematu 6.3.2}
+\begin{proof}
+	Przez rekursję po odcinku definiujemy nastepującą funkcję: \\~\
+	$p : A \to \I \to B$ \\
+	$p(x, \IZ) \defn f(x)$ \\
+	$p(x, \II) \defn g(x)$ \\
+	$\ap{p(x)}{\seg} := H(x)$ \\~\
+	
+	Teraz definiujemy \\~\
+	$q : \I \to (A \to B)$ \\
+	$q(i) \defn \lambda x : A. p(x, i)$ \\~\
+	
+	Mamy $q(\IZ) \equiv \lambda x : A. p(x, \IZ) \equiv \lambda x : A. f(x) \equiv f$ i analogicznie $q(\II) \equiv g$, a zatem $\ap{q}{\seg} : f = g$
+\end{proof}
+\end{frame}
 
 
 \begin{frame}{Okrąg 1 - definicja}
@@ -1206,7 +1169,7 @@ $(\hS \to A) \simeq \sum_{x : A} x = x$
 $\looop \neq \refl{\base}$
 \end{theorem}
 \begin{proof}
-Załóżmy, że $\looop = \refl{\base}$. Weźmy dowolne typ $A$ z punktem $x : A$ i pętlą $p : x = x$ (są takie). Wtedy na mocy rekursora dla $\hS$ możemy zdefiniować funkcję $f : \hS \to A$ następująco: \\
+Załóżmy, że $\looop = \refl{\base}$. Weźmy dowolny typ $A$ z punktem $x : A$ i pętlą $p : x = x$ (są takie). Wtedy na mocy rekursora dla $\hS$ możemy zdefiniować funkcję $f : \hS \to A$ następująco: \\
 
 $f(\base) \defn x$ \\
 $\ap{f}{\looop} := p$ \\
@@ -1216,68 +1179,414 @@ Mamy stąd $p = \ap{f}{\looop} = \ap{f}{\refl{\base}} = \refl{f(\base)} = \refl{
 
 \end{frame}
 
-\begin{frame}{HIT}
+\section{$n$-typy}
+
+\subsection{Część 1}
+
+\begin{frame}{Klasyfikacja typów}
 \begin{itemize}
-	\item todo
+	\item W HoTT poza punktami mamy też różne mniej lub bardziej skomplikowane ścieżki.
+	\item Wobec tego mądrym pomysłem wydaje się klasyfikowanie typów ze względu na złożoność ścieżek, jakie w nich występują.
+	\item $n$-typ, to (w przybliżeniu) typ, w którym wszystkie ścieżki powyżej $n$-tego poziomu są trywialne. $n$-typy bywają też nazywane typami $n$-obciętymi (ang. $n$-truncated).
+	\item Dualnym pojęciem jest pojęcie $n$-spójności (ang. $n$-connectedness). Typ $n$-spójny to taki, w którym wszystkie ścieżki poniżej $n$-tego poziomu są trywialne.
+	\item My zajmiemy się tylko typami $n$-obciętymi. Zanim jednak omówimy je w ogólności, zobaczmy kilka pierwszych poziomów.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{HIT}
+\begin{frame}{Ściągalność 1 - definicja i właściwości}
+
+\begin{definition}[Ściągalność]
+$
+\displaystyle
+\isContr(A) \defn \sum_{c : A} \prod_{x : A} c = x
+$
+\end{definition}
+
+Typ jest ściągalny to taki, który ma punkt centralny, który jest połączony ścieżką z każdym innym punktem tego typu. Nazwa bierze się stąd, że możemy wszystkie punkty ściągnąć do centrum. Wobec tego typ ściągalny jest równoważny typowi $\mathbf{1}$.
+
+\end{frame}
+
+\begin{frame}{Ściągalność 2 - filozofowanie}
 \begin{itemize}
-	\item todo
+	\item Mogłoby się wydawać, że ściągalność jest nieciekawa, skoro typy ściągalne są równoważne (czyli równe) typowi $\mathbf{1}$.
+	\item Kluczowy jest jednak fakt, że typy, które same w sobie są wysoce nietrywialne i z pewnością nie są ściągalne, złożone do kupy mogą dać typ, który jest ściągalny.
+	\item Jest tak dlatego, że wzajemne zależności między obiektami mogą wykluczyć wszystkie kombinacje poza jedną.
+	\item Najprostszym przykładem tego rodzaju jest sparowanie jakiegoś obiektu ze specyfikacją, która charakterzyuje go unikalnie.
+	\item Co ważne, nawet jeżeli typ jest ściągalny, to zachowuje swoje właściwości obliczeniowe.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Ściągalność 3 - przykłady}
+\begin{itemize}
+	\item Oczywiście $\mathbf{1}$ jest ściągalny.
+	\item Odcinek $\I$ jest ściągalny. Mimo tego, jak widzieliśmy, może on posłużyć nam do udowodnienia aksjomatu ekstensjonalności.
+	\item Ściągalny jest typ funkcji sortujących. Mimo, że funkcji między listami oraz algorytmów sortujących jest dużo, to dobrze wyrażona specyfikacja sortowania charateryzuje je unikalnie.
+	\item Dla dowolnego $a : A$ typ $\sum_{x : A} a = x$ jest ściągalny i dlatego właśnie indukcja po ścieżkach (w wersji based) działa.
+	\item Podobnie ściągalny jest typ $\sum_{x,y : A} x = y$ i dlatego właśnie indukcja po ścieżkach (w wersji unbased) działa.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Zdania}
+
+\begin{definition}[Zdanie]
+$\isProp(A) \defn \prod_{x, y : A} x = y$ \\
+$\Prop \defn \sum_{A : \U} \isProp(A)$
+\end{definition}
+
+\begin{itemize}
+	\item Zdanie to typ, który może mieć co najwyżej jeden punkt. Przypomina to tradycyjną logikę: twierdzenie (zdanie) może mieć dowód albo nie.
+	\item $\mathbf{0}$ i $\mathbf{1}$ są zdaniami. Odpowiadają one fałszowi i prawdzie.
+	\item Dla każdego $A : \U$ typ $\neg A \defn A \to \mathbf{0}$ jest zdaniem.
+	\item Typ $\isequiv(f)$ jest zdaniem, ale tp $\qinv(f)$ może NIE być zdaniem i dlatego właśnie mieliśmy problem.
+	\item O ile wszystkie zdania fałszywe są równe i podobnie wszystkie zdania prawdziwe są równe, to $\Prop$ nie jest tym samym, co $\mathbf{2}$, gdyż w ogólności nie jesteśmy w stanie rozstrzygnąć, czy mamy do czynienia ze zdaniem prawdziwym, czy fałszywym.
+\end{itemize}
+
+\end{frame}
+
+\subsection{Część 2}
+
+\begin{frame}{Zbiory}
+
+\begin{definition}[Zbiór]
+$\isSet(A) \defn \prod_{x, y : A} \prod_{p, q : x = y} p = q$ \\
+$\Set \defn \sum_{A : \U} isSet(A)$
+\end{definition}
+
+\begin{itemize}
+	\item Intuicyjnie: zbiór to typ, w którym może być dużo punktów, ale nie są one połączone ścieżkami (tzn. wszystkie ścieżki są trywialne).
+	\item Każde zdanie jest zbiorem, więc w szczególności $\mathbf{0}$ i $\mathbf{1}$.
+	\item Na mocy naszej charakteryzacji typ $\mathbf{2}$ jest zbiorem.
+	\item Typ $\mathbb{N}$ jest zbiorem (ćwiczenie: udowodnij za pomocą metody encode-decode).
+	\item Wszystko, co jesteśmy w stanie zdefiniować za pomocą zwykłych typów induktywnych jest zbiorem, pod warunkiem że jako argumenty konstruktorów również bierze zbiory.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Grupoidy}
+
+\begin{definition}
+$\isGrpd(A) \defn \prod_{x, y : A} \prod_{p, q : x = y} \prod{r, s : p = q} r = s$ \\
+$\Grpd \defn \sum_{A : \U} \isGrpd(A)$
+\end{definition}
+
+\begin{itemize}
+	\item Grupoid to typ, który może mieć punkty i ścieżki między punktami, ale nie może mieć ścieżek między ścieżkami.
+	\item Okrąg $\hS$ jest grupoidem - widzieliśmy, że pętla $\looop$ nie jest trywialna.
+	\item Uniwersum wszystkich zbiorów $\Set$ jest grupoidem, ponieważ typ $\mathbf{2}$ ma nietrywialną pętlę, zrobioną z negacji boolowskiej za pomocą aksjomatu uniwalencji. Nie jest ona trywialna, bo negacja nie jest identycznością.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{$n$-typy 1 - definicja}
+
+Na mocy pewnych zaszłości historycznych numerowanie $n$-typów zaczyna się od $-2$, a nie od $0$.
+
+\begin{definition}[$n$-typ]
+$\text{is-}(-2)\text{-Type}(A) \defn \sum_{c : A} \prod_{x : A} c = x$ \\
+$\text{is-}(n + 1)\text{-Type}(A) \defn \prod_{x, y : A} \text{is-}n\text{-Type}(x = y)$ \\
+$n\text{-Type} \defn \sum_{A : \U} \text{is-}n\text{-Type}(A)$
+\end{definition}
+
+Widać, że:
+\begin{itemize}
+	\item $-2$-typy to typy ściągalne.
+	\item $-1$-typy to zdania.
+	\item $0$-typy to zbiory.
+	\item $1$-typy to grupoidy.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{$n$-typy 2 - właściwości}
+\begin{itemize}
+	\item Jeżeli $A$ jest $n$-typem, to jest też $(n + 1)$-typem. Intuicyjnie: skoro $A$ ma trywialną strukturę powyżej poziomu $n$, to ma też trywialną strukturę powyżej poziomu $(n + 1)$
+	\item Jeżeli $A : \U$ jest $n$-typem i $B : A \to \U$ jest rodziną $n$-typów, to $\sum_{x : A} B(x)$ oraz $\prod_{x : A} B(x)$ także są $n$-typami.
+	\item W szczególności jeżeli $A$ i $B$ są $n$-typami, to $A \times B$ oraz $A \to B$ także są $n$-typami.
+	\item Jeżeli $A$ i $B$ są $n$-typami dla $n \geq 0$, to $A + B$ jest $n$-typem.
+	\item Uwaga: jeżeli $A$ i $B$ są $-2$-typami, to $A + B$ jest $0$-typem. Podobnie jeżeli $A$ i $B$ są $-1$-typami, to $A + B$ może być $-2$-typem, $-1$-typem lub $0$-typem.
+	\item Typ $\text{is-}n\text{-Type}$ jest zdaniem.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{$n$-typy 3 - (kontr)przykłady}
+\begin{itemize}
+	\item Typ $\mathbf{1}$ jest $n$-typem dla każdego $n$.
+	\item Typ $n\text{-Type}$ jest $(n + 1)$-typem.
+	\item Jednak ważniejsze jest to, jakie typy nie są $n$-typami.
+	\item $n$-te uniwersum $\U_n$ nie jest $n$-typem.
+	\item W klasycznej teorii homotopii $k$-wymiarowa kula $\mathbb{S}^k$ nie jest $n$-typem dla żadnego $k \geq 2$. W HoTTbooku nie ma na to dowodu.
+	\item Jeżeli powyższe jest prawdą, to żadne uniwersum nie jest $n$-typem, bo zawiera kulę.
+	\item Konkretny (kontr)przykład (8.8.6): Niech $A \defn \prod_{n : \mathbb{N}} B(n)$, gdzie $B : \mathbb{N} \to \U$ jest taką rodziną typów, że typ $B(n)$ zawiera $n$-pętlę, które nie jest równa $n$-pętli trywialnej. Wtedy $A$ nie jest $n$-typem dla żadnego $n : \mathbb{N}$.
 \end{itemize}
 \end{frame}
 
 \section{Logika}
 
-\begin{frame}{3.7 Trunkacja}
+\subsection{Część 1}
+
+\begin{frame}{Logika}
 \begin{itemize}
-	\item todo
+	\item Poznawszy wszystkie trzy filary HoTT rzućmy na koniec okiem na konsekwencje, jakie niosą one dla logiki.
+	\item W teorii typów częstym sloganem jest ``propositions as types'', który pozwala nam kodować zdania jako typy.
+	\item Wiemy już jednak, że nasze typy reprezentują $\omega$-grupoidy (czyli przestrzenie). Poznaliśmy też typ zdań $\Prop$ - są to przestrzenie mogące mieć co najwyżej jeden punkt.
+	\item Spróbujmy jakoś uporządkować ten konceptualny bałagan.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{3.4 Logika klasyczna i intuicjonistyczna}
+\begin{frame}{Logika klasyczna 1 - problem}
+
+Większość matematyki jest robiona klasycznie, mimo że jest to niegodziwe. Wobec tego my też chcielibyśmy w ostateczności móc zrobić trochę klasycznej matematyki. Sprawy się jednak komplikują.
+
+\begin{theorem}[Lemat 3.2.2]
+$\neg \prod_{A : \U} \neg\neg A \to A$
+\end{theorem}
+
+\begin{corollary}[Corollary 3.2.7]
+$\neg \prod_{A : \U} A + \neg A$
+\end{corollary}
+
+\begin{theorem}[Uogólnienie lematu 3.2.2]
+Niech $F : \U \to \Prop$ i niech $x : F(\mathbf{2})$. Wtedy \\~\
+
+$\neg \prod_{A : \U} F(A) \to A$
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}{Logika klasyczna 2 - interpretacja}
 \begin{itemize}
-	\item  Świadczy to o tym, że są ``zbyt konstruktywne'', tzn. zawierają w sobie za dużo informacji. Stoi to w sprzeczności z tradycyjną logiką, gdzie spójniki logiczne przekształcają zdania w zdania.
+	\item Dowód lematu 3.2.2 jest dość techniczny. Ciężko go zobrazować.
+	\item Typ $\neg\neg A$ możemy zinterpretować jako typ $A$, z którego wyrzucono wszystko poza jednym punktem, o ile były w nim jakieś punkty.
+	\item Wobec tego typ $\neg\neg A \to A$ możemy zinterpretować jako operację odzyskującą z tak obciętego typu jakiś punkt.
+	\item Można tę operację wykonać dla każdego typu z osobna, ale nie można tego zrobić w taki sam sposób dla wszystkich typów.
+	\item Uogólnienie lematu pokazuje, że problemem faktycznie nie jest podwójna negacja, ale utrata informacji związana z obcięciem przestrzeni.
+	\item Jeżeli przyjrzeć się dowodowi z książki, to ostateczna konkluzja brzmi: (naiwne) prawo wyłączonego środka jest sprzeczne z aksjomatem uniwalencji.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Innowacje HoTT w przykładach - logika 1}
+\begin{frame}{Logika klasyczna 3 - rozwiązanie}
+
+Tak więc możemy skonkludować, że nasze przestrzenie zawierają za dużo informacji, żeby robić na nich logikę. Dla zdań (czyli typów z uniwersum $\Prop$) problem znika - możemy powyższe aksjomaty przyjąć bez popadania w sprzeczność.
+
+\begin{definition}[Prawo podwójnej negacji]
+$\text{DNE} \defn \prod_{P : \Prop} \neg\neg P \to P$
+\end{definition}
+
+\begin{definition}[Prawo wyłączonego środka]
+$\text{LEM} \defn \prod_{P : \Prop} P + \neg P$
+\end{definition}
+
+\end{frame}
+
+\begin{frame}{Trunkacja 1 - motywacja}
 \begin{itemize}
-	\item Znaczenie klasycznej dysjunkcji jest inne, niż konstruktywnej. Klasycznie $P \lor Q$ znaczy, że zachodzi $P$ lub $Q$ lub oba na raz, ale nie wiemy, które. Konstruktywnie $P \lor Q$ znaczy, że zachodzi $P$ lub $Q$ i wiemy, z którym przypadkiem mamy do czynienia
+	\item Okazało się, że nasze typy zawierają za dużo informacji, aby móc służyć jako zdania. Tylko niektóre z nich się do tego nadają.
+	\item Jednak to nie koniec problemów - nasze spójniki też nie są idealne. W tradycyjnej logice spójniki przekształcają zdania w zdania, u nas natomiast tak nie jest: suma dwóch zdań nie musi być zdaniem, np. $\mathbf{1} + \mathbf{1} = \mathbf{2}$.
+	\item Jeszcze hardkorowiej sprawa ma się z sumą zależną: nawet jeżeli dla każdego $x : A$ typ $B(x)$ jest zdaniem, to typ $\sum_{A : \U} B(x)$ może być dowolnie skomplikowaną przestrzenią.
+	\item Jak widać, nasze spójniki $+$ oraz $\sum$ są zbyt konstruktywne. Spróbujmy zatem wynaleźć takie, które zachowywałyby właściwość bycia zdaniem.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{3.8 Aksjomat Wyboru}
+\begin{frame}{Trunkacja 2 - pomysł}
 \begin{itemize}
-	\item
+	\item Pomysł jest prosty. Widzieliśmy już, że za pomocą wyższych typów induktywnych możemy dodawać do typów dowolne ścieżki.
+	\item Wobec tego moglibyśmy zdefiniować spójnik $\lor$ podobnie do $+$, ale wrzucić do niego tyle ścieżek, żeby jego wynik był zdaniem.
+	\item Będziemy jednak sprytniejsi i zdefiniujemy trunkację zdaniową (ang. propositional truncation) - operację, która zamienia każdy typ w zdanie.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Innowacje HoTT w przykładach - logika 2}
-\begin{theorem}[Aksjomat wyboru]
-$\textstyle \prod (A : \mathcal{U}) (B : A \to \mathcal{U}) (R : \Pi x : A, B\ x \to \mathcal{U}),$ \\
-	$\textstyle \quad (\prod x : A, \sum y : B\ x, R\ x\ y) \to$ \\
-		$\textstyle \qquad \sum f : (\Pi x : A, B\ x), \Pi x : A, R\ x\ (f\ x)$
+\begin{frame}{Trunkacja 3 - definicja}
+
+\begin{center}
+$\displaystyle
+	\frac{\Gamma \vdash A : \U}{\Gamma \vdash \trf{A} : \U}
+$
+\end{center}
+
+\begin{center}
+$\displaystyle
+	\frac{\Gamma \vdash x : A}{\Gamma \vdash \tri{x} : \trf{A}}
+$ \quad
+$\displaystyle
+	\frac{\Gamma \vdash A : \U	\quad
+		  \Gamma \vdash x : A	\quad
+		  \Gamma \vdash y : A	\quad
+		 }
+		 {\Gamma \vdash \text{wut} : x = y}
+$
+\end{center}
+
+\begin{center}
+$\displaystyle
+	\frac{\Gamma \vdash A : \U		\quad
+		  \Gamma \vdash B : \Prop	\quad
+		  \Gamma \vdash f : A \to B
+		 }
+		 {\Gamma \vdash \text{ind}_{\trf{A}} : \trf{A} \to B}
+$
+\end{center}
+
+\begin{center}
+$\displaystyle
+\frac{\Gamma \vdash A : \U		\quad
+	  \Gamma \vdash B : \Prop	\quad
+	  \Gamma \vdash f : A \to B	\quad
+	  \Gamma \vdash x : A
+	 }
+	 {\Gamma \vdash \text{ind}_{\trf{A}}(\tri{x}) \equiv f(x) : \trf{A}}
+$
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Trunkacja 4 - interpretacja}
+\begin{itemize}
+	\item Reguła wprowadzania $\tri{-}$ wstrzykuje punkty $A$ do $\trf{A}$.
+	\item Reguła wprowadzania $\text{wut}$ sprawia, że wszystkie tak wstrzyknięte punkty są połączone ścieżkami każdy z każdym.
+	\item Reguła eliminacji mówi nam, że jeżeli $A$ implikuje zdanie $B$, to zdanie $B$ wynika już z obciętego $A$.
+	\item Reguła obliczania to tylko formalność.
+\end{itemize}
+\end{frame}
+
+\subsection{Część 2}
+
+\begin{frame}{Logika zdań 1 - definicje}
+
+\makebox[\linewidth]{\parbox{10.5cm}
+{
+	\includegraphics[scale=0.3]{logic.png}
+}}
+	
+\end{frame}
+
+\begin{frame}{Logika zdań 2 - interpretacja}
+\begin{itemize}
+	\item Dysjunkcję definiujemy jako obciętą sumę rozłączną, zaś kwatyfikator egzystencjalny jako obciętą parę zależną. Tym sposobem uzyskujemy spójniki, za pomocą których możemy rozumować tak jak dotychczas, ale tylko gdy dowodzimy zdań.
+	\item Gdy konstruujemy jakieś obiekty, nie możemy pozbyć się trunkacji, a więc nie możemy uzależnić naszych konstrukcji od wyboru lewego lub prawego dysjunktu ani od konkretnego punktu występującego w sumie zależnej. Dzięki temu wiemy, że dysjunkcja jest prawdziwa, ale nie wiemy, który dysjunkt jej dowodzi. Podobnie wiemy, że istnieje punkt spełniający warunek, ale nie wiemy, jaki to punkt.
+	\item Zauważmy też, że dla zdań $P$ i $Q$ jeżeli $P \to Q$ oraz $Q \to P$, to $P \simeq Q$, a więc także $P = Q$. Aksjomat uniwalencji w przypadku zdań mówi nam, że ścieżki między zdaniami reprezentują równoważność logiczną.
+	\item Pozostałe spójniki zachowują właściwość bycia zdaniem.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Zasada unikalnego wyboru 1 - rozważania}
+\begin{itemize}
+	\item Może się wydawać, że nasza logika jest trochę upośledzona - brak możliwości rozłożenia sumy (rozłącznej/zależnej) na przypadki podczas konstrukcji może zniechęcać do ich używania.
+	\item Jest jednak pewna sprytna technika, która pozwala obejść to ograniczenie.
+	\item Prezentuje się ona zazwyczaj tak: chcąc z $\trf{A}$ skonstruować $B$, które może nie być zdaniem, robimy predykat $P : B \to \U$, taki, że typ $\sum_{x : B} P(x)$ jest ściągalny. Wtedy przy konstruowaniu funkcji $\trf{A} \to \sum_{x : B} P(x)$ możemy pozbyć się trunkacji.
+	\item Po więcej zobacz rozdział 3.9 w HoTTbooka.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Zasada unikalnego wyboru 2 - przykład}
+	
+\begin{theorem}[Zadanie 3.19 i 3.23]
+Niech $P : \mathbb{N} \to \U$ będzie rodziną typów. Wtedy \\~\
+
+\begin{center}
+$\displaystyle \left|\left|\sum_{n : \mathbb{N}} P(n)\right|\right| \to \sum_{n : \mathbb{N}} P(n)$
+\end{center}
 \end{theorem}
 \begin{proof}
-	Na tablicy.
+Wiemy, że istnieje jakieś $n$ spełniające $P$, ale nie wiemy jakie, więc nie możemy go rozpakować. Zamiast konstruować dowolne $n$ spełniające $P$, możemy jednak skonstruować najmniejsze takie $n$, tzn. element typu $\sum_{n : \mathbb{N}} P(n) \times \prod_{m : \mathbb{N}} P(m) \to n \leq m$. Jest ono unikalne, a zatem cały ten typ jest zdaniem. Możemy teraz odpakować $n$ z przesłanki i zrobić przeszukiwanie od $n$ do $0$ w poszukiwaniu minimalnego $n$.
 \end{proof}
 
-Powyższe twierdzenie jest problematyczne, gdyż wygląda jak aksjomat wyboru, ale nie ma tutaj żadnego wybierania.
+\end{frame}
+
+\begin{frame}{Aksjomat wyboru 1 - problem}
+
+Moglibyśmy pokusić się o sformułowanie Aksjomatu Wyboru w następujący sposób.
+
+\begin{theorem}[Aksjomat ``Wyboru'']
+Dla typu $A : \U$, rodziny typów $B : A \to \U$ oraz rodziny typów $R : \prod_{x : A} B(x) \to \U$ zachodzi: \\~\
+
+$\displaystyle
+	\left(\prod_{x : A} \sum_{y : B(x)} R(x, y)\right) \to
+	\sum_{f : \Pi x : A. B(x)} \prod_{x : A} R(x, f(x))
+$
+\end{theorem}
+
+Niestety ten sposób jest upośledzony, gdyż nie jest to aksjomat, tylko twierdzenie, i to bardzo proste do udowodnienia. Mankament ten wynika z faktu, że wszystkie wybory zostały już dokonane - nasza interpretacja sumy zależnej sprawia, że żeby uzyskać konkluzję, wystarczy odopwiednio przepakować przesłankę. Ten Aksjomat ``Wyboru'' jest zupełnie jak wybory w Polsce.
 
 \end{frame}
 
-\begin{frame}{3.9 Zasada unikalnego wyboru}
+\begin{frame}{Aksjomat wyboru 2 - trunkacja na ratunek}
+
+Jak nietrudno się domyślić, nasz problem możemy rozwiązać wciskają gdzie trzeba trunkację.
+
+\begin{definition}[Jedyny słuszny Aksjomat Wyboru w pełnej krasie]
+Dla zbioru $A : \U$, rodziny zbiorów $B : A \to \U$ oraz relacji (czyli rodziny zdań) $R : \prod_{x : A} B(x) \to \U$ zachodzi: \\~\
+
+$\displaystyle
+	\left(\prod_{x : A} \left|\left|\sum_{y : B(x)} R(x, y)\right|\right|\right) \to
+	\left|\left|\sum_{f : \Pi x : A. B(x)} \prod_{x : A} R(x, f(x))\right|\right|
+$ \\~\
+
+W naszej nowej notacji logicznej możemy to zapisać tak: \\~\
+
+$\displaystyle
+	(\forall x : A. \exists y : B(x). R(x, y)) \implies
+$ \\
+$\displaystyle \qquad
+	\exists f : (\Pi x : A. B(x)). \forall x : A. R(x, f(x))
+$
+\end{definition}
+
+\end{frame}
+
+\begin{frame}{Aksjomat wyboru 3 - interpretacja}
 \begin{itemize}
-	\item
+	\item Dzięki zastosowaniu trunkacji w przesłance wiemy, że dla $x : A$ istnieje jakieś $y : B(x)$, ale nie wiemy jakie. To sprawia, że żaden wybór nie został jeszcze dokonany.
+	\item Podobnie dzięki zastosowaniu trunkacji w konkluzji aksjomat mówi, że istnieje jakaś funkcja, ale nie wiadomo jaka. To sprawia, że żaden wybór nie został z góry dokonany.
+	\item Składając to do kupy widzimy, że tym razem Aksjomat Wyboru faktycznie coś wybiera.
+	\item Jednak to nie wszystko. Zwróć uwage, że ten aksjomat dotyczy jedynie zbiorów, rodzin zbiorów oraz relacji, w przeciwieństwie do poprzedniego, który dotyczył typów i rodzin typów.
+	\item Powód tego jest prosty (ale skomplikowany).
 \end{itemize}
 \end{frame}
 
-\begin{frame}{wut}
+\begin{frame}{Aksjomat wyboru 4 - zaskoczenie}
+
+\begin{theorem}[Lemat 3.8.5]
+Istnieje taki typ $A$ i rodzina zbiorów $B : A \to \U$, że Aksjomat Wyboru nie zachodzi.
+\end{theorem}
+
+Dowód jest dość skomplikowany - po więcej zajrzyj do książki. \\~\
+
+W telefgraficznym skrócie: wszystkiemu winne są nietrywialne ścieżki. Nie możemy beztrosko wybierać punktów, nie zwracając na nie uwagi. Tak jak remedium w przypadku prawa wyłączonego środka było ograniczenie się do zdań, tak w przypadku Aksjomatu Wyboru jest nim ograniczenie się do zbiorów.
+
+\end{frame}
+
+\section{Koniec}
+
+\begin{frame}{Ostateczne wątpliwości}
 \begin{itemize}
-	\item
+	\item W ramach ostatecznych wątpliwości mogą nam się nasunąć różne pytania.
+	\item A co jeżeli Aksjomat Uniwalencji jest sprzeczny? Otóż nie jest. A jeżeli nie jest konstruktywny? Otóż jest. Świadkiem nam Kubiczna Teoria Typów. Jest to teoria typów, w której można programować za pomocą $n$-wymiarowych sześcianów: \url{https://ncatlab.org/nlab/show/cubical+type+theory}
+	\item Jaka jest ogólna składnia/schemat definiowania wyższych typów induktywnych? Co wolno a czego nie? Otóż nie do końca wiadomo, choć czynione są postępy: \url{http://drops.dagstuhl.de/opus/volltexte/2018/9190/}
+	\item Jaka jest semantyka wyższych typów induktywnych? Jakaś jest: \url{https://arxiv.org/abs/1705.07088}, ale za dużo nie wiadomo.
+	\item Będzie z tej mąki chleb? Tak.
 \end{itemize}
+\end{frame}
+
+\begin{frame}{Podsumowanie}
+
+HoTT daje nam:
+\begin{itemize}
+	\item Wyobraźnię w postaci interpretacji homotopicznej.
+	\item Aksjomat Uniwalencji łatający filozoficzny smród i dający fajne sposoby rozumowania.
+	\item Wyższe typy induktywne, które dają nam możliwość konstruktywnego rozwiązania masy problemów.
+	\item Znacznie precyzyjniejszą analizę logiki, zarówno klasycznej jak i konstruktywnej.
+	\item Możliwość formalizowania matematyki z prawdziwego zdarzenia, w tym teorii homotopii za pomocą metod syntetycznych.
+	\item ... i wiele więcej.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Żart}
+
+Co łączy samobójcę, programistę imperatywnego, autobusiarza i homotopicznoteoriotypowca? \\~\
+
+Lubią pętle.
+
 \end{frame}
 
 \begin{frame}{Bibliografia}
@@ -1285,7 +1594,7 @@ Powyższe twierdzenie jest problematyczne, gdyż wygląda jak aksjomat wyboru, a
 	\item Podstawowym źródłem wiedzy jest książka \url{https://homotopytypetheory.org/book/}
 	\item Jakaś prezentacja: \url{http://www.cs.nott.ac.uk/~psztxa/talks/edinburgh-13.pdf}
 	\item Filozoficzne wynurzenia: \url{https://www.researchgate.net/publication/280671356_Does_Homotopy_Type_Theory_Provide_a_Foundation_for_Mathematics}
-	\item Wesoły papiur o trunkacji i topologicznych rzeczach: \url{https://arxiv.org/pdf/1610.03346.pdf}
+	\item Przyjazne przykłady wyższych typów induktywnych dla programistów: \url{http://www.cs.ru.nl/~herman/PUBS/HIT-programming.pdf}
 \end{itemize}
 \end{frame}
 
