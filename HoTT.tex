@@ -1028,7 +1028,7 @@ Typy induktywne nie są jednak wszechmocne. Niektórych rzeczy zdefiniować si�
 \begin{frame}{Wyższe typy induktywne 2 - sposób}
 \begin{itemize}
 	\item Wyższe typy induktywne generalizują typy induktywne w następujący sposób.
-	\item Pozwalamy sobie na to, że poza zwykłymi konstruktyorami (które od teraz będziemy nazywać konstruktorami punktów) możemy robić też konstruktory ścieżek, które wkładają do typu nowe ścieżki.
+	\item Pozwalamy sobie na to, że poza zwykłymi konstruktorami (które od teraz będziemy nazywać konstruktorami punktów) możemy robić też konstruktory ścieżek, które wkładają do typu nowe ścieżki.
 	\item Ponieważ ścieżki to równość, możemy dzięki temu utożsamiać ze sobą różne punkty i w ten sposób zdefiniować rzeczy z powyższego slajdu.
 	\item Ale otwierają się przed nami również inne możliwości: możemy bezpośrednio definiować przestrzenie topologiczne takie jak odcinek albo okrąg, wesołe konstrukcje logiczne takie jak $n$-trunkacja, która przekształca dany typ w $n$-typ, oraz rzeczy przydatne w teorii kategorii, np. kogranice.
 \end{itemize}
@@ -1121,7 +1121,16 @@ $
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Odcinek 3 - właściwości}
+\begin{frame}{Odcinek 3 - o co tak naprawdę chodzi w indukcji}
+\begin{itemize}
+	\item Jeżeli reguła eliminacji dla odcinka wydaje ci się mistyczna, to posłuchaj poniższej bajki na temat indukcji.
+	\item Każdy typ induktywny ma pewną strukturę. W przypadku odcinka są to punkty $\IZ$ i $\II$ wraz z łączącą je ścieżką $\seg$.
+	\item Rekursor (czyli upośledzona reguła eliminacji) mówi, że jeżeli znajdziemy w jakimś typie taką samą strukturę (dwa punkty $a_0$ i $a_1$ połączone ścieżką $p$), to możemy zrobić funkcję $f$, która spełnia $f(\IZ) \defn a_0, f(\II) \defn a_1, \ap{f}{\seg} := p$.
+	\item Reguła eliminacji z poprzedniego slajdu jest uogólnieniem powyższego opisu na typy zależne.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Odcinek 4 - właściwości}
 	
 \begin{theorem}[Lemat 6.3.1 Odcinek jest ściągalny]
 $\isContr(\I)$
@@ -1133,7 +1142,7 @@ Niech $f, g : A \to B$ będą funkcjami i niech $H : \Pi x : A. f(x) = g(x)$ b�
 
 \end{frame}
 
-\begin{frame}{Odcinek 4 - dowód lematu 6.3.2}
+\begin{frame}{Odcinek 5 - dowód lematu 6.3.2}
 \begin{proof}
 	Przez rekursję po odcinku definiujemy nastepującą funkcję: \\~\
 	$p : A \to \I \to B$ \\
@@ -1156,6 +1165,8 @@ Niech $f, g : A \to B$ będą funkcjami i niech $H : \Pi x : A. f(x) = g(x)$ b�
 {
 	\includegraphics[scale=0.25]{circle.png}
 }}
+
+Ćwiczenie: opisz rekursor dla okręgu w taki sposób, jaki opisany został rekursor dla odcinka.
 
 \end{frame}
 
@@ -1220,7 +1231,7 @@ Typ jest ściągalny to taki, który ma punkt centralny, który jest połączony
 \begin{itemize}
 	\item Oczywiście $\mathbf{1}$ jest ściągalny.
 	\item Odcinek $\I$ jest ściągalny. Mimo tego, jak widzieliśmy, może on posłużyć nam do udowodnienia aksjomatu ekstensjonalności.
-	\item Ściągalny jest typ funkcji sortujących. Mimo, że funkcji między listami oraz algorytmów sortujących jest dużo, to dobrze wyrażona specyfikacja sortowania charateryzuje je unikalnie.
+	\item Ściągalny jest typ funkcji sortujących. Mimo, że funkcji między listami jest dużo, to dobrze wyrażona specyfikacja sortowania unikalnie charateryzuje jedyną słuszną funkcję sortującą.
 	\item Dla dowolnego $a : A$ typ $\sum_{x : A} a = x$ jest ściągalny i dlatego właśnie indukcja po ścieżkach (w wersji based) działa.
 	\item Podobnie ściągalny jest typ $\sum_{x,y : A} x = y$ i dlatego właśnie indukcja po ścieżkach (w wersji unbased) działa.
 \end{itemize}
@@ -1314,8 +1325,8 @@ Widać, że:
 	\item Typ $n\text{-Type}$ jest $(n + 1)$-typem.
 	\item Jednak ważniejsze jest to, jakie typy nie są $n$-typami.
 	\item $n$-te uniwersum $\U_n$ nie jest $n$-typem.
-	\item W klasycznej teorii homotopii $k$-wymiarowa kula $\mathbb{S}^k$ nie jest $n$-typem dla żadnego $k \geq 2$. W HoTTbooku nie ma na to dowodu.
-	\item Jeżeli powyższe jest prawdą, to żadne uniwersum nie jest $n$-typem, bo zawiera kulę.
+	\item W klasycznej teorii homotopii $k$-wymiarowa (hiper)sfera $\mathbb{S}^k$ nie jest $n$-typem dla żadnego $k \geq 2$. W HoTTbooku nie ma na to dowodu.
+	\item Jeżeli powyższe jest prawdą, to żadne uniwersum nie jest $n$-typem, bo zawiera hipersferę.
 	\item Konkretny (kontr)przykład (8.8.6): Niech $A \defn \prod_{n : \mathbb{N}} B(n)$, gdzie $B : \mathbb{N} \to \U$ jest taką rodziną typów, że typ $B(n)$ zawiera $n$-pętlę, które nie jest równa $n$-pętli trywialnej. Wtedy $A$ nie jest $n$-typem dla żadnego $n : \mathbb{N}$.
 \end{itemize}
 \end{frame}
@@ -1586,6 +1597,14 @@ HoTT daje nam:
 Co łączy samobójcę, programistę imperatywnego, autobusiarza i homotopicznoteoriotypowca? \\~\
 
 Lubią pętle.
+
+\end{frame}
+
+\begin{frame}{Zadania}
+
+Zadanie 1: wykonaj wszystkie rzeczy oznaczone na slajdach jako ćwiczenie (poza ostatnią). \\~\
+
+Zadanie 2: wykonaj ostatnią rzecz oznaczoną na slajdach jako ćwiczenie.
 
 \end{frame}
 
