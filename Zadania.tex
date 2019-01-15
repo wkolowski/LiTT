@@ -1,0 +1,197 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0in]{geometry}
+\usepackage{amssymb}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[intlimits]{amsmath}
+\usepackage{enumitem}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+\usepackage{bussproofs}
+
+\selectlanguage{polish}
+
+\renewcommand{\phi}{\varphi}
+\newcommand{\LEM}{\text{EM}_\phi}
+
+\title{Rozwiązania zadań z logiki klasycznej i operatorów sterowania}
+\author{Zeimer}
+\date{15 stycznia 2019}
+
+\begin{document}
+    \maketitle
+    
+	\EnableBpAbbreviations
+	
+    \par Zad. 1
+    \begin{enumerate}[label=(\alph*)]
+        \item Chcemy ze specjalnego przypadku prawa Peirce'a $(P\bot)$ oraz prawa eliminacji fałszu $(\bot E)$ wyprowadzić prawo Peirce'a $(P)$. W tym celu w systemie z regułami $(P\bot)$ oraz $(\bot E)$ udowodnimy $\vdash ((\phi \to \psi) \to \phi) \to \phi$.
+        
+            \begin{prooftree}
+                \AXC{}
+                \RL{Ass}
+                \UIC{$(\phi \to \psi) \to \phi, \phi \to \bot \vdash (\phi \to \psi) \to \phi$}
+
+                \AXC{}
+                \RL{Ass}
+                \UIC{$(\phi \to \psi) \to \phi, \phi \to \bot, \phi \vdash \phi \to \bot$}
+
+                \AXC{}
+                \RL{Ass}
+                \UIC{$(\phi \to \psi) \to \phi, \phi \to \bot, \phi \vdash \phi$}
+
+                \BIC{$(\phi \to \psi) \to \phi, \phi \to \bot, \phi \vdash \bot$}
+
+                \RL{$\bot$E}
+                \UIC{$(\phi \to \psi) \to \phi, \phi \to \bot, \phi \vdash \psi$}
+
+                \RL{$\to$I}
+                \UIC{$(\phi \to \psi) \to \phi, \phi \to \bot \vdash \phi \to \psi$}
+
+                \RL{$\to E$}
+                \BIC{$(\phi \to \psi) \to \phi, \phi \to \bot \vdash \phi$}
+
+                \RL{$P\bot$}
+                \UIC{$(\phi \to \psi) \to \phi \vdash \phi$}
+
+                \RL{$\to I$}
+                \UIC{$\vdash ((\phi \to \psi) \to \phi) \to \phi$}
+            \end{prooftree}
+
+        \item Chcemy ze specjalnego przypadku prawa Peirce'a P$\bot$ oraz prawa eliminacji fałszu $\bot$E wyprowadzić prawo eliminacji podwójnej negacji $\neg\neg$E. W tym celu pokażemy w systemie z tymi regułami, że $\vdash ((\phi \to \bot) \to \bot) \to \phi$.
+        
+            \begin{prooftree}
+                \AXC{}
+                \RL{Ass}
+                \UIC{$(\phi \to \bot) \to \bot, \phi \to \bot \vdash (\phi \to \bot) \to \bot$}
+
+                \AXC{}
+                \RL{Ass}
+                \UIC{$(\phi \to \bot) \to \bot, \phi \to \bot \vdash \phi \to \bot$}
+
+                \RL{$\to$E}
+                \BIC{$(\phi \to \bot) \to \bot, \phi \to \bot \vdash \bot$}
+
+                \RL{$\bot$E}
+                \UIC{$(\phi \to \bot) \to \bot, \phi \to \bot \vdash \phi$}
+
+                \RL{$\bot$P}
+                \UIC{$(\phi \to \bot) \to \bot \vdash \phi$}
+
+                \RL{$\to$I}
+                \UIC{$\vdash ((\phi \to \bot) \to \bot) \to \phi$}
+            \end{prooftree}
+
+        \item Chcemy z prawa eliminacji podwójnej negacji $\neg\neg$E wyprowadzić szczególny przypadek prawa Peirce'a P$\bot$ oraz prawo eliminacji fałszu $\bot$E.
+        
+            \begin{prooftree}
+                \AXC{}
+                \RL{Ass}
+                \UIC{$\bot, \phi \to \bot \vdash \bot$}
+
+                \RL{$\neg\neg$E}
+                \UIC{$\bot \vdash \phi$}
+
+                \RL{$\to$I}
+                \UIC{$\vdash \bot \to \phi$}
+            \end{prooftree}
+
+            \begin{prooftree}
+                \AXC{}
+                \RL{Ass}
+                \UIC{$(\phi \to \bot) \to \phi, \phi \to \bot \vdash \phi \to \bot$}
+
+                \AXC{}
+                \RL{Ass}
+                \UIC{$(\phi \to \bot) \to \phi, \phi \to \bot \vdash (\phi \to \bot) \to \phi$}
+
+                \AXC{}
+                \RL{Ass}
+                \UIC{$(\phi \to \bot) \to \phi, \phi \to \bot \vdash \phi \to \bot$}
+
+                \RL{$\to$E}
+                \BIC{$(\phi \to \bot) \to \phi, \phi \to \bot \vdash \phi$}
+
+                \RL{$\to$E}
+                \BIC{$(\phi \to \bot) \to \phi, \phi \to \bot \vdash \bot$}
+
+                \RL{$\neg\neg$E}
+                \UIC{$(\phi \to \bot) \to \phi \vdash \phi$}
+
+                \RL{$\to$I}
+                \UIC{$\vdash ((\phi \to \bot) \to \phi) \to \phi$}
+            \end{prooftree}
+    \end{enumerate}
+    
+    \newpage
+
+    \par Zad. 2
+    \par Udowodnijmy najpierw (w systemie z $\neg\neg$E) prawo wyłączonego środka $\phi \lor \neg \phi$.
+
+    \begin{prooftree}
+        \AXC{}
+        \RL{Ass}
+        \UIC{$(\phi \lor \neg \phi) \to \bot \vdash (\phi \lor \neg \phi) \to \bot$}
+
+        \AXC{}
+        \RL{Ass}
+        \UIC{$(\phi \lor \neg \phi) \to \bot, \phi \vdash (\phi \lor \neg \phi) \to \bot$}
+
+        \AXC{}
+        \RL{Ass}
+        \UIC{$(\phi \lor \neg \phi) \to \bot, \phi \vdash \phi$}
+
+        \RL{$\lor I_1$}
+        \UIC{$(\phi \lor \neg \phi) \to \bot, \phi \vdash \phi \lor \neg \phi$}
+
+        \RL{$\to$E}
+        \BIC{$(\phi \lor \neg \phi) \to \bot, \phi \vdash \bot$}
+
+        \RL{$\to$I}
+        \UIC{$(\phi \lor \neg \phi) \to \bot \vdash \neg \phi$}
+
+        \RL{$\lor I_2$}
+        \UIC{$(\phi \lor \neg \phi) \to \bot \vdash \phi \lor \neg \phi$}
+
+        \RL{$\to$E}
+        \BIC{$(\phi \lor \neg \phi) \to \bot \vdash \bot$}
+
+        \RL{$\neg\neg$E}
+        \UIC{$\vdash \phi \lor \neg \phi$}
+    \end{prooftree}
+
+    \par Rzut okiem na termy i ich reguły typowania pozwala stwierdzić, że termem odpowiadającym temu dowodowi jest (anotacje typów pozwolę sobie pominąć) $\LEM :\equiv \Delta x. x(\iota_2 (\lambda y. x(\iota_1 y)))$, zaś rzut okiem na reguły redukcji $\to_\Delta$ pozwala stwierdzić, że term ten jest w postaci normalnej (reguły $1$ i $3$ nie pasują, zaś w regule $2$ nie jest spełniona przesłanka dotycząca zmiennej wolnej).
+    \par Chcemy teraz znormalizować term $\lambda t. \lambda f. \text{case}(\LEM, x_1.t, x_2.f)$. Normalizujemy więc:
+
+        \begin{center}
+            $
+            \lambda t. \lambda f. \text{case}(\LEM, x_1.t, x_2.f) \equiv
+            \lambda t. \lambda f. \Delta k. (\Delta x. x(\lambda x_1. \lambda x_2. (\lambda y. x(\lambda z_1. \lambda z_2. z_1 y))))(\lambda x_1. kt)(\lambda x_2. kf)
+            \to_\Delta
+            \lambda t. \lambda f. \Delta k. (\Delta z. (\lambda w. z(w(\lambda x_1. kt)))(\lambda x_1. \lambda x_2. x_2(\lambda y. (\lambda w. z(w(\lambda x_1. kt)))(\lambda z_1. \lambda z_2. y))))(\lambda x_2. kf)
+            \to_\beta
+            \lambda t. \lambda f. \Delta k. (\Delta z. (\lambda w. z(w(\lambda x_1. kt)))(\lambda x_1. \lambda x_2. x_2(\lambda y. z(\lambda z_2. kt))))(\lambda x_2. kf)
+            \to_\beta^*
+            \lambda t. \lambda f. \Delta k. (\Delta z. z(\lambda x_2. x_2(\lambda y. z(\lambda z_2. kt))))(\lambda x_2. kf)
+            \to_\Delta
+            \lambda t. \lambda f. \Delta k. \Delta w. (\lambda a. w(a(\lambda x_2. kf)))(\lambda x_2. x_2(\lambda y. (\lambda a. w(a(\lambda x_2. kf)))(\lambda z_2. kt)))
+            \to_\beta^*
+            \lambda t. \lambda f. \Delta k. \Delta w. (\lambda a. w(a(\lambda x_2. kf)))(\lambda x_2. x_2(\lambda y. w(kt)))
+            \to_\beta
+            \lambda t. \lambda f. \Delta k. \Delta w. w((\lambda x_2. x_2(\lambda y. w(kt)))(\lambda x_2. kf))
+            \to_\beta
+            \lambda t. \lambda f. \Delta k. \Delta w. w((\lambda x_2. kf)(\lambda y. w(kt)))
+            \to_\beta
+            \lambda t. \lambda f. \Delta k. \Delta w. w(kf)
+            \to_\Delta
+            \lambda t. \lambda f. \Delta k. kf
+            \to_\Delta
+            \lambda t. \lambda f. f$
+        \end{center}
+
+    \par Jak widać, wychodzi funkcja stale zwracająca drugi argument (czyli fałsz).
+\end{document}
