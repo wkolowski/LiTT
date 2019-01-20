@@ -407,7 +407,7 @@ Zauważ też, że również tutaj nie wyczerpujemy tematu. Funkcje zachowują ni
 
 \begin{definition}[Lemat 2.3.1 - transport]
 
-$\text{transport} : \Pi A : \U. \Pi B : A \to \U. \Pi x\ y : A. x = y \to P(x) \to P(y)$ \\
+$\text{transport} : \Pi A : \U. \Pi P : A \to \U. \Pi x\ y : A. x = y \to P(x) \to P(y)$ \\
 $\text{transport}(\refl{x}) \defn \text{id}_{P(x)}$ \\~\
 
 Notacja: $p_* \defn \text{transport}(p)$
@@ -1607,12 +1607,19 @@ Zadanie 2: wykonaj ostatnią rzecz oznaczoną na slajdach jako ćwiczenie.
 
 \end{frame}
 
-\begin{frame}{Bibliografia}
+\begin{frame}{Bibliografia 1}
 \begin{itemize}
 	\item Podstawowym źródłem wiedzy jest książka \url{https://homotopytypetheory.org/book/}
 	\item Jakaś prezentacja: \url{http://www.cs.nott.ac.uk/~psztxa/talks/edinburgh-13.pdf}
-	\item Filozoficzne wynurzenia: \url{https://www.researchgate.net/publication/280671356_Does_Homotopy_Type_Theory_Provide_a_Foundation_for_Mathematics}
 	\item Przyjazne przykłady wyższych typów induktywnych dla programistów: \url{http://www.cs.ru.nl/~herman/PUBS/HIT-programming.pdf}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Bibliografia 2}
+\begin{itemize}
+	\item Filozoficzne rozważania na temat HoTT jako podstaw matematyki: \url{https://www.researchgate.net/publication/280671356_Does_Homotopy_Type_Theory_Provide_a_Foundation_for_Mathematics}
+	\item Praca o podobnej tematyce: \url{https://arxiv.org/pdf/1601.05035.pdf}
+	\item Ciekawa praca zachaczająca o filozofię matematyki, prezentująca coś, co można by nazwać pluralizmem topologicznym: \url{https://arxiv.org/abs/1703.03007}
 \end{itemize}
 \end{frame}
 
