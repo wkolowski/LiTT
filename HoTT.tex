@@ -1,3 +1,5 @@
+% TODO: ulepszyć formatowanie - dodać \texttt do nazw funkcji, zrobić lepsze pi-typy, zrobić aplikację spacjową a nie nawiasową, nazwy typów boldem etc.
+
 \documentclass{beamer}
 
 \usepackage[utf8]{inputenc}
@@ -1037,7 +1039,7 @@ Typy induktywne nie są jednak wszechmocne. Niektórych rzeczy zdefiniować si�
 \begin{itemize}
 	\item Przypomnijmy, że w typach zdefiniowanych przez wyższą indukcję mogą być rzeczy, których tam nie włożyliśmy. Np. jeżeli wrzucimy do typu jakąś ścieżkę $p$, to pojawi się w nim także ścieżka $p^{-1}$.
 	\item A priori nie wiadomo, jak się zachowują włożone przez nas ścieżki. Mogą one być trywialne albo i nie.
-	\item Mimo, że możemy do typu dodawać ścieżki, to wciąż definiujemy pojedynczy typ - nie redefiniujemy typu $=$. Definiowany przez nas typ dostanie swoją właśną regułę indukcji, a reguła indukcji po ścieżkach pozostanie taka jak była - nowe ścieżki nie mają na nią wpływu.
+	\item Mimo, że możemy do typu dodawać ścieżki, to wciąż definiujemy pojedynczy typ - nie redefiniujemy typu $=$. Definiowany przez nas typ dostanie swoją własną regułę indukcji, a reguła indukcji po ścieżkach pozostanie taka jak była - nowe ścieżki nie mają na nią wpływu.
 	\item Wymiar konstruktora ma nikły wpływ na strukturę ścieżek: jeżeli definiując $B$ dodamy konstruktor punktów typu $A \to B$, to wszystkie ścieżki z $A$ zostają wstrzyknięte do $B$.
 \end{itemize}
 \end{frame}
@@ -1212,16 +1214,16 @@ $
 $
 \end{definition}
 
-Typ jest ściągalny to taki, który ma punkt centralny, który jest połączony ścieżką z każdym innym punktem tego typu. Nazwa bierze się stąd, że możemy wszystkie punkty ściągnąć do centrum. Wobec tego typ ściągalny jest równoważny typowi $\mathbf{1}$.
+Typ jest ściągalny gdy ma punkt centralny, który jest połączony ścieżką z każdym innym punktem tego typu. Nazwa bierze się stąd, że możemy wszystkie punkty ściągnąć do centrum. Wobec tego typ ściągalny jest równoważny typowi $\mathbf{1}$.
 
 \end{frame}
 
 \begin{frame}{Ściągalność 2 - filozofowanie}
 \begin{itemize}
-	\item Mogłoby się wydawać, że ściągalność jest nieciekawa, skoro typy ściągalne są równoważne (czyli równe) typowi $\mathbf{1}$.
+	\item Mogłoby się wydawać, że ściągalność jest nieciekawa, skoro typy ściągalne są równoważne (czyli równe, dzięki uniwalencji) typowi $\mathbf{1}$.
 	\item Kluczowy jest jednak fakt, że typy, które same w sobie są wysoce nietrywialne i z pewnością nie są ściągalne, złożone do kupy mogą dać typ, który jest ściągalny.
 	\item Jest tak dlatego, że wzajemne zależności między obiektami mogą wykluczyć wszystkie kombinacje poza jedną.
-	\item Najprostszym przykładem tego rodzaju jest sparowanie jakiegoś obiektu ze specyfikacją, która charakterzyuje go unikalnie.
+	\item Najprostszym przykładem tego rodzaju jest sparowanie jakiegoś obiektu ze specyfikacją, która charakterzyuje go w sposób unikalny.
 	\item Co ważne, nawet jeżeli typ jest ściągalny, to zachowuje swoje właściwości obliczeniowe.
 \end{itemize}
 \end{frame}
@@ -1248,7 +1250,7 @@ $\Prop \defn \sum_{A : \U} \isProp(A)$
 	\item $\mathbf{0}$ i $\mathbf{1}$ są zdaniami. Odpowiadają one fałszowi i prawdzie.
 	\item Dla każdego $A : \U$ typ $\neg A \defn A \to \mathbf{0}$ jest zdaniem.
 	\item Typ $\isequiv(f)$ jest zdaniem, ale tp $\qinv(f)$ może NIE być zdaniem i dlatego właśnie mieliśmy problem.
-	\item O ile wszystkie zdania fałszywe są równe i podobnie wszystkie zdania prawdziwe są równe, to $\Prop$ nie jest tym samym, co $\mathbf{2}$, gdyż w ogólności nie jesteśmy w stanie rozstrzygnąć, czy mamy do czynienia ze zdaniem prawdziwym, czy fałszywym.
+	\item O ile wszystkie zdania fałszywe są równe i podobnie wszystkie zdania prawdziwe są równe, to $\Prop$ nie jest tym samym co $\mathbf{2}$, gdyż w ogólności nie jesteśmy w stanie rozstrzygnąć, czy mamy do czynienia ze zdaniem prawdziwym, czy fałszywym.
 \end{itemize}
 
 \end{frame}
@@ -1275,7 +1277,7 @@ $\Set \defn \sum_{A : \U} isSet(A)$
 \begin{frame}{Grupoidy}
 
 \begin{definition}
-$\isGrpd(A) \defn \prod_{x, y : A} \prod_{p, q : x = y} \prod{r, s : p = q} r = s$ \\
+$\isGrpd(A) \defn \prod_{x, y : A} \prod_{p, q : x = y} \prod_{r, s : p = q} r = s$ \\
 $\Grpd \defn \sum_{A : \U} \isGrpd(A)$
 \end{definition}
 
@@ -1326,7 +1328,7 @@ Widać, że:
 	\item $n$-te uniwersum $\U_n$ nie jest $n$-typem.
 	\item W klasycznej teorii homotopii $k$-wymiarowa (hiper)sfera $\mathbb{S}^k$ nie jest $n$-typem dla żadnego $k \geq 2$. W HoTTbooku nie ma na to dowodu.
 	\item Jeżeli powyższe jest prawdą, to żadne uniwersum nie jest $n$-typem, bo zawiera hipersferę.
-	\item Konkretny (kontr)przykład (8.8.6): Niech $A \defn \prod_{n : \mathbb{N}} B(n)$, gdzie $B : \mathbb{N} \to \U$ jest taką rodziną typów, że typ $B(n)$ zawiera $n$-pętlę, które nie jest równa $n$-pętli trywialnej. Wtedy $A$ nie jest $n$-typem dla żadnego $n : \mathbb{N}$.
+	\item Konkretny (kontr)przykład (8.8.6): Niech $A \defn \prod_{n : \mathbb{N}} B(n)$, gdzie $B : \mathbb{N} \to \U$ jest taką rodziną typów, że typ $B(n)$ zawiera $n$-pętlę, która nie jest równa trywialnej $n$-pętli. Wtedy $A$ nie jest $n$-typem dla żadnego $n : \mathbb{N}$.
 \end{itemize}
 \end{frame}
 
@@ -1355,7 +1357,7 @@ $\neg \prod_{A : \U} \neg\neg A \to A$
 $\neg \prod_{A : \U} A + \neg A$
 \end{corollary}
 
-\begin{theorem}[Uogólnienie lematu 3.2.2]
+\begin{theorem}[Moje uogólnienie lematu 3.2.2]
 Niech $F : \U \to \Prop$ i niech $x : F(\mathbf{2})$. Wtedy \\~\
 
 $\neg \prod_{A : \U} F(A) \to A$
@@ -1392,7 +1394,7 @@ $\text{LEM} \defn \prod_{P : \Prop} P + \neg P$
 \begin{itemize}
 	\item Okazało się, że nasze typy zawierają za dużo informacji, aby móc służyć jako zdania. Tylko niektóre z nich się do tego nadają.
 	\item Jednak to nie koniec problemów - nasze spójniki też nie są idealne. W tradycyjnej logice spójniki przekształcają zdania w zdania, u nas natomiast tak nie jest: suma dwóch zdań nie musi być zdaniem, np. $\mathbf{1} + \mathbf{1} = \mathbf{2}$.
-	\item Jeszcze hardkorowiej sprawa ma się z sumą zależną: nawet jeżeli dla każdego $x : A$ typ $B(x)$ jest zdaniem, to typ $\sum_{A : \U} B(x)$ może być dowolnie skomplikowaną przestrzenią.
+	\item Jeszcze hardkorowiej sprawa ma się z sumą zależną: nawet jeżeli dla każdego $x : A$ typ $B(x)$ jest zdaniem, to typ $\sum_{A : \U} B(x)$ może być dowolnie skomplikowaną przestrzenią (bo $A$ może być dowolnie skomplikowaną przestrzenią).
 	\item Jak widać, nasze spójniki $+$ oraz $\sum$ są zbyt konstruktywne. Spróbujmy zatem wynaleźć takie, które zachowywałyby właściwość bycia zdaniem.
 \end{itemize}
 \end{frame}
@@ -1524,7 +1526,7 @@ Niestety ten sposób jest upośledzony, gdyż nie jest to aksjomat, tylko twierd
 Jak nietrudno się domyślić, nasz problem możemy rozwiązać wciskają gdzie trzeba trunkację.
 
 \begin{definition}[Jedyny słuszny Aksjomat Wyboru w pełnej krasie]
-Dla zbioru $A : \U$, rodziny zbiorów $B : A \to \U$ oraz relacji (czyli rodziny zdań) $R : \prod_{x : A} B(x) \to \U$ zachodzi: \\~\
+Dla zbioru $A : \Set$, rodziny zbiorów $B : A \to \Set$ oraz relacji (czyli rodziny zdań) $R : \prod_{x : A} B(x) \to \Prop$ zachodzi: \\~\
 
 $\displaystyle
 	\left(\prod_{x : A} \left|\left|\sum_{y : B(x)} R(x, y)\right|\right|\right) \to
@@ -1591,9 +1593,13 @@ HoTT daje nam:
 
 \end{frame}
 
-\begin{frame}{Żart}
+\begin{frame}{Żart 1}
 
-Co łączy samobójcę, programistę imperatywnego, autobusiarza i homotopicznoteoriotypowca? \\~\
+Co łączy samobójcę, programistę imperatywnego, autobusiarza i homotopicznoteoriotypowca?
+
+\end{frame}
+
+\begin{frame}{Żart 2}
 
 Lubią pętle.
 
