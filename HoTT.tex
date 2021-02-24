@@ -147,6 +147,10 @@
 	$\displaystyle \frac{\Gamma \vdash f : A \to B}{\Gamma \vdash \lambda x:A.f\ x \equiv f : A \to B}$
 \end{center}
 
+\begin{itemize}
+	\item Uwaga: w powyższych regułach $\U$ oznacza uniwersum, czyli typ typów, a zatem $\Gamma \vdash A : \U$ oznacza ``$A$ jest typem w kontekście $\Gamma$''.
+\end{itemize}
+
 \end{frame}
 
 \begin{frame}{Teoria typów 4 - ciekawostki o regułach}
@@ -178,7 +182,7 @@
 \begin{frame}{Teoria homotopii 1 - homotopia}
 \begin{itemize}
 	\item Co to jest homotopia?
-	\item Zgodnie z wikipedią, jeżeli $f$ i $g$ są funkcjami ciągłymi z przestrzeni topologicznej $X$ w przestrzeń topologiczną $Y$, to $H : X \times [0; 1] \to Y$ jest homotopią, gdy jest funkcją ciągłą spełniającą $H(0, x) = f(x) \land H(1, x) = g(x)$.
+	\item Zgodnie z wikipedią, jeżeli $f$ i $g$ są funkcjami ciągłymi z przestrzeni topologicznej $X$ w przestrzeń topologiczną $Y$, to $H : [0; 1] \times X \to Y$ jest homotopią, gdy jest funkcją ciągłą spełniającą $H(0, x) = f(x) \land H(1, x) = g(x)$.
 	\item Jeżeli nieco pogmeramy w symbolach, to możemy to zapisać tak: $H: [0; 1] \to (X \to Y)$ jest homotopią, gdy jest ciągła i spełnia $H(0) = f \land H(1) = g$.
 	\item Nie przejmuj się, jeżeli definicja cię nie oświeca. Moim zdaniem władowanie jej do nazwy całej teorii jest głupie.
 \end{itemize}
@@ -267,7 +271,7 @@ Powyższe reguły opisują rodzinę typów, która zazwyczaj nazywana bywa typem
 
 \begin{frame}{Ścieżki 2 - interpretacja reguł}
 \begin{itemize}
-	\item Reguła formacji: jeżeli mamy typ $A$ i dwa jego elementy $a, b$, to możemy sformować typ $a =_A b$. Jest to typ, którego elementami są ścieżki z $a$ do $b$. Jeżeli mamy element tego typu, to $a$ i $b$ są równe.
+	\item Reguła formacji: jeżeli mamy typ $A$ i dwa jego elementy $a, b$, to możemy sformować typ $a =_A b$. Jest to typ, którego elementami są ścieżki z $a$ do $b$. Jeżeli mamy element tego typu, to $a$ i $b$ są równe. Jeżeli typ $A$ jasno wynika z kontekstu, to będziemy pisać po prostu $a = b$ zamiast $a =_A b$.
 	\item Reguła wprowadzania: każda rzecz jest równa sama sobie. Ścieżka poświadczająca ten fakt nazywa się $\text{refl}$. Jest to skrót od ang. reflexivity, czyli zwrotność.
 	\item Reguła eliminacji: $C$ jest tutaj rodziną typów zależącą od ścieżki $p : x = y$. Reguła głosi, że żeby zdefiniować element $C(x, y, p)$ wystarczy mieć element $C(x, x, \refl{x})$.
 	\item Reguła obliczania: chodzi o to, że jeżeli wyeliminujemy element $C(z, z, \refl{z})$, to dostaniemy go spowrotem, tylko po odpowiednim podstawieniu.
@@ -351,7 +355,7 @@ $\refl{x} \sq \refl{x} \defn \refl{x}$
 
 \begin{theorem}[Lemat 2.1.4 - właściwości operacji na ścieżkach]
 
-Niech $A : \U$ będzie typem, $a, b, c, d : A$ punktami, zaś $p : a = b, q : b = c, r : c = d$ ścieżkami. Wtedy:
+Niech $A : \U$ będzie typem, $x, y, z, w : A$ punktami, zaś $p : x = y, q : y = z, r : z = w$ ścieżkami. Wtedy:
 
 \begin{itemize}
 	\item $\refl{x} \sq p = p$
