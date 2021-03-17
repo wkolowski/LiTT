@@ -537,7 +537,7 @@ Niech $A, B : \U$ będą typami, a $f : A \to B$ funkcją.
 \begin{definition}[Równoważność 1]
 $
 \displaystyle
-	\isequiv(f) \defn
+	\isequiv_1(f) \defn
 		\left(\sum_{g : B \to A} f \comp g \sim \id_B\right) \times
 		\left(\sum_{h : B \to A} h \comp f \sim \id_A\right)
 $
@@ -546,7 +546,7 @@ $
 \begin{definition}[Równoważność 2]
 $
 \displaystyle
-	\isequiv(f) \defn
+	\isequiv_2(f) \defn
 		\sum_{g : B \to A} \sum_{\eta : g \comp f \sim \id_A} \sum_{\epsilon : f \comp g \sim \id_B}
 			\prod_{x : A} \ap{f}{\eta(x)} = \epsilon(\ap{f}{x})
 $
@@ -573,7 +573,7 @@ Druga definicja zdaje się być korzystniejsza w użyciu, bo łatwiej wyjąć z 
 \begin{definition}[Równoważność 3]
 $
 \displaystyle
-	\isequiv(f) \defn
+	\isequiv_3(f) \defn
 		\prod_{y : B} \text{isContr}\left(\sum_{x : A} f(x) = y\right)
 $
 \end{definition}
@@ -582,7 +582,7 @@ $
 \begin{definition}[Równoważność 4]
 $
 \displaystyle
-	\isequiv(f) \defn ||\qinv(f)||
+	\isequiv_4(f) \defn ||\qinv(f)||
 $
 \end{definition}
 
@@ -603,6 +603,7 @@ Możliwe są jeszcze dwie inne definicje równoważności, których jednak nie w
 \begin{frame}{Równoważności 9 - refleksja}
 \begin{itemize}
 	\item Oczywiście wszystkie 4 definicje są równoważne.
+	\item Dla precyzji jednak przyjmujemy $\isequiv(f) \defn \isequiv_1(f)$, tzn. domyślnie będziemy posługiwać się definicją z dwiema osobnymi odwrotnościami.
 	\item Skąd jednak biorą się problemy? Klasyczna definicja izomorfizmu okazała się za słaba, zaś definicję bijekcji v2 również trzeba było odpowiednio stuningować.
 	\item Powód tego jest prosty: klasyczne definicje pochodzą ze świata teorii zbiorów, w którym to świecie mamy tylko worki z kropkami. W świecie, w którym kropki mogą być połączone, definicje trzeba unowocześnić.
 	\item Żeby lepiej zrozumieć różnicę, dokonajmy pewnego wielkiego odkrycia.
