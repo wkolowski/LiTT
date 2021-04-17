@@ -1,4 +1,4 @@
-% TODO: ulepszyć formatowanie - dodać \texttt do nazw funkcji, zrobić lepsze pi-typy, zrobić aplikację spacjową a nie nawiasową, nazwy typów boldem etc.
+% TODO: ulepszyć formatowanie - dodać \texttt do nazw funkcji, ujednolicić pi-typy, zrobić aplikację spacjową a nie nawiasową.
 
 \documentclass{beamer}
 
@@ -157,9 +157,9 @@
 \begin{itemize}
 	\item Każdy typ musi mieć regułę formacji - inaczej nie byłby typem.
 	\item Jednak nie każdy typ musi mieć pozostałe reguły.
-	\item Typ $\mathbf{0}$ nie ma reguły wprowadzania, bo jest pusty i nie ma żadnych elementów.
+	\item Typ $\textbf{0}$ nie ma reguły wprowadzania, bo jest pusty i nie ma żadnych elementów.
 	\item Uniwersum nie ma reguły eliminacji.
-	\item Typ $\mathbf{0}$ nie ma także reguły obliczania, co jest oczywiste - nie może jej mieć, skoro nie ma reguły wprowadzania.
+	\item Typ $\textbf{0}$ nie ma także reguły obliczania, co jest oczywiste - nie może jej mieć, skoro nie ma reguły wprowadzania.
 	\item Wiele typów, np. sumy i produkty, nie mają reguły unikalności. W zamian za to mają one zdaniową regułę unikalności, tzn. można udowodnić twierdzenie wyglądające dokładnie jak reguła unikalności.
 	\item Reguła formacji zawsze jest jedna, bo każdy typ można sformować tylko na jeden sposób. Pozostałych reguł może być więcej. Sumy mają 2 reguły wprowadzania, a produkty 2 reguły eliminacji i wobec tego 2 reguły obliczania.
 \end{itemize}
@@ -337,15 +337,17 @@ Powyższe reguły opisują rodzinę typów, która zazwyczaj nazywana bywa typem
 
 \begin{frame}{Operacje na ścieżkach 1 - definicje}
 
-\begin{definition}[Lemat 2.1.1 - ścieżka odwrotna]
+Uwaga: w nagłówkach definicji i lematów pojawiają się numery, które pokazują, gdzie w HoTTBooku można znaleźć daną definicję/twierdzenie. Link do samego HoTTBooka będzie na końcu slajdów.
+
+\begin{block}{2.1.1 Ścieżka odwrotna}
 $\inv{(-)} : \Pi A : \U. \Pi x\ y : A. x = y \to y = x$ \\
 $\inv{\refl{x}} \defn \refl{x}$
-\end{definition}
+\end{block}
 
-\begin{definition}[Lemat 2.1.2 - sklejanie ścieżek]
+\begin{block}{2.1.2 Sklejanie ścieżek}
 $\sq : \Pi A : \U. \Pi x\ y\ z : A. x = y \to y = z \to x = z$ \\
 $\refl{x} \sq \refl{x} \defn \refl{x}$
-\end{definition}
+\end{block}
 
 \includegraphics[scale=0.3]{EqPathGrupoid.png}
 
@@ -353,7 +355,7 @@ $\refl{x} \sq \refl{x} \defn \refl{x}$
 
 \begin{frame}{Operacje na ścieżkach 2 - właściwości}
 
-\begin{theorem}[Lemat 2.1.4 - właściwości operacji na ścieżkach]
+\begin{block}{2.1.4 Właściwości operacji na ścieżkach}
 
 Niech $A : \U$ będzie typem, $x, y, z, w : A$ punktami, zaś $p : x = y, q : y = z, r : z = w$ ścieżkami. Wtedy:
 
@@ -365,7 +367,7 @@ Niech $A : \U$ będzie typem, $x, y, z, w : A$ punktami, zaś $p : x = y, q : y 
 	\item $p \sq (q \sq r) = (p \sq q) \sq r$
 \end{itemize}
 
-\end{theorem}
+\end{block}
 
 Ćwiczenie: udowodnij.
 
@@ -384,12 +386,12 @@ Niech $A : \U$ będzie typem, $x, y, z, w : A$ punktami, zaś $p : x = y, q : y 
 
 \begin{frame}{Aplikacja funkcji do ścieżki 1 - definicja}
 
-\begin{definition}[Lemat 2.2.1 - aplikacja funkcji do ścieżki]
+\begin{block}{2.2.1 Aplikacja funkcji do ścieżki}
 
 $\text{ap} : \Pi A\ B : \U. \Pi f : A \to B. x =_A y \to f(x) =_B f(y)$ \\
 $\ap{f}{\refl{x}} \defn \refl{f(x)}$
 
-\end{definition}
+\end{block}
 
 Klasycznie powyższą definicję moglibyśmy odczytać jako twierdzenie mówiące, że wszystkie funkcje zachowują równość. \\~\
 
@@ -411,14 +413,14 @@ Zauważ też, że również tutaj nie wyczerpujemy tematu. Funkcje zachowują ni
 
 \begin{frame}{Transport 1 - definicja}
 
-\begin{definition}[Lemat 2.3.1 - transport]
+\begin{block}{2.3.1 Transport}
 
 $\text{transport} : \Pi A : \U. \Pi P : A \to \U. \Pi x\ y : A. x = y \to P(x) \to P(y)$ \\
 $\text{transport}(\refl{x}) \defn \text{id}_{P(x)}$ \\~\
 
 Notacja: $p_* \defn \text{transport}(p)$
 
-\end{definition}
+\end{block}
 
 Powyższe klasycznie można odczytać jako jedną stronę równoważności, której Leibniz użył do zdefiniowania równości: ``dwie rzeczy są równe wtedy i tylko wtedy, gdy mają takie same właściwości''.\\~\
 
@@ -439,12 +441,12 @@ Homotopicznie sprawa jest nieco ciekawsza: jeżeli mamy ścieżkę $p : x =_A y$
 
 \begin{frame}{Aplikacja funkcji zależnej do ścieżki}
 
-\begin{definition}[Lemat 2.3.4]
+\begin{block}{Lemat 2.3.4 Aplikacja funkcji zależnej do ścieżki}
 
 $\text{apd} : \Pi A : \U. \Pi P : A \to \U. \Pi f : (\Pi x : A. P(x)). \Pi p : x = y. p_*(f(x)) = f(y)$ \\
 $\apd{f}{\refl{x}} \defn \refl{f(x)}$
 
-\end{definition}
+\end{block}
 
 Aplikacja funkcji zależnych do ścieżek jest analogiczna do aplikacji funkcji niezależnych do ścieżek, ale jest mały twist - musimy użyć transportu, bo wyniki funkcji dla $x$ i $y$ żyją w różnych typach.
 
@@ -487,10 +489,10 @@ Homotopicznie zinterpretowawszy typy, zdążajmy teraz ku aksjomatowi uniwalencj
 
 \begin{frame}{Równoważności 2 - kwaziodwrotność}
 
-\begin{definition}
+\begin{block}{Kwaziodwrotność}
 $\qinv : \Pi A\ B : \U. (A \to B) \to \U$ \\
 $\displaystyle \qinv(f) \defn \sum_{g : B \to A} g \comp f \sim \id_A \times f \comp g \sim \id_B$
-\end{definition}
+\end{block}
 
 Funkcję mającą odwrotność (wraz z dowodami na to, że faktycznie jest to odwrotność) będziemy nazywać kwaziodwrotnością. \\~\
 
@@ -508,11 +510,11 @@ Funkcję mającą odwrotność (wraz z dowodami na to, że faktycznie jest to od
 
 Dlaczego nazwaliśmy funkcje mające odwrotność kwaziodwrotnościami, a nie izomorfizmami? Okazuje się, że są one wadliwe. Jeżeli narysujemy odpowiednio plastyczny rysunek, to ujrzymy uzasadnienie dla poniższego twierdzenia:
 
-\begin{theorem}[Twierdzenie 4.1.1 - $qinv$ to pętle]
+\begin{block}{Twierdzenie 4.1.1 Kwaziodwrotności to pętle}
 
 $\Pi A\ B : \U. \Pi f : A \to B. \qinv(f) \to (\qinv(f) = \Pi x : A. x = x)$
 
-\end{theorem}
+\end{block}
 
 Twierdzenie to głosi, że jeżeli funkcja $f$ jest kwaziodwrotnością, to typ $\qinv(f)$ jest równy typowi funkcji zależnych, które każdemu punktowi przyporządkowują jakąś pętlę. Dlaczego twierdzenie to nas niepokoi? Jak już wiemy, pętli w danym punkcie może być wiele. Mimo, że dana funkcja może mieć tylko jedną odwrotność, to dowodów tego faktu (czyli odpowiednich par ścieżek) może być wiele. Wobec tego funkcja może być kwaziodwrotnością na wiele sposobów.
 
@@ -524,7 +526,7 @@ Twierdzenie to głosi, że jeżeli funkcja $f$ jest kwaziodwrotnością, to typ 
 	\begin{itemize}
 		\item $\qinv(f) \to \isequiv(f)$
 		\item $\isequiv(f) \to \qinv(f)$
-		\item $\prod_{e_1, e_2 : \isequiv(f)}, e_1 = e_2$
+		\item $\Pi e_1\ e_2 : \isequiv(f). e_1 = e_2$
 	\end{itemize}
 	\item Parafrazując: $\isequiv$ to niemal to samo co $\qinv$, ale każda funkcja może być równoważnością na co najwyżej jeden sposób.
 \end{itemize}
@@ -534,23 +536,23 @@ Twierdzenie to głosi, że jeżeli funkcja $f$ jest kwaziodwrotnością, to typ 
 
 Niech $A, B : \U$ będą typami, a $f : A \to B$ funkcją.
 
-\begin{definition}[Równoważność 1]
+\begin{block}{Równoważność 1}
 $
 \displaystyle
 	\isequiv_1(f) \defn
 		\left(\sum_{g : B \to A} f \comp g \sim \id_B\right) \times
 		\left(\sum_{h : B \to A} h \comp f \sim \id_A\right)
 $
-\end{definition}
+\end{block}
 
-\begin{definition}[Równoważność 2]
+\begin{block}{Równoważność 2}
 $
 \displaystyle
 	\isequiv_2(f) \defn
 		\sum_{g : B \to A} \sum_{\eta : g \comp f \sim \id_A} \sum_{\epsilon : f \comp g \sim \id_B}
 			\prod_{x : A} \ap{f}{\eta(x)} = \epsilon(\ap{f}{x})
 $
-\end{definition}
+\end{block}
 
 \end{frame}
 
@@ -570,21 +572,21 @@ Druga definicja zdaje się być korzystniejsza w użyciu, bo łatwiej wyjąć z 
 
 \begin{frame}{Równoważności 7 - więcej definicji}
 
-\begin{definition}[Równoważność 3]
+\begin{block}{Równoważność 3}
 $
 \displaystyle
 	\isequiv_3(f) \defn
 		\prod_{y : B} \text{isContr}\left(\sum_{x : A} f(x) = y\right)
 $
-\end{definition}
+\end{block}
 
 
-\begin{definition}[Równoważność 4]
+\begin{block}{Równoważność 4}
 $
 \displaystyle
 	\isequiv_4(f) \defn ||\qinv(f)||
 $
-\end{definition}
+\end{block}
 
 Możliwe są jeszcze dwie inne definicje równoważności, których jednak nie wybierzemy, gdyż zawierają nieznane nam pojęcia.
 
@@ -596,7 +598,7 @@ Możliwe są jeszcze dwie inne definicje równoważności, których jednak nie w
 	\item Definicja nr 3 odpowiada naszej definicji bijekcji v2 (dla każdego elementu przeciwdziedziny istnieje dokładnie jeden element dziedziny), ale musimy zapisać to bardziej homotopicznie.
 	\item Jest tak dlatego, że interesują nas nie tylko punkty, ale też ścieżki na każdym możliwym poziomie.
 	\item Definicję tę można czytać tak: dla każdego punktu przeciwdziedziny istnieje tylko jeden punkt dziedziny i jedna pętla na nim, i jedna pętla na tej pętli, i jedna pętli na tej pętli i tak dalej na każdym poziomie.
-	\item Prościej: przeciwobraz każdego punktu przeciwdziedziny jest równoważny typowi $\mathbf{1}$.
+	\item Prościej: przeciwobraz każdego punktu przeciwdziedziny jest równoważny typowi $\textbf{1}$.
 \end{itemize}
 \end{frame}
 
@@ -628,17 +630,17 @@ Możliwe są jeszcze dwie inne definicje równoważności, których jednak nie w
 
 Niech $A, B : \U$ będą typami, a $f: A \to B$ funkcją.
 
-\begin{definition}[Surjekcja - nieco inaczej niż w książce]
+\begin{block}{Surjekcja - nieco inaczej niż w książce}
 $f$ jest surjekcją, gdy $\Pi y : B. \Sigma x : A. f(x) = y$
-\end{definition}
+\end{block}
 
-\begin{definition}[Zanurzenie]
+\begin{block}{Zanurzenie}
 $f$ jest zanurzeniem, gdy dla każdego $x, y : A$ funkcja $\text{ap}_f : x = y \to f(x) = f(y)$ jest równoważnością.
-\end{definition}
+\end{block}
 
-\begin{theorem}[Wesoła charakteryzacja równoważności]
+\begin{block}{Wesoła charakteryzacja równoważności}
 $f$ jest równoważnością wtedy i tylko wtedy, gdy jest surjekcją i zanurzeniem.
-\end{theorem}
+\end{block}
 
 \end{frame}
 
@@ -686,28 +688,29 @@ $f$ jest równoważnością wtedy i tylko wtedy, gdy jest surjekcją i zanurzeni
 
 \begin{frame}{Charakteryzacje ścieżek 3 - typy banalne i negatywne}
 
-\begin{theorem}[Ścieżki między elementami typu pustego]
-$\Pi x\ y : \mathbf{0}. (x = y) \simeq \mathbf{0}$
-\end{theorem}
+\begin{block}{Ścieżki między elementami typu pustego}
+$\Pi x\ y : \textbf{0}. (x = y) \simeq \textbf{1}$
+\end{block}
 
-\begin{theorem}[2.8 Ścieżki między elementami typu unit]
-$\Pi x\ y : \mathbf{1}. (x = y) \simeq \mathbf{1}$
-\end{theorem}
+\begin{block}{2.8 Ścieżki między elementami typu unit}
+$\Pi x\ y : \textbf{1}. (x = y) \simeq \textbf{1}$
+\end{block}
 
-\begin{theorem}[2.5.1 Ścieżki między parami]
+\begin{block}{2.5.1 Ścieżki między parami}
 $\Pi A\ B : \U. \Pi a\ a' : A. \Pi b\ b': B. ((a, b) = (a', b')) \simeq a = a' \times b = b'$
-\end{theorem}
+\end{block}
 
-\begin{theorem}[2.7.2 Ścieżki między parami zależnymi]
+\begin{block}{2.7.2 Ścieżki między parami zależnymi}
 $\Pi A : \U. \Pi B : A \to \U. \Pi w\ w' : \sum_{x : A} B(x).$ \\
-	$\displaystyle \quad (w = w') \simeq \sum_{p : \prl(w) = \prl(w')} p_*(\prr(w)) = \prr(w')$
-\end{theorem}
+$\displaystyle \quad (w = w') \simeq \sum_{p : \prl(w) = \prl(w')} p_*(\prr(w)) = \prr(w')$
+\end{block}
 
 \end{frame}
+
 \begin{frame}{Charakteryzacje ścieżek 4 - interpretacja}
 \begin{itemize}
-	\item Nie ma ścieżek między punktami typu $\mathbf{0}$. Jest to dość oczywiste, bo ścieżki muszą być między punktami, a punktów nie ma.
-	\item Między elementami $\mathbf{1}$ jest dokładnie jedna ścieżka.
+	\item Między każdymi dwoma elementami typu pustego jest dokładnie jedna ścieżka. Albo i nie, albo i dwie. Nie ma to większego znaczenia, bo jeżeli wpadnie nam w ręce element typu pustego, to i tak mamy sprzeczność.
+	\item Między elementami $\textbf{1}$ jest dokładnie jedna ścieżka.
 	\item Ścieżki między parami to pary ścieżek.
 	\item Ścieżki między parami zależnymi to zależne pary ścieżek.
 \end{itemize}
@@ -717,20 +720,20 @@ $\Pi A : \U. \Pi B : A \to \U. \Pi w\ w' : \sum_{x : A} B(x).$ \\
 
 Jeżeli dwie funkcje są równe, to są też homotopiczne (czyli ekstensjonalnie równe).
 
-\begin{definition}[2.9.2]
+\begin{block}{2.9.2 Aplikacja homotopii do argumentu}
 $\happly: \Pi A\ B : \U. \Pi f\ g : A \to B. f = g \to \Pi x : A. f(x) = g(x)$ \\
 $\happly(\refl{f}) = \lambda x : A. \refl{f(x)}$
-\end{definition}
+\end{block}
 
 Jednak implikacji w drugą stronę (ani tym bardziej równoważności) nie da się pokazać. Wobec tego wprowadzamy aksjomat:
 
-\begin{definition}[2.9.3 Aksjomat ekstensjonalności dla funkcji]
+\begin{block}{2.9.3 Aksjomat ekstensjonalności dla funkcji}
 Funkcja $\happly$ jest równoważnością.
-\end{definition}
+\end{block}
 
-\begin{corollary}[Ładny wzorek]
+\begin{block}{Wniosek: charakteryzacja ścieżek między funkcjami}
 $(f = g) \simeq \Pi x : A. f(x) = g(x)$
-\end{corollary}
+\end{block}
 
 \end{frame}
 
@@ -738,13 +741,13 @@ $(f = g) \simeq \Pi x : A. f(x) = g(x)$
 
 Zauważmy, że charakteryzacje ścieżek możemy rozbić na reguły przypominające reguły opisujące typy, w których te ścieżki żyją. Jest to prawdą nie tylko dla aksjomatu ekstensjonalności, ale też np. dla twierdzeń charakteryzujących ścieżki między parami.
 
-\begin{corollary}[Reguły opisujące ścieżki między funkcjami]
+\begin{block}{Reguły opisujące ścieżki między funkcjami}
 $\funext : \Pi A\ B : \U. \Pi f\ g : A \to B. (\Pi x : A. f(x) = g(x)) \to f = g$ \\
 
 $\happly(\funext(h), x) = h(x)$ \\
 
 $\funext(\lambda x : A. \happly(p, x)) = p$
-\end{corollary}
+\end{block}
 
 \end{frame}
 
@@ -762,13 +765,13 @@ $\funext(\lambda x : A. \happly(p, x)) = p$
 
 Możemy scharakteryzować nie tylko ścieżki między funkcjami, ale także operacje na tych ścieżkach.
 
-\begin{theorem}[Charakteryzacja operacji na ścieżkach między funkcjami]
+\begin{block}{Charakteryzacja operacji na ścieżkach między funkcjami}
 $\refl{f} = \funext(\lambda x : A. \refl{f(x)})$ \\
 
 $\inv{p} = \funext(\lambda x : A.\inv{\happly(p, x)})$ \\
 
 $p \sq q = \funext(\lambda x : A. \happly(p, x) \sq \happly(q, x))$
-\end{theorem}
+\end{block}
 
 Intuicja jest prosta:
 \begin{itemize}
@@ -785,10 +788,10 @@ Możemy też scharakteryzować transport w rodzinach typów postaci $\lambda x :
 
 Dla typu $X : \U$, rodzin typów $A, B : X \to \U$, elementów $x_1, x_2 : X$, funkcji $f : A(x_1) \to B(x_1)$ oraz ścieżki $p : x_1 = x_2$ mamy:
 
-\begin{theorem}[Charakteryzacja transportu dla funkcji]
+\begin{block}{Charakteryzacja transportu dla funkcji}
 $\transport^{\lambda x : X. A(x) \to B(x)}(p, f) =$ \\
 $\quad \lambda a : A(x_2). \transport^B(p, f(\transport^A(\inv{p}, a)))$
-\end{theorem}
+\end{block}
 
 Interpretacja twierdzenia jest łatwa: chcemy zrobić funkcję typu $A(x_2) \to B(x_2)$. Bierzemy więc element $a : A(x_2)$, transportujemy go ścieżką $p$ w tył do typu $A(x_1)$, używamy funkcji $f$ by dostać element typu $B(x_1)$ i transportujemy go wzdłuż $p$ do typu $B(x_2)$.
 
@@ -798,48 +801,48 @@ Interpretacja twierdzenia jest łatwa: chcemy zrobić funkcję typu $A(x_2) \to 
 
 Jeżeli dwa typy są równe, to są też równoważne.
 
-\begin{definition}[2.10.2]
+\begin{block}{2.10.2 Jak przerobić ścieżkę na równoważność}
 $\idtoeqv: \Pi A\ B. A = B \to A \simeq B$ \\
 $\idtoeqv(p) = \transport^{\id_\U}(p)$ \\
 
 Słownie: $\idtoeqv$ to specjalny przypadek transportu. Trzeba jeszcze przez indukcję po ścieżkach pokazać, że jest to równoważność.
-\end{definition}
+\end{block}
 
 Podobnie jak w przypadku ekstensjonalności dla funkcji, w drugą stronę implikacji pokazać się nie da i stąd aksjomat.
 
-\begin{definition}[2.10.3 Aksjomat uniwalencji]
+\begin{block}{2.10.3 Aksjomat uniwalencji}
 Funkcja $\idtoeqv$ jest równoważnością.
-\end{definition}
+\end{block}
 
-\begin{corollary}[Ładne wzorki]
+\begin{block}{Aksjomat uniwalencji, tylko ładniej zapisany}
 $(A = B) \simeq (A \simeq B)$ lub równoważnie $(A = B) = (A \simeq B)$
-\end{corollary}
+\end{block}
 
 \end{frame}
 
 \begin{frame}{Uniwalencja 2 - reguły i charakteryzacje}
 
-\begin{corollary}[Reguły opisujące ścieżki między typami]
+\begin{block}{Reguły opisujące ścieżki między typami}
 $\ua : \Pi A\ B : \U. (A \simeq B) \to A = B$ \\
 
 $\idtoeqv(\ua(e)) = e$ \\
 
 $\ua(\idtoeqv(p)) = p$
-\end{corollary}
+\end{block}
 
-\begin{theorem}[Charakteryzacja operacji na ścieżkach między funkcjami]
+\begin{block}{Charakteryzacja operacji na ścieżkach między typami}
 $\refl{f} = \ua(\id_A)$ \\
 
 $\inv{p} = \ua(\inv{\idtoeqv(p)})$ \\
 
 $p \sq q = \ua(\idtoeqv(q) \comp \idtoeqv(p))$
-\end{theorem}
+\end{block}
 
 Dla rodziny typów $B : A \to \U$, punktów $x, y : A$, ścieżki $p : x = y$ i elementu $u : B(x)$ mamy:
 
-\begin{theorem}[Charakteryzacja transportu dla typów]
+\begin{block}{Charakteryzacja transportu dla typów}
 $\transport^{\lambda X : \U.X}(p, f) = \idtoeqv(\ap{B}{p})(u)$
-\end{theorem}
+\end{block}
 
 \end{frame}
 
@@ -886,47 +889,56 @@ $\transport^{\lambda X : \U.X}(p, f) = \idtoeqv(\ap{B}{p})(u)$
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Metoda encode-decode 1.5 - objaśnienie}
+\begin{itemize}
+	\item Uwaga: doszły mnie słuchy, że są problemy z odszyfrowaniem poniższego slajdu, więc wyjaśniam.
+	\item $\textbf{2}$ (pogrubiona cyfra dwa) oznacza typ dwuelementowy, znany szerzej jako typ \texttt{bool}. Jego dwa elementy to $0_{\textbf{2}}$ oraz $1_{\textbf{2}}$ (chude 0 i 1 z indeksem dolnym $\textbf{2}$). Można je interpretować, odpowiednio, jako \texttt{false} i \texttt{true}, czyli prawdę i fałsz.
+	\item $\textbf{0}$ (pogrubiona cyfra zero) oznacza typ pusty, który nie ma żadnych elementów.
+	\item $\textbf{1}$ (pogrubiona cyfra jeden) oznacza typ jednoelementowy. Jego jedyny element to $*$, czyli gwiazdka.
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Metoda encode-decode 2 - definicje dla bool}
 	
-Scharakteryzujmy ścieżki w typie $\mathbf{2}$.
+Scharakteryzujmy ścieżki w typie $\textbf{2}$.
 
-\begin{definition}[$\code$]
-$\code(0_\mathbf{2}, 0_\mathbf{2}) \defn \mathbf{1}$ \\
-$\code(1_\mathbf{2}, 1_\mathbf{2}) \defn \mathbf{1}$ \\
-$\code(\_, \_) \defn \mathbf{0}$
-\end{definition}
+\begin{block}{$\code : \textbf{2} \to \textbf{2} \to \U$}
+$\code(0_{\textbf{2}}, 0_{\textbf{2}}) \defn \textbf{1}$ \\
+$\code(1_{\textbf{2}}, 1_{\textbf{2}}) \defn \textbf{1}$ \\
+$\code(\_, \_) \defn \textbf{0}$
+\end{block}
 
-\begin{definition}[$\encode$]
-$\encode(\refl{0_\mathbf{2}}) \defn *$ \\
-$\encode(\refl{1_\mathbf{2}}) \defn *$
-\end{definition}
+\begin{block}{$\encode : \Pi (x y : \textbf{2}). x = y \to \code(x, y)$}
+$\encode_{0_{\textbf{2}}, 0_{\textbf{2}}}(\refl{0_{\textbf{2}}}) \defn *$ \\
+$\encode_{1_{\textbf{2}}, 1_{\textbf{2}}}(\refl{1_{\textbf{2}}}) \defn *$
+\end{block}
 
-\begin{definition}[$\decode$]
-$\decode_{0_\mathbf{2}, 0_\mathbf{2}}(*) \defn \refl{0_\mathbf{2}}$ \\
-$\decode_{1_\mathbf{2}, 1_\mathbf{2}}(*) \defn \refl{1_\mathbf{2}}$ \\
-$\decode_{0_\mathbf{2}, 1_\mathbf{2}}(x) \defn \text{ind}_\mathbf{0}(\lambda \_. 0_\mathbf{2} = 1_\mathbf{2}, x)$ (czyli sprzeczność) \\
-$\decode_{1_\mathbf{2}, 0_\mathbf{2}}(x) \defn \text{też sprzeczność}$
-\end{definition}
+\begin{block}{$\decode : \Pi (x\ y : \textbf{2}). \code(x, y) \to x = y$}
+$\decode_{0_{\textbf{2}}, 0_{\textbf{2}}}(*) \defn \refl{0_{\textbf{2}}}$ \\
+$\decode_{1_{\textbf{2}}, 1_{\textbf{2}}}(*) \defn \refl{1_{\textbf{2}}}$ \\
+$\decode_{0_{\textbf{2}}, 1_{\textbf{2}}}(x) \defn \text{ind}_{\textbf{0}}(\lambda \_. 0_{\textbf{2}} = 1_{\textbf{2}}, x)$ (czyli sprzeczność) \\
+$\decode_{1_{\textbf{2}}, 0_{\textbf{2}}}(x) \defn \text{też sprzeczność}$
+\end{block}
 
 \end{frame}
 
 \begin{frame}{Metoda encode-decode 3 - twierdzenia dla bool}
 
-\begin{theorem}[encode-decode]
+\begin{block}{$encode$ jest odwrotnością $decode$}
 $\encode(\decode(c)) = c$
-\end{theorem}
+\end{block}
 	
-\begin{theorem}[decode-encode]
+\begin{block}{$decode$ jest odwrotnością $encode$}
 $\decode(\encode(p)) = p$
-\end{theorem}
+\end{block}
 
-\begin{corollary}
-$\Pi x\ y : \mathbf{2}. (x = y) \simeq \code(x, y)$
-\end{corollary}
+\begin{block}{Wniosek 1: charakteryzacja ścieżek w typie $\textbf{2}$}
+$\Pi x\ y : \textbf{2}. (x = y) \simeq \code(x, y)$
+\end{block}
 
-\begin{corollary}
-$0_\mathbf{2} \neq 1_\mathbf{2}$
-\end{corollary}
+\begin{block}{Wniosek 2: elementy typu $\textbf{2}$ są różne}
+$0_{\textbf{2}} \neq 1_{\textbf{2}}$
+\end{block}
 
 Ćwiczenie: udowodnij.
 
@@ -935,7 +947,7 @@ $0_\mathbf{2} \neq 1_\mathbf{2}$
 \begin{frame}{Metoda encode-decode 4 - interpretacja dla bool}
 \begin{itemize}
 	\item Podobnie jak poprzednio, naszą charakteryzację możemy zinterpretować regułowo.
-	\item $\decode$ jest tutaj regułą wprowadzania. Dokładnie opisuje ona, jak zrobić każdą z 4 potencjalnie możliwych ścieżek, np. jeżeli chcesz zrobić ścieżkę $0_\mathbf{2} = 0_\mathbf{2}$ to daj mi $* : \mathbf{1}$, a jeżeli chcesz zrobić ścieżkę $0_\mathbf{2} = 1_\mathbf{2}$, to daj mi $x : \mathbf{0}$.
+	\item $\decode$ jest tutaj regułą wprowadzania. Dokładnie opisuje ona, jak zrobić każdą z 4 potencjalnie możliwych ścieżek, np. jeżeli chcesz zrobić ścieżkę $0_{\textbf{2}} = 0_{\textbf{2}}$ to daj mi $* : \textbf{1}$, a jeżeli chcesz zrobić ścieżkę $0_{\textbf{2}} = 1_{\textbf{2}}$, to daj mi $x : \textbf{0}$.
 	\item $\encode$ to reguła eliminacji. Dla faktycznie równych argumentów nie mówi nam ona nic ciekawego. Dla różnych argumentów daje nam ona natomiast sprzeczność.
 	\item Twierdzenie decode-encode to reguła obliczania, a twierdzenie encode-decode to reguła unikalności.
 	\item Reguły obliczania i unikalności są mało ciekawe, a dodatkowo mogą się różnić w zależności od sposobu, w jaki udowodniono twierdzenie. W naszym przypadku akurat jest tylko jeden słuszny sposób, ale w przypadku bardziej skomplikowanych typów niekoniecznie.
@@ -944,13 +956,13 @@ $0_\mathbf{2} \neq 1_\mathbf{2}$
 
 \begin{frame}{Ścieżki między ścieżkami 1 - twierdzenie i przykłady}
 
-\begin{theorem}
+\begin{block}{Twierdzenie}
 Jeżeli $f : A \to B$ jest równoważnością, to dla dowolnych $x, y : A$ funkcja $\text{ap}_f : x = y \to f(x) = f(y)$ też jest równoważnością.
-\end{theorem}
+\end{block}
 
-\begin{proof}
+\begin{block}{Dowód}
 Odwrotnością $\text{ap}_f$ jest oczywiście $\text{ap}_{\finv{f}}$.
-\end{proof}
+\end{block}
 
 \makebox[\linewidth]{\parbox{12cm}
 {
@@ -971,9 +983,9 @@ Odwrotnością $\text{ap}_f$ jest oczywiście $\text{ap}_{\finv{f}}$.
 
 \begin{frame}{Strukturalizm 1 - ścieżki między półgrupami}
 
-\begin{definition}[Półgrupa]
+\begin{block}{Półgrupa}
 $\displaystyle \text{Semigroup} \defn \sum_{A : \U} \sum_{m : A \to A \to A} \prod_{x\ y\ z : A} m(x, m(y, z)) = m(m(x, y), z)$
-\end{definition}
+\end{block}
 
 \begin{itemize}
 	\item Półgrupa to typ wraz z działaniem binarnym, które jest łączne.
@@ -1001,9 +1013,9 @@ $\displaystyle \text{Semigroup} \defn \sum_{A : \U} \sum_{m : A \to A \to A} \pr
 \begin{frame}{Typy induktywne 1 - przypomnienie}
 \begin{itemize}
 	\item Typ induktywny to typ wygenerowany w sposób ``wolny'' przez kolekcję konstruktorów.
-	\item Typ $\mathbf{0}$ jest generowany przez brak konstruktorów.
-	\item Typ $\mathbf{1}$ jest generowany przez konstruktor $* : \mathbf{1}$
-	\item Typ $\mathbf{2}$ jest generowany przez konstruktory $0_\mathbf{2} : \mathbf{2}$ oraz $1_\mathbf{2} : \mathbf{2}$.
+	\item Typ $\textbf{0}$ jest generowany przez brak konstruktorów.
+	\item Typ $\textbf{1}$ jest generowany przez konstruktor $* : \textbf{1}$
+	\item Typ $\textbf{2}$ jest generowany przez konstruktory $0_{\textbf{2}} : \textbf{2}$ oraz $1_{\textbf{2}} : \textbf{2}$.
 	\item Typ $\mathbb{N}$ jest generowany przez konstruktory $0$ oraz $\text{succ} : \mathbb{N} \to \mathbb{N}$
 	\item $\text{List}$ to parametryczna rodzina typów generowana przez konstruktory $\text{Nil} : \Pi A : \U. \text{List}(A)$ oraz $\text{Cons} : \Pi A : \U. A \to \text{List}(A) \to \text{List}(A)$
 	\item $=$ to indeksowana rodzina typów generowana tak jak było napisane na wcześniejszych slajdach.
@@ -1138,30 +1150,30 @@ $
 
 \begin{frame}{Odcinek 4 - właściwości}
 	
-\begin{theorem}[Lemat 6.3.1 Odcinek jest ściągalny]
+\begin{block}{6.3.1 Odcinek jest ściągalny}
 $\isContr(\I)$
-\end{theorem}
+\end{block}
 
-\begin{theorem}[Lemat 6.3.2 Odcinek implikuje ekstensjonalność]
+\begin{block}{6.3.2 Odcinek implikuje ekstensjonalność}
 Niech $f, g : A \to B$ będą funkcjami i niech $H : \Pi x : A. f(x) = g(x)$ będzie homotopią. Wtedy $f = g$ bez używania aksjomatu ekstensjonalności.
-\end{theorem}
+\end{block}
 
 \end{frame}
 
 \begin{frame}{Odcinek 5 - dowód lematu 6.3.2}
-\begin{proof}
-	Przez rekursję po odcinku definiujemy nastepującą funkcję: \\~\
+\begin{block}{Dowód lematu 6.3.2}
+	Przez rekursję po odcinku definiujemy nastepującą funkcję: \\
 	$p : A \to \I \to B$ \\
 	$p(x, \IZ) \defn f(x)$ \\
 	$p(x, \II) \defn g(x)$ \\
 	$\ap{p(x)}{\seg} := H(x)$ \\~\
 	
-	Teraz definiujemy \\~\
+	Teraz definiujemy \\
 	$q : \I \to (A \to B)$ \\
 	$q(i) \defn \lambda x : A. p(x, i)$ \\~\
 	
 	Mamy $q(\IZ) \equiv \lambda x : A. p(x, \IZ) \equiv \lambda x : A. f(x) \equiv f$ i analogicznie $q(\II) \equiv g$, a zatem $\ap{q}{\seg} : f = g$
-\end{proof}
+\end{block}
 \end{frame}
 
 
@@ -1178,21 +1190,22 @@ Niech $f, g : A \to B$ będą funkcjami i niech $H : \Pi x : A. f(x) = g(x)$ b�
 
 \begin{frame}{Okrąg 2 - właściwości}
 	
-\begin{theorem}[Lemat 6.2.9 Okrąg to faktycznie okrąg]
+\begin{block}{6.2.9 Okrąg to faktycznie okrąg}
 $(\hS \to A) \simeq \sum_{x : A} x = x$
-\end{theorem}
+\end{block}
 
-\begin{theorem}[Lemat 6.4.1]
+\begin{block}{Lemat 6.4.1}
 $\looop \neq \refl{\base}$
-\end{theorem}
-\begin{proof}
+\end{block}
+
+\begin{block}{Dowód lematu 6.4.1}
 Załóżmy, że $\looop = \refl{\base}$. Weźmy dowolny typ $A$ z punktem $x : A$ i pętlą $p : x = x$ (są takie). Wtedy na mocy rekursora dla $\hS$ możemy zdefiniować funkcję $f : \hS \to A$ następująco: \\
 
 $f(\base) \defn x$ \\
 $\ap{f}{\looop} := p$ \\
 
 Mamy stąd $p = \ap{f}{\looop} = \ap{f}{\refl{\base}} = \refl{f(\base)} = \refl{x}$. Wobec tego każdy typ mający choć jeden punkt jest zbiorem, co jest sprzeczne (bo np. uniwersum nie jest zbiorem).
-\end{proof}
+\end{block}
 
 \end{frame}
 
@@ -1212,20 +1225,20 @@ Mamy stąd $p = \ap{f}{\looop} = \ap{f}{\refl{\base}} = \refl{f(\base)} = \refl{
 
 \begin{frame}{Ściągalność 1 - definicja i właściwości}
 
-\begin{definition}[Ściągalność]
+\begin{block}{Ściągalność}
 $
 \displaystyle
 \isContr(A) \defn \sum_{c : A} \prod_{x : A} c = x
 $
-\end{definition}
+\end{block}
 
-Typ jest ściągalny gdy ma punkt centralny, który jest połączony ścieżką z każdym innym punktem tego typu. Nazwa bierze się stąd, że możemy wszystkie punkty ściągnąć do centrum. Wobec tego typ ściągalny jest równoważny typowi $\mathbf{1}$.
+Typ jest ściągalny gdy ma punkt centralny, który jest połączony ścieżką z każdym innym punktem tego typu. Nazwa bierze się stąd, że możemy wszystkie punkty ściągnąć do centrum. Wobec tego typ ściągalny jest równoważny typowi $\textbf{1}$.
 
 \end{frame}
 
 \begin{frame}{Ściągalność 2 - filozofowanie}
 \begin{itemize}
-	\item Mogłoby się wydawać, że ściągalność jest nieciekawa, skoro typy ściągalne są równoważne (czyli równe, dzięki uniwalencji) typowi $\mathbf{1}$.
+	\item Mogłoby się wydawać, że ściągalność jest nieciekawa, skoro typy ściągalne są równoważne (czyli równe, dzięki uniwalencji) typowi $\textbf{1}$.
 	\item Kluczowy jest jednak fakt, że typy, które same w sobie są wysoce nietrywialne i z pewnością nie są ściągalne, złożone do kupy mogą dać typ, który jest ściągalny.
 	\item Jest tak dlatego, że wzajemne zależności między obiektami mogą wykluczyć wszystkie kombinacje poza jedną.
 	\item Najprostszym przykładem tego rodzaju jest sparowanie jakiegoś obiektu ze specyfikacją, która charakterzyuje go w sposób unikalny.
@@ -1235,7 +1248,7 @@ Typ jest ściągalny gdy ma punkt centralny, który jest połączony ścieżką 
 
 \begin{frame}{Ściągalność 3 - przykłady}
 \begin{itemize}
-	\item Oczywiście $\mathbf{1}$ jest ściągalny.
+	\item Oczywiście $\textbf{1}$ jest ściągalny.
 	\item Odcinek $\I$ jest ściągalny. Mimo tego, jak widzieliśmy, może on posłużyć nam do udowodnienia aksjomatu ekstensjonalności.
 	\item Ściągalny jest typ funkcji sortujących. Mimo, że funkcji między listami jest dużo, to dobrze wyrażona specyfikacja sortowania unikalnie charateryzuje jedyną słuszną funkcję sortującą.
 	\item Dla dowolnego $a : A$ typ $\sum_{x : A} a = x$ jest ściągalny i dlatego właśnie indukcja po ścieżkach (w wersji based) działa.
@@ -1245,17 +1258,17 @@ Typ jest ściągalny gdy ma punkt centralny, który jest połączony ścieżką 
 
 \begin{frame}{Zdania}
 
-\begin{definition}[Zdanie]
+\begin{block}{Zdanie}
 $\isProp(A) \defn \prod_{x, y : A} x = y$ \\
 $\Prop \defn \sum_{A : \U} \isProp(A)$
-\end{definition}
+\end{block}
 
 \begin{itemize}
 	\item Zdanie to typ, który może mieć co najwyżej jeden punkt. Przypomina to tradycyjną logikę: twierdzenie (zdanie) może mieć dowód albo nie.
-	\item $\mathbf{0}$ i $\mathbf{1}$ są zdaniami. Odpowiadają one fałszowi i prawdzie.
-	\item Dla każdego $A : \U$ typ $\neg A \defn A \to \mathbf{0}$ jest zdaniem.
+	\item $\textbf{0}$ i $\textbf{1}$ są zdaniami. Odpowiadają one fałszowi i prawdzie.
+	\item Dla każdego $A : \U$ typ $\neg A \defn A \to \textbf{0}$ jest zdaniem.
 	\item Typ $\isequiv(f)$ jest zdaniem, ale tp $\qinv(f)$ może NIE być zdaniem i dlatego właśnie mieliśmy problem.
-	\item O ile wszystkie zdania fałszywe są równe i podobnie wszystkie zdania prawdziwe są równe, to $\Prop$ nie jest tym samym co $\mathbf{2}$, gdyż w ogólności nie jesteśmy w stanie rozstrzygnąć, czy mamy do czynienia ze zdaniem prawdziwym, czy fałszywym.
+	\item O ile wszystkie zdania fałszywe są równe i podobnie wszystkie zdania prawdziwe są równe, to $\Prop$ nie jest tym samym co $\textbf{2}$, gdyż w ogólności nie jesteśmy w stanie rozstrzygnąć, czy mamy do czynienia ze zdaniem prawdziwym, czy fałszywym.
 \end{itemize}
 
 \end{frame}
@@ -1264,15 +1277,15 @@ $\Prop \defn \sum_{A : \U} \isProp(A)$
 
 \begin{frame}{Zbiory}
 
-\begin{definition}[Zbiór]
+\begin{block}{Zbiór}
 $\isSet(A) \defn \prod_{x, y : A} \prod_{p, q : x = y} p = q$ \\
 $\Set \defn \sum_{A : \U} isSet(A)$
-\end{definition}
+\end{block}
 
 \begin{itemize}
 	\item Intuicyjnie: zbiór to typ, w którym może być dużo punktów, ale nie są one połączone ścieżkami (tzn. wszystkie ścieżki są trywialne).
-	\item Każde zdanie jest zbiorem, więc w szczególności $\mathbf{0}$ i $\mathbf{1}$.
-	\item Na mocy naszej charakteryzacji typ $\mathbf{2}$ jest zbiorem.
+	\item Każde zdanie jest zbiorem, więc w szczególności $\textbf{0}$ i $\textbf{1}$.
+	\item Na mocy naszej charakteryzacji typ $\textbf{2}$ jest zbiorem.
 	\item Typ $\mathbb{N}$ jest zbiorem (ćwiczenie: udowodnij za pomocą metody encode-decode).
 	\item Wszystko, co jesteśmy w stanie zdefiniować za pomocą zwykłych typów induktywnych jest zbiorem, pod warunkiem że jako argumenty konstruktorów również bierze zbiory.
 \end{itemize}
@@ -1281,15 +1294,15 @@ $\Set \defn \sum_{A : \U} isSet(A)$
 
 \begin{frame}{Grupoidy}
 
-\begin{definition}
+\begin{block}{Grupoid}
 $\isGrpd(A) \defn \prod_{x, y : A} \prod_{p, q : x = y} \prod_{r, s : p = q} r = s$ \\
 $\Grpd \defn \sum_{A : \U} \isGrpd(A)$
-\end{definition}
+\end{block}
 
 \begin{itemize}
 	\item Grupoid to typ, który może mieć punkty i ścieżki między punktami, ale nie może mieć ścieżek między ścieżkami.
 	\item Okrąg $\hS$ jest grupoidem - widzieliśmy, że pętla $\looop$ nie jest trywialna.
-	\item Uniwersum wszystkich zbiorów $\Set$ jest grupoidem, ponieważ typ $\mathbf{2}$ ma nietrywialną pętlę, zrobioną z negacji boolowskiej za pomocą aksjomatu uniwalencji. Nie jest ona trywialna, bo negacja nie jest identycznością.
+	\item Uniwersum wszystkich zbiorów $\Set$ jest grupoidem, ponieważ typ $\textbf{2}$ ma nietrywialną pętlę, zrobioną z negacji boolowskiej za pomocą aksjomatu uniwalencji. Nie jest ona trywialna, bo negacja nie jest identycznością.
 \end{itemize}
 
 \end{frame}
@@ -1298,11 +1311,11 @@ $\Grpd \defn \sum_{A : \U} \isGrpd(A)$
 
 Na mocy pewnych zaszłości historycznych numerowanie $n$-typów zaczyna się od $-2$, a nie od $0$.
 
-\begin{definition}[$n$-typ]
+\begin{block}{$n$-typ}
 $\text{is-}(-2)\text{-Type}(A) \defn \sum_{c : A} \prod_{x : A} c = x$ \\
 $\text{is-}(n + 1)\text{-Type}(A) \defn \prod_{x, y : A} \text{is-}n\text{-Type}(x = y)$ \\
 $n\text{-Type} \defn \sum_{A : \U} \text{is-}n\text{-Type}(A)$
-\end{definition}
+\end{block}
 
 Widać, że:
 \begin{itemize}
@@ -1327,11 +1340,11 @@ Widać, że:
 
 \begin{frame}{$n$-typy 3 - (kontr)przykłady}
 \begin{itemize}
-	\item Typ $\mathbf{1}$ jest $n$-typem dla każdego $n$.
+	\item Typ $\textbf{1}$ jest $n$-typem dla każdego $n$.
 	\item Typ $n\text{-Type}$ jest $(n + 1)$-typem.
 	\item Jednak ważniejsze jest to, jakie typy nie są $n$-typami.
 	\item $n$-te uniwersum $\U_n$ nie jest $n$-typem.
-	\item W klasycznej teorii homotopii $k$-wymiarowa (hiper)sfera $\mathbb{S}^k$ nie jest $n$-typem dla żadnego $k \geq 2$. W HoTTbooku nie ma na to dowodu.
+	\item W klasycznej teorii homotopii $k$-wymiarowa (hiper)sfera $\mathbb{S}^k$ nie jest $n$-typem dla żadnego $k \geq 2$. W HoTTBooku nie ma na to dowodu.
 	\item Jeżeli powyższe jest prawdą, to żadne uniwersum nie jest $n$-typem, bo zawiera hipersferę.
 	\item Konkretny (kontr)przykład (8.8.6): Niech $A \defn \prod_{n : \mathbb{N}} B(n)$, gdzie $B : \mathbb{N} \to \U$ jest taką rodziną typów, że typ $B(n)$ zawiera $n$-pętlę, która nie jest równa trywialnej $n$-pętli. Wtedy $A$ nie jest $n$-typem dla żadnego $n : \mathbb{N}$.
 \end{itemize}
@@ -1354,19 +1367,19 @@ Widać, że:
 
 Większość matematyki jest robiona klasycznie, mimo że jest to niegodziwe. Wobec tego my też chcielibyśmy w ostateczności móc zrobić trochę klasycznej matematyki. Sprawy się jednak komplikują.
 
-\begin{theorem}[Lemat 3.2.2]
+\begin{block}{3.2.2 Prawo podwójnej negacji nie zachodzi dla dowolnych typów}
 $\neg \prod_{A : \U} \neg\neg A \to A$
-\end{theorem}
+\end{block}
 
-\begin{corollary}[Corollary 3.2.7]
+\begin{block}{3.2.7 Prawo wyłączonego środka nie zachodzi dla dowolnych typów}
 $\neg \prod_{A : \U} A + \neg A$
-\end{corollary}
+\end{block}
 
-\begin{theorem}[Moje uogólnienie lematu 3.2.2]
-Niech $F : \U \to \Prop$ i niech $x : F(\mathbf{2})$. Wtedy \\~\
+\begin{block}{Moje uogólnienie lematu 3.2.2}
+Niech $F : \U \to \Prop$ i niech $x : F(\textbf{2})$. Wtedy \\~\
 
 $\neg \prod_{A : \U} F(A) \to A$
-\end{theorem}
+\end{block}
 
 \end{frame}
 
@@ -1385,20 +1398,20 @@ $\neg \prod_{A : \U} F(A) \to A$
 
 Tak więc możemy skonkludować, że nasze przestrzenie zawierają za dużo informacji, żeby robić na nich logikę. Dla zdań (czyli typów z uniwersum $\Prop$) problem znika - możemy powyższe aksjomaty przyjąć bez popadania w sprzeczność.
 
-\begin{definition}[Prawo podwójnej negacji]
+\begin{block}{Prawo podwójnej negacji}
 $\text{DNE} \defn \prod_{P : \Prop} \neg\neg P \to P$
-\end{definition}
+\end{block}
 
-\begin{definition}[Prawo wyłączonego środka]
+\begin{block}{Prawo wyłączonego środka}
 $\text{LEM} \defn \prod_{P : \Prop} P + \neg P$
-\end{definition}
+\end{block}
 
 \end{frame}
 
 \begin{frame}{Trunkacja 1 - motywacja}
 \begin{itemize}
 	\item Okazało się, że nasze typy zawierają za dużo informacji, aby móc służyć jako zdania. Tylko niektóre z nich się do tego nadają.
-	\item Jednak to nie koniec problemów - nasze spójniki też nie są idealne. W tradycyjnej logice spójniki przekształcają zdania w zdania, u nas natomiast tak nie jest: suma dwóch zdań nie musi być zdaniem, np. $\mathbf{1} + \mathbf{1} = \mathbf{2}$.
+	\item Jednak to nie koniec problemów - nasze spójniki też nie są idealne. W tradycyjnej logice spójniki przekształcają zdania w zdania, u nas natomiast tak nie jest: suma dwóch zdań nie musi być zdaniem, np. $\textbf{1} + \textbf{1} = \textbf{2}$.
 	\item Jeszcze hardkorowiej sprawa ma się z sumą zależną: nawet jeżeli dla każdego $x : A$ typ $B(x)$ jest zdaniem, to typ $\sum_{A : \U} B(x)$ może być dowolnie skomplikowaną przestrzenią (bo $A$ może być dowolnie skomplikowaną przestrzenią).
 	\item Jak widać, nasze spójniki $+$ oraz $\sum$ są zbyt konstruktywne. Spróbujmy zatem wynaleźć takie, które zachowywałyby właściwość bycia zdaniem.
 \end{itemize}
@@ -1490,22 +1503,23 @@ $
 	\item Może się wydawać, że nasza logika jest trochę upośledzona - brak możliwości rozłożenia sumy (rozłącznej/zależnej) na przypadki podczas konstrukcji może zniechęcać do ich używania.
 	\item Jest jednak pewna sprytna technika, która pozwala obejść to ograniczenie.
 	\item Prezentuje się ona zazwyczaj tak: chcąc z $\trf{A}$ skonstruować $B$, które może nie być zdaniem, robimy predykat $P : B \to \U$, taki, że typ $\sum_{x : B} P(x)$ jest ściągalny. Wtedy przy konstruowaniu funkcji $\trf{A} \to \sum_{x : B} P(x)$ możemy pozbyć się trunkacji.
-	\item Po więcej zobacz rozdział 3.9 w HoTTbooka.
+	\item Po więcej zobacz rozdział 3.9 w HoTTBooku.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Zasada unikalnego wyboru 2 - przykład}
 	
-\begin{theorem}[Zadanie 3.19 i 3.23]
+\begin{block}{Zadanie 3.19 i 3.23}
 Niech $P : \mathbb{N} \to \U$ będzie rodziną typów. Wtedy \\~\
 
 \begin{center}
 $\displaystyle \left|\left|\sum_{n : \mathbb{N}} P(n)\right|\right| \to \sum_{n : \mathbb{N}} P(n)$
 \end{center}
-\end{theorem}
-\begin{proof}
+\end{block}
+
+\begin{block}{Dowód}
 Wiemy, że istnieje jakieś $n$ spełniające $P$, ale nie wiemy jakie, więc nie możemy go rozpakować. Zamiast konstruować dowolne $n$ spełniające $P$, możemy jednak skonstruować najmniejsze takie $n$, tzn. element typu $\sum_{n : \mathbb{N}} P(n) \times \prod_{m : \mathbb{N}} P(m) \to n \leq m$. Jest ono unikalne, a zatem cały ten typ jest zdaniem. Możemy teraz odpakować $n$ z przesłanki i zrobić przeszukiwanie od $n$ do $0$ w poszukiwaniu minimalnego $n$.
-\end{proof}
+\end{block}
 
 \end{frame}
 
@@ -1513,14 +1527,14 @@ Wiemy, że istnieje jakieś $n$ spełniające $P$, ale nie wiemy jakie, więc ni
 
 Moglibyśmy pokusić się o sformułowanie Aksjomatu Wyboru w następujący sposób.
 
-\begin{theorem}[Aksjomat ``Wyboru'']
+\begin{block}{Aksjomat ``Wyboru'', który tak naprawdę nic nie wybiera}
 Dla typu $A : \U$, rodziny typów $B : A \to \U$ oraz rodziny typów $R : \prod_{x : A} B(x) \to \U$ zachodzi: \\~\
 
 $\displaystyle
 	\left(\prod_{x : A} \sum_{y : B(x)} R(x, y)\right) \to
 	\sum_{f : \Pi x : A. B(x)} \prod_{x : A} R(x, f(x))
 $
-\end{theorem}
+\end{block}
 
 Niestety ten sposób jest upośledzony, gdyż nie jest to aksjomat, tylko twierdzenie, i to bardzo proste do udowodnienia. Mankament ten wynika z faktu, że wszystkie wybory zostały już dokonane - nasza interpretacja sumy zależnej sprawia, że żeby uzyskać konkluzję, wystarczy odopwiednio przepakować przesłankę. Ten Aksjomat ``Wyboru'' jest zupełnie jak wybory w Polsce.
 
@@ -1530,7 +1544,7 @@ Niestety ten sposób jest upośledzony, gdyż nie jest to aksjomat, tylko twierd
 
 Jak nietrudno się domyślić, nasz problem możemy rozwiązać wciskają gdzie trzeba trunkację.
 
-\begin{definition}[Jedyny słuszny Aksjomat Wyboru w pełnej krasie]
+\begin{block}{Jedyny słuszny Aksjomat Wyboru w pełnej krasie}
 Dla zbioru $A : \Set$, rodziny zbiorów $B : A \to \Set$ oraz relacji (czyli rodziny zdań) $R : \prod_{x : A} B(x) \to \Prop$ zachodzi: \\~\
 
 $\displaystyle
@@ -1546,7 +1560,7 @@ $ \\
 $\displaystyle \qquad
 	\exists f : (\Pi x : A. B(x)). \forall x : A. R(x, f(x))
 $
-\end{definition}
+\end{block}
 
 \end{frame}
 
@@ -1562,9 +1576,9 @@ $
 
 \begin{frame}{Aksjomat wyboru 4 - zaskoczenie}
 
-\begin{theorem}[Lemat 3.8.5]
+\begin{block}{Lemat 3.8.5}
 Istnieje taki typ $A$ i rodzina zbiorów $B : A \to \U$, że Aksjomat Wyboru nie zachodzi.
-\end{theorem}
+\end{block}
 
 Dowód jest dość skomplikowany - po więcej zajrzyj do książki. \\~\
 
@@ -1620,7 +1634,7 @@ Zadanie 2: wykonaj ostatnią rzecz oznaczoną na slajdach jako ćwiczenie.
 
 \begin{frame}{Bibliografia 1}
 \begin{itemize}
-	\item Podstawowym źródłem wiedzy jest książka \url{https://homotopytypetheory.org/book/}
+	\item Podstawowym źródłem wiedzy jest książka \url{https://homotopytypetheory.org/book/}, zwana potocznie HoTTBookiem.
 	\item Jakaś prezentacja: \url{http://www.cs.nott.ac.uk/~psztxa/talks/edinburgh-13.pdf}
 	\item Przyjazne przykłady wyższych typów induktywnych dla programistów: \url{http://www.cs.ru.nl/~herman/PUBS/HIT-programming.pdf}
 \end{itemize}
