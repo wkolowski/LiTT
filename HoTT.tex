@@ -1267,7 +1267,7 @@ $\Prop \defn \sum_{A : \U} \isProp(A)$
 	\item Zdanie to typ, który może mieć co najwyżej jeden punkt. Przypomina to tradycyjną logikę: twierdzenie (zdanie) może mieć dowód albo nie.
 	\item $\textbf{0}$ i $\textbf{1}$ są zdaniami. Odpowiadają one fałszowi i prawdzie.
 	\item Dla każdego $A : \U$ typ $\neg A \defn A \to \textbf{0}$ jest zdaniem.
-	\item Typ $\isequiv(f)$ jest zdaniem, ale tp $\qinv(f)$ może NIE być zdaniem i dlatego właśnie mieliśmy problem.
+	\item Typ $\isequiv(f)$ jest zdaniem, ale typ $\qinv(f)$ może NIE być zdaniem i dlatego właśnie mieliśmy problem.
 	\item O ile wszystkie zdania fałszywe są równe i podobnie wszystkie zdania prawdziwe są równe, to $\Prop$ nie jest tym samym co $\textbf{2}$, gdyż w ogólności nie jesteśmy w stanie rozstrzygnąć, czy mamy do czynienia ze zdaniem prawdziwym, czy fałszywym.
 \end{itemize}
 
@@ -1396,7 +1396,7 @@ $\neg \prod_{A : \U} F(A) \to A$
 
 \begin{frame}{Logika klasyczna 3 - rozwiązanie}
 
-Tak więc możemy skonkludować, że nasze przestrzenie zawierają za dużo informacji, żeby robić na nich logikę. Dla zdań (czyli typów z uniwersum $\Prop$) problem znika - możemy powyższe aksjomaty przyjąć bez popadania w sprzeczność.
+Tak więc możemy skonkludować, że nasze przestrzenie (czyli dowolne typy) zawierają za dużo informacji, żeby robić na nich logikę. Dla zdań (czyli typów z uniwersum $\Prop$) problem znika.
 
 \begin{block}{Prawo podwójnej negacji}
 $\text{DNE} \defn \prod_{P : \Prop} \neg\neg P \to P$
@@ -1405,6 +1405,8 @@ $\text{DNE} \defn \prod_{P : \Prop} \neg\neg P \to P$
 \begin{block}{Prawo wyłączonego środka}
 $\text{LEM} \defn \prod_{P : \Prop} P + \neg P$
 \end{block}
+
+Powyższe definicje pokazują, jak wyglądają poprawnie sformułowane prawo podwójnej negacji oraz prawo wyłączoengo środka stosujące się jedynie do zdań. Tak sformułowane aksjomaty możemy przyjąć bez popadania w sprzeczność.
 
 \end{frame}
 
