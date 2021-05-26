@@ -1441,10 +1441,10 @@ $\displaystyle
 $ \quad
 $\displaystyle
 	\frac{\Gamma \vdash A : \U	\quad
-		  \Gamma \vdash x : A	\quad
-		  \Gamma \vdash y : A	\quad
+		  \Gamma \vdash x : \trf{A}	\quad
+		  \Gamma \vdash y : \trf{A}	\quad
 		 }
-		 {\Gamma \vdash \text{wut} : x = y}
+		 {\Gamma \vdash \text{all\_eq} : x = y}
 $
 \end{center}
 
@@ -1474,7 +1474,7 @@ $
 \begin{frame}{Trunkacja 4 - interpretacja}
 \begin{itemize}
 	\item Reguła wprowadzania $\tri{-}$ wstrzykuje punkty $A$ do $\trf{A}$.
-	\item Reguła wprowadzania $\text{wut}$ sprawia, że wszystkie tak wstrzyknięte punkty są połączone ścieżkami każdy z każdym.
+	\item Reguła wprowadzania $\text{all\_eq}$ sprawia, że wszystkie tak wstrzyknięte punkty są połączone ścieżkami każdy z każdym.
 	\item Reguła eliminacji mówi nam, że jeżeli $A$ implikuje zdanie $B$, to zdanie $B$ wynika już z obciętego $A$.
 	\item Reguła obliczania to tylko formalność.
 \end{itemize}
