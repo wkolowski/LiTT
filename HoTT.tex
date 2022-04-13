@@ -1,4 +1,4 @@
-% TODO: ulepszyć formatowanie - dodać \texttt do nazw funkcji, ujednolicić pi-typy, zrobić aplikację spacjową a nie nawiasową.
+% TODO: ulepszyć formatowanie - dodać \texttt do nazw funkcji, ujednolicić pi-typy, zrobić aplikację spacjową a nie nawiasową.
 
 \documentclass{beamer}
 
@@ -108,16 +108,17 @@
 
 \begin{frame}{Teoria typów 1 - podstawy}
 \begin{itemize}
-	\item Teorię typów w ujęciu HoTTowym można opisać jako system formalny, który za pomocą reguł (osądów) opisuje byty zwane typami. Kluczową innowacją HoTT jest interpretacja typów i wymyślone na jej podstawie aksjomaty rzucające światło na naturę kosmosu.
+	\item Teorie typów to systemy formalne, który za pomocą reguł (osądów) opisują byty zwane typami.
+  \item Kluczową innowacją homotopicznej teorii typów jest interpretacja typów jako przestrzeni i zainspirowane nią aksjomaty rzucające światło na naturę wszechrzeczy.
 	\item Reguły dzielą się na ciekawe i nieciekawe.
 	\item Nieciekawe to te, które muszą być, żeby wszystko działało, np. do zamieniania kolejności rzeczy w kontekście.
-	\item Ciekawe to te, które faktycznie opisują typy. Jest ich pięć rodzajów: reguły formacji, wprowadzania, eliminacji, obliczania i unikalności.
+	\item Ciekawe to te, które faktycznie opisują typy. Jest ich pięć rodzajów: reguły formowania, wprowadzania, eliminacji, obliczania i unikalności.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Teoria typów 2 - pięć rodzajów reguł}
 \begin{itemize}
-	\item Reguły formacji mówią, skąd się biorą typy.
+	\item Reguły formowania mówią, skąd się biorą typy.
 	\item Reguły wprowadzania mówią, jak zrobić elementy danego typu.
 	\item Reguły eliminacji mówią, jak zrobić coś z elementami danego typu.
 	\item Reguły obliczania mówią, jak reguły eliminacji mają się do reguł wprowadzania.
@@ -128,7 +129,7 @@
 \begin{frame}{Teoria typów 3 - reguły dla funkcji}
 
 \begin{itemize}
-	\item Ćwiczenie: nazwij każdą z reguł (tzn. która to reguła formacji, która obliczania etc.)
+	\item Ćwiczenie: nazwij każdą z reguł (tzn. która to reguła formowania, która obliczania etc.)
 \end{itemize}
 
 \begin{center}
@@ -155,13 +156,13 @@
 
 \begin{frame}{Teoria typów 4 - ciekawostki o regułach}
 \begin{itemize}
-	\item Każdy typ musi mieć regułę formacji - inaczej nie byłby typem.
+	\item Każdy typ musi mieć regułę formowania - inaczej nie byłby typem.
 	\item Jednak nie każdy typ musi mieć pozostałe reguły.
 	\item Typ $\textbf{0}$ nie ma reguły wprowadzania, bo jest pusty i nie ma żadnych elementów.
 	\item Uniwersum nie ma reguły eliminacji.
 	\item Typ $\textbf{0}$ nie ma także reguły obliczania, co jest oczywiste - nie może jej mieć, skoro nie ma reguły wprowadzania.
 	\item Wiele typów, np. sumy i produkty, nie mają reguły unikalności. W zamian za to mają one zdaniową regułę unikalności, tzn. można udowodnić twierdzenie wyglądające dokładnie jak reguła unikalności.
-	\item Reguła formacji zawsze jest jedna, bo każdy typ można sformować tylko na jeden sposób. Pozostałych reguł może być więcej. Sumy mają 2 reguły wprowadzania, a produkty 2 reguły eliminacji i wobec tego 2 reguły obliczania.
+	\item Reguła formowania zawsze jest jedna, bo każdy typ można sformować tylko na jeden sposób. Pozostałych reguł może być więcej. Sumy mają 2 reguły wprowadzania, a produkty 2 reguły eliminacji i wobec tego 2 reguły obliczania.
 \end{itemize}
 \end{frame}
 
@@ -271,7 +272,7 @@ Powyższe reguły opisują rodzinę typów, która zazwyczaj nazywana bywa typem
 
 \begin{frame}{Ścieżki 2 - interpretacja reguł}
 \begin{itemize}
-	\item Reguła formacji: jeżeli mamy typ $A$ i dwa jego elementy $a, b$, to możemy sformować typ $a =_A b$. Jest to typ, którego elementami są ścieżki z $a$ do $b$. Jeżeli mamy element tego typu, to $a$ i $b$ są równe. Jeżeli typ $A$ jasno wynika z kontekstu, to będziemy pisać po prostu $a = b$ zamiast $a =_A b$.
+	\item Reguła formowania: jeżeli mamy typ $A$ i dwa jego elementy $a, b$, to możemy sformować typ $a =_A b$. Jest to typ, którego elementami są ścieżki z $a$ do $b$. Jeżeli mamy element tego typu, to $a$ i $b$ są równe. Jeżeli typ $A$ jasno wynika z kontekstu, to będziemy pisać po prostu $a = b$ zamiast $a =_A b$.
 	\item Reguła wprowadzania: każda rzecz jest równa sama sobie. Ścieżka poświadczająca ten fakt nazywa się $\text{refl}$. Jest to skrót od ang. reflexivity, czyli zwrotność.
 	\item Reguła eliminacji: $C$ jest tutaj rodziną typów zależącą od ścieżki $p : x = y$. Reguła głosi, że żeby zdefiniować element $C(x, y, p)$ wystarczy mieć element $C(x, x, \refl{x})$.
 	\item Reguła obliczania: chodzi o to, że jeżeli wyeliminujemy element $C(z, z, \refl{z})$, to dostaniemy go spowrotem, tylko po odpowiednim podstawieniu.
@@ -283,7 +284,7 @@ Powyższe reguły opisują rodzinę typów, która zazwyczaj nazywana bywa typem
 	\item Reguła eliminacji dla ścieżek nosi nazwę indukcji po ścieżkach (ang. path induction).
 	\item Zaprezentowany powyżej wariant precyzyjniej nazywa się unbased path induction. Polega na zastąpieniu dwóch obiektów $a, b$ i ścieżki $p$ przez generyczny obiekt $z$ i ścieżkę $\refl{z}$.
 	\item Inny wariant nosi nazwę based path induction. Polega on na zastąpieniu obiektu $b$ przez obiekt $a$ oraz ścieżki $p : a = b$ przez ścieżkę $\refl{a}$.
-	\item Oba warianty są równoważne. Dowód: HoTT Book, podrozdział 1.12.2.
+	\item Oba warianty są równoważne. Dowód: HoTTBook, podrozdział 1.12.2.
 \end{itemize}
 \end{frame}
 
@@ -305,7 +306,7 @@ Powyższe reguły opisują rodzinę typów, która zazwyczaj nazywana bywa typem
 	\item Zdanie mówiące, że każda ścieżka jest trywialna, nazywa się ``Aksjomat $K$''.
 	\item Związek z facetami w czerni jest przypadkowy.
 	\item Inne zdanie, mówiące że jest tylko jedna ścieżka, nazywa się w ang. UIP, co jest skrótem od ``Uniqueness of Identity Proofs''.
-	\item To właśnie badanie nad tego typu zagadnieniami doprowadziły do homotopicznej interpretacji teorii typów.
+	\item To badania nad takimi właśnie zagadnieniami doprowadziły do odkrycia homotopicznej interpretacji teorii typów.
 \end{itemize}
 \end{frame}
 
@@ -468,7 +469,7 @@ Aplikacja funkcji zależnych do ścieżek jest analogiczna do aplikacji funkcji 
 	\item Klasycznie (czyli płasko) $f \sim g$ możemy czytać jako ``$f$ i $g$ są ekstensjonalnie równe''.
 	\item HoTTowym odpowiednikiem ekstensjonalnej równości jest homotopia, która intuicyjnie znaczy, że dla każdego elementu dziedziny wyniki funkcji $f$ i $g$ są połączone ścieżką w przeciwdziedzinie.
 	\item To pojęcie homotopii różni się jednak od tego zaprezentowanego w pierwszych slajdach, gdyż homotopie i ścieżki między funkcjami nie są a priori tym samym - nie da się tego pokazać w podstawowej wersji naszej teorii.
-	\item Dlatego w bliskiej przyszłości będziemy dążyć do tego, żeby załatać tę sytuację za pomocą aksjomatu ekstensjonalności.
+	\item Dlatego w bliskiej przyszłości będziemy dążyć do tego, żeby załatać tę dziurę za pomocą aksjomatu ekstensjonalności.
 \end{itemize}
 \end{frame}
 
@@ -594,9 +595,9 @@ Możliwe są jeszcze dwie inne definicje równoważności, których jednak nie w
 
 \begin{frame}{Równoważności 8 - interpretacja reszty definciji}
 \begin{itemize}
-	\item Definicja nr 4 to coś w stylu: $\qinv$ nie działa, więc ulepszymy go czarami tak, żeby jednak działał (więcej dowiemy się później).
+	\item Definicja nr 4 to coś w stylu: $\qinv$ nie działa, więc ulepszymy go czarami tak, żeby jednak działał (więcej dowiemy się później).
 	\item Definicja nr 3 odpowiada naszej definicji bijekcji v2 (dla każdego elementu przeciwdziedziny istnieje dokładnie jeden element dziedziny), ale musimy zapisać to bardziej homotopicznie.
-	\item Jest tak dlatego, że interesują nas nie tylko punkty, ale też ścieżki na każdym możliwym poziomie.
+	\item Jest tak dlatego, że interesują nas nie tylko punkty, ale też ścieżki na każdym możliwym poziomie.
 	\item Definicję tę można czytać tak: dla każdego punktu przeciwdziedziny istnieje tylko jeden punkt dziedziny i jedna pętla na nim, i jedna pętla na tej pętli, i jedna pętli na tej pętli i tak dalej na każdym poziomie.
 	\item Prościej: przeciwobraz każdego punktu przeciwdziedziny jest równoważny typowi $\textbf{1}$.
 \end{itemize}
@@ -607,12 +608,12 @@ Możliwe są jeszcze dwie inne definicje równoważności, których jednak nie w
 	\item Oczywiście wszystkie 4 definicje są równoważne.
 	\item Dla precyzji jednak przyjmujemy $\isequiv(f) \defn \isequiv_1(f)$, tzn. domyślnie będziemy posługiwać się definicją z dwiema osobnymi odwrotnościami.
 	\item Skąd jednak biorą się problemy? Klasyczna definicja izomorfizmu okazała się za słaba, zaś definicję bijekcji v2 również trzeba było odpowiednio stuningować.
-	\item Powód tego jest prosty: klasyczne definicje pochodzą ze świata teorii zbiorów, w którym to świecie mamy tylko worki z kropkami. W świecie, w którym kropki mogą być połączone, definicje trzeba unowocześnić.
-	\item Żeby lepiej zrozumieć różnicę, dokonajmy pewnego wielkiego odkrycia.
+	\item Powód tego jest prosty: klasyczne definicje pochodzą ze świata teorii zbiorów, w którym to świecie mamy tylko worki z kropkami. W świecie, w którym kropki mogą być połączone, definicje trzeba unowocześnić.
+	\item Żeby lepiej zrozumieć różnicę, dokonajmy pewnego wielkiego odkrycia.
 \end{itemize}
 \end{frame}
 
-\subsection{Część 2}
+\subsection{Część 2}
 
 \begin{frame}{Wielkie odkrycie 1 - injekcja to surjekcja}
 \begin{itemize}
@@ -646,7 +647,7 @@ $f$ jest równoważnością wtedy i tylko wtedy, gdy jest surjekcją i zanurzeni
 
 \begin{frame}{Wielkie odkrycie 3 - wnioski}
 \begin{itemize}
-	\item Nasze twierdzenie możemy odwinąć: $f$ jest równoważnością gdy jest surjekcją i $\text{ap}_f$ jest surjekcją i $\text{ap}_{\text{ap}_f}$ jest surjekcją etc.
+	\item Nasze twierdzenie możemy odwinąć: $f$ jest równoważnością gdy jest surjekcją i $\text{ap}_f$ jest surjekcją i $\text{ap}_{\text{ap}_f}$ jest surjekcją etc.
 	\item Wobec tego $f$ jest równoważnością, gdy jest surjekcją na wszystkich poziomach - na punktach, ścieżkach między punktami, ścieżkach między ścieżkami etc.
 	\item Stąd wnioskujemy, że klasyczne definicje okazują się za słabe, gdyż dotyczą tylko punktów (surjekcja) i ścieżek (injekcja), a zatem poziomów $0$ i $1$, a my mamy do czynienia z potencjalnie nieskończenie wieloma poziomami.
 \end{itemize}
@@ -654,13 +655,13 @@ $f$ jest równoważnością wtedy i tylko wtedy, gdy jest surjekcją i zanurzeni
 
 \begin{frame}{Filozoficzna interpretacja równoważności}
 \begin{itemize}
-	\item Przypomnijmy, że z dowolnej definicji równoważności jesteśmy w stanie uzyskać następujące rzeczy: funkcje $f : A \to B$ i $\inv{f} : B \to A$ oraz homotopie $\eta : \inv{f} \comp f \sim \id_A$ i $\epsilon : f \comp \inv{f} \sim \id_B$
+	\item Przypomnijmy, że z dowolnej definicji równoważności jesteśmy w stanie uzyskać następujące rzeczy: funkcje $f : A \to B$ i $\inv{f} : B \to A$ oraz homotopie $\eta : \inv{f} \comp f \sim \id_A$ i $\epsilon : f \comp \inv{f} \sim \id_B$
 	\item Okazuje się, że równoważność $A \simeq B$ możemy zinterpretować jako zestaw czterech reguł opisujących typ $B$ w terminach typu $A$.
 	\item Funkcja $f : A \to B$ to reguła wprowadzania.
 	\item Funkcja $\finv{f} : B \to A$ to reguła eliminacji.
 	\item Homotopia $\eta$ to zdaniowa reguła obliczania.
 	\item Homotopia $\epsilon$ to zdaniowa reguła unikalności.
-	\item Powyższe rozważania okażą się przydatne za chwilę, gdy będziemy chcieli scharakteryzować przestrzenie ścieżek dla różnych typów.
+	\item Powyższe rozważania okażą się przydatne za chwilę, gdy będziemy chcieli scharakteryzować przestrzenie ścieżek dla różnych typów.
 \end{itemize}
 \end{frame}
 
@@ -753,7 +754,7 @@ $\funext(\lambda x : A. \happly(p, x)) = p$
 
 \begin{frame}{Ekstensjonalność 3 - interpretacja}
 \begin{itemize}
-	\item Reguła formacji dla $f = g$ pochodzi bezpośrednio z induktywnej definicji ścieżek.
+	\item Reguła formowania dla $f = g$ pochodzi bezpośrednio z induktywnej definicji ścieżek.
 	\item Reguła wprowadzania to $\funext$: żeby zrobić ścieżkę $f = g$, wystarczy nam homotopia.
 	\item Reguła eliminacji to $\happly$: jeżeli mamy ścieżkę $f = g$, to możemy uzyskać ścieżkę $f(x) = g(x)$ dla dowolnego $x$ należącego do dziedziny.
 	\item Reguła obliczania mówi, że jeżeli zaaplikujemy do $x : A$ ścieżkę zrobioną z homotopii $h : \Pi x : A. f(x) = g(x)$ za pomocą $\funext$, to dostaniemy $h(x)$.
@@ -862,16 +863,16 @@ $\transport^{\lambda X : \U.X}(p, f) = \idtoeqv(\ap{B}{p})(u)$
 	\item Definicja: $f : B \to C$ jest monomorfizmem gdy dla dowolnych $g, h : A \to B$ jeżeli $f \comp g = f \comp h$ to $g = h$.
 	\item Twierdzenie: każda równoważność jest monomorfizmem.
 	\item Dowód klasyczny: każda równoważność ma odwrotność. Użyj jej.
-	\item Dowód HoTTowy: na mocy uniwalencji każda równoważność pochodzi od jakiejś ścieżki. Na mocy indukcji po ścieżkach możemy założyć, że ścieżka ta jest trywialna, a zatem nasza równoważność jest identycznością. Wtedy nasze założenie zamienia się na $\id_B \comp g = \id_B \comp h$ i oblicza się do $g = h$, co mieliśmy pokazać.
+	\item Dowód HoTTowy: na mocy uniwalencji każda równoważność pochodzi od jakiejś ścieżki. Na mocy indukcji po ścieżkach możemy założyć, że ścieżka ta jest trywialna, a zatem nasza równoważność jest identycznością. Wtedy nasze założenie zamienia się na $\id_B \comp g = \id_B \comp h$ i oblicza się do $g = h$, co mieliśmy pokazać.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Filozoficzna interpretacja charakteryzacji i aksjomatów}
 \begin{itemize}
-	\item Na mocy naszej interpretacji równoważności nasze charakteryzacje opisują przestrzenie ścieżek tak dokładnie, jakby były one osobnymi typami zdefiniowanymi za pomocą reguł.
+	\item Na mocy naszej interpretacji równoważności nasze charakteryzacje opisują przestrzenie ścieżek tak dokładnie, jakby były one osobnymi typami zdefiniowanymi za pomocą reguł.
 	\item W przypadkach, w których nie jesteśmy w stanie udowodnić charakteryzacji, dajemy sobie protezę w postaci odpowiednich aksjomatów.
-	\item Tak więc aksjomat ekstensjonalności dla funkcji możemy postrzegać jako charakteryzację ścieżek między funkcjami za pomocą reguł.
-	\item Podobnie aksjomat uniwalencji możemy postrzegać jako aksjomat ekstensjonalności dla uniwersum, czyli charakteryzację ścieżek między typami za pomocą reguł.
+	\item Tak więc aksjomat ekstensjonalności dla funkcji możemy postrzegać jako charakteryzację ścieżek między funkcjami za pomocą reguł.
+	\item Podobnie aksjomat uniwalencji możemy postrzegać jako aksjomat ekstensjonalności dla uniwersum, czyli charakteryzację ścieżek między typami za pomocą reguł.
 \end{itemize}
 \end{frame}
 
@@ -879,13 +880,13 @@ $\transport^{\lambda X : \U.X}(p, f) = \idtoeqv(\ap{B}{p})(u)$
 
 \begin{frame}{Metoda encode-decode 1 - wstęp}
 \begin{itemize}
-	\item Ogólna metoda pozwalająca scharakteryzować ścieżki (niektórych) typów  (głównie pozytywnych) nosi nazwę encode-decode.
+	\item Ogólna metoda pozwalająca scharakteryzować ścieżki (niektórych) typów  (głównie pozytywnych) nosi nazwę encode-decode.
 	\item Metoda składa się z czterech kroków.
 	\item Krok 1: definiujemy rodzinę typów $\code : A \to A \to \U$, której celem jest opisanie typu $x =_A y$ w bardziej ludzki sposób.
 	\item Krok 2: deiniujemy funkcję $\encode : \Pi x\ y : A. x = y \to \code(x, y)$
-	\item Krok 3: definiujemy funkcję $\decode : \Pi x\ y : A. code(x, y) \to x = y$
-	\item Krok 4: pokazujemy, że $\encode$ i $\decode$ są swoimi odwrotnościami.
-	\item Dzięki temu dostajemy charakteryzację postaci $\Pi x\ y : A. (x = y) \simeq \code(x, y)$.
+	\item Krok 3: definiujemy funkcję $\decode : \Pi x\ y : A. code(x, y) \to x = y$
+	\item Krok 4: pokazujemy, że $\encode$ i $\decode$ są swoimi odwrotnościami.
+	\item Dzięki temu dostajemy charakteryzację postaci $\Pi x\ y : A. (x = y) \simeq \code(x, y)$.
 \end{itemize}
 \end{frame}
 
@@ -893,7 +894,7 @@ $\transport^{\lambda X : \U.X}(p, f) = \idtoeqv(\ap{B}{p})(u)$
 \begin{itemize}
 	\item Uwaga: doszły mnie słuchy, że są problemy z odszyfrowaniem poniższego slajdu, więc wyjaśniam.
 	\item $\textbf{2}$ (pogrubiona cyfra dwa) oznacza typ dwuelementowy, znany szerzej jako typ \texttt{bool}. Jego dwa elementy to $0_{\textbf{2}}$ oraz $1_{\textbf{2}}$ (chude 0 i 1 z indeksem dolnym $\textbf{2}$). Można je interpretować, odpowiednio, jako \texttt{false} i \texttt{true}, czyli prawdę i fałsz.
-	\item $\textbf{0}$ (pogrubiona cyfra zero) oznacza typ pusty, który nie ma żadnych elementów.
+	\item $\textbf{0}$ (pogrubiona cyfra zero) oznacza typ pusty, który nie ma żadnych elementów.
 	\item $\textbf{1}$ (pogrubiona cyfra jeden) oznacza typ jednoelementowy. Jego jedyny element to $*$, czyli gwiazdka.
 \end{itemize}
 \end{frame}
@@ -946,11 +947,11 @@ $0_{\textbf{2}} \neq 1_{\textbf{2}}$
 
 \begin{frame}{Metoda encode-decode 4 - interpretacja dla bool}
 \begin{itemize}
-	\item Podobnie jak poprzednio, naszą charakteryzację możemy zinterpretować regułowo.
-	\item $\decode$ jest tutaj regułą wprowadzania. Dokładnie opisuje ona, jak zrobić każdą z 4 potencjalnie możliwych ścieżek, np. jeżeli chcesz zrobić ścieżkę $0_{\textbf{2}} = 0_{\textbf{2}}$ to daj mi $* : \textbf{1}$, a jeżeli chcesz zrobić ścieżkę $0_{\textbf{2}} = 1_{\textbf{2}}$, to daj mi $x : \textbf{0}$.
+	\item Podobnie jak poprzednio, naszą charakteryzację możemy zinterpretować regułowo.
+	\item $\decode$ jest tutaj regułą wprowadzania. Dokładnie opisuje ona, jak zrobić każdą z 4 potencjalnie możliwych ścieżek, np. jeżeli chcesz zrobić ścieżkę $0_{\textbf{2}} = 0_{\textbf{2}}$ to daj mi $* : \textbf{1}$, a jeżeli chcesz zrobić ścieżkę $0_{\textbf{2}} = 1_{\textbf{2}}$, to daj mi $x : \textbf{0}$.
 	\item $\encode$ to reguła eliminacji. Dla faktycznie równych argumentów nie mówi nam ona nic ciekawego. Dla różnych argumentów daje nam ona natomiast sprzeczność.
 	\item Twierdzenie decode-encode to reguła obliczania, a twierdzenie encode-decode to reguła unikalności.
-	\item Reguły obliczania i unikalności są mało ciekawe, a dodatkowo mogą się różnić w zależności od sposobu, w jaki udowodniono twierdzenie. W naszym przypadku akurat jest tylko jeden słuszny sposób, ale w przypadku bardziej skomplikowanych typów niekoniecznie.
+	\item Reguły obliczania i unikalności są mało ciekawe, a dodatkowo mogą się różnić w zależności od sposobu, w jaki udowodniono twierdzenie. W naszym przypadku akurat jest tylko jeden słuszny sposób, ale w przypadku bardziej skomplikowanych typów niekoniecznie.
 \end{itemize}
 \end{frame}
 
@@ -961,7 +962,7 @@ Jeżeli $f : A \to B$ jest równoważnością, to dla dowolnych $x, y : A$ funkc
 \end{block}
 
 \begin{block}{Dowód}
-Odwrotnością $\text{ap}_f$ jest oczywiście $\text{ap}_{\finv{f}}$.
+Odwrotnością $\text{ap}_f$ jest oczywiście $\text{ap}_{\finv{f}}$.
 \end{block}
 
 \makebox[\linewidth]{\parbox{12cm}
@@ -974,8 +975,8 @@ Odwrotnością $\text{ap}_f$ jest oczywiście $\text{ap}_{\finv{f}}$.
 \begin{frame}{Ścieżki między ścieżkami 2 - interpretacja}
 \begin{itemize}
 	\item Z powyższego twierdzenia płyną daleko idące wnioski.
-	\item Jeżeli mamy charakteryzację typu $A$ za pomocą równowazności $A \simeq B$, to mamy też charakteryzację ścieżek w $A$ (na dowolnym poziomie) za pomocą ścieżek w $B$.
-	\item Jeżeli mamy charakteryzację ścieżek między punktami w $A$, to mamy charakteryzację dowolnych ścieżek w $A$.
+	\item Jeżeli mamy charakteryzację typu $A$ za pomocą równoważności $A \simeq B$, to mamy też charakteryzację ścieżek w $A$ (na dowolnym poziomie) za pomocą ścieżek w $B$.
+	\item Jeżeli mamy charakteryzację ścieżek między punktami w $A$, to mamy charakteryzację dowolnych ścieżek w $A$.
 	\item Tak więc ścieżki między ścieżkami między parami to pary ścieżek między ścieżkami między komponentami par.
 	\item Ścieżki między ścieżkami między funkcjami to homotopie na $\happly$.
 \end{itemize}
@@ -997,22 +998,22 @@ $\displaystyle \text{Semigroup} \defn \sum_{A : \U} \sum_{m : A \to A \to A} \pr
 
 \begin{frame}{Strukturalizm 2 - filozofia w praktyce}
 \begin{itemize}
-	\item Strukturalizm to filozofia matematyki, która twierdzi, że teorie matematyczne opisują strukturę obiektów matematycznych.
-	\item Strukturę obiektu można rozumieć jako związki łączące go z innymi obiektami.
+	\item Strukturalizm to filozofia matematyki, która twierdzi, że teorie matematyczne opisują strukturę obiektów matematycznych.
+	\item Strukturę obiektu można rozumieć jako związki łączące go z innymi obiektami.
 	\item Wobec tego obiekty matematyczne nie posiadają żadnych wewnętrznych właściwości i są zdeterminowane przez swoją strukturę.
 	\item W praktyce znaczy to na przykład, że ze strkturalistycznego punktu widzenia izomorficzne półgrupy są identyczne.
-	\item HoTT świetnie realizuje filozoficzne założenia strukturalizmu - jak się przekonaliśmy, izomorficzne półgrupy faktycznie są równe, czyli połączone ścieżką w typie półgrup. 
+	\item HoTT świetnie realizuje filozoficzne założenia strukturalizmu - jak się przekonaliśmy, izomorficzne półgrupy faktycznie są równe, czyli połączone ścieżką w typie półgrup.
 \end{itemize}
 
 \end{frame}
 
 \section{HITy}
 
-\subsection{Część 1}
+\subsection{Część 1}
 
 \begin{frame}{Typy induktywne 1 - przypomnienie}
 \begin{itemize}
-	\item Typ induktywny to typ wygenerowany w sposób ``wolny'' przez kolekcję konstruktorów.
+	\item Typ induktywny to typ wygenerowany w sposób ``wolny'' przez kolekcję konstruktorów.
 	\item Typ $\textbf{0}$ jest generowany przez brak konstruktorów.
 	\item Typ $\textbf{1}$ jest generowany przez konstruktor $* : \textbf{1}$
 	\item Typ $\textbf{2}$ jest generowany przez konstruktory $0_{\textbf{2}} : \textbf{2}$ oraz $1_{\textbf{2}} : \textbf{2}$.
@@ -1024,44 +1025,44 @@ $\displaystyle \text{Semigroup} \defn \sum_{A : \U} \sum_{m : A \to A \to A} \pr
 
 \begin{frame}{Typy induktywne 2 - więcej przykładów}
 
-Za pomocą typów induktywnych da się zdefiniować dużo różnych rzeczy. Ćwiczenie: spróbuj zdefiniować:
+Za pomocą typów induktywnych da się zdefiniować dużo różnych rzeczy. Ćwiczenie: spróbuj zdefiniować:
 \begin{itemize}
 	\item Rodzinę $\text{Tree}$ drzew trzymających elementy danego typu wyłącznie w liściach (drzewo może być puste).
-	\item Rodzinę $\text{Sorted}$ taką, że $\text{Sorted}(R, l)$ ma element, gdy lista $l$ jest posortowana według relacji porządku $R$ i nie ma elementu w przeciwnym razie.
-	\item Rodzinę $\text{Perm}$ taką, że $\text{Perm}(l_1, l_2)$ ma element, gdy $l_1$ jest permutacją $l_2$ i nie ma elementu, gdy $l_1$ nie jest permutacją $l_2$.
+	\item Rodzinę $\text{Sorted}$ taką, że $\text{Sorted}(R, l)$ ma element, gdy lista $l$ jest posortowana według relacji porządku $R$ i nie ma elementu w przeciwnym razie.
+	\item Rodzinę $\text{Perm}$ taką, że $\text{Perm}(l_1, l_2)$ ma element, gdy $l_1$ jest permutacją $l_2$ i nie ma elementu, gdy $l_1$ nie jest permutacją $l_2$.
 	\item Rodzinę $\text{FreeMon}$ taką, że typ $\text{FreeMon}(A)$ jest wolnym monoidem na typie $A$. Uwaga: podchwytliwe.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Wyższe typy induktywne 1 - motywacja}
 
-Typy induktywne nie są jednak wszechmocne. Niektórych rzeczy zdefiniować się nie da:
+Typy induktywne nie są jednak wszechmocne. Niektórych rzeczy zdefiniować się nie da:
 \begin{itemize}
-	\item Nie da się zdefiniować typów ilorazowych, np. nie da się zdefiniować liczb wymiernych $\mathbb{Q}$ jako par $\mathbb{Z} \times \mathbb{Z}$ podzielonych przez relację równoważności $\sim$ zdefiniowaną jako $(a, b) \sim (a', b') \defn ab' = a'b$.
-	\item Nie da się zdefiniować rodziny $\text{FreeGrp}$, która reprezentuje grupę wolną na danym typie.
-	\item W ogólności, nie da się zdefiniować niczego, co wymaga utożsamienia ze sobą dwóch elementów danego typu. Wynika to z faktu, że konstruktory typów induktywnych są injektywne.
+	\item Nie da się zdefiniować typów ilorazowych, np. nie da się zdefiniować liczb wymiernych $\mathbb{Q}$ jako par $\mathbb{Z} \times \mathbb{Z}$ podzielonych przez relację równoważności $\sim$ zdefiniowaną jako $(a, b) \sim (a', b') \defn ab' = a'b$.
+	\item Nie da się zdefiniować rodziny $\text{FreeGrp}$, która reprezentuje grupę wolną na danym typie.
+	\item W ogólności, nie da się zdefiniować niczego, co wymaga utożsamienia ze sobą dwóch elementów danego typu. Wynika to z faktu, że konstruktory typów induktywnych są injektywne.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Wyższe typy induktywne 2 - sposób}
 \begin{itemize}
-	\item Wyższe typy induktywne generalizują typy induktywne w następujący sposób.
-	\item Pozwalamy sobie na to, że poza zwykłymi konstruktorami (które od teraz będziemy nazywać konstruktorami punktów) możemy robić też konstruktory ścieżek, które wkładają do typu nowe ścieżki.
-	\item Ponieważ ścieżki to równość, możemy dzięki temu utożsamiać ze sobą różne punkty i w ten sposób zdefiniować rzeczy z powyższego slajdu.
-	\item Ale otwierają się przed nami również inne możliwości: możemy bezpośrednio definiować przestrzenie topologiczne takie jak odcinek albo okrąg, wesołe konstrukcje logiczne takie jak $n$-trunkacja, która przekształca dany typ w $n$-typ, oraz rzeczy przydatne w teorii kategorii, np. kogranice.
+	\item Wyższe typy induktywne generalizują typy induktywne w następujący sposób.
+	\item Pozwalamy sobie na to, że poza zwykłymi konstruktorami (które od teraz będziemy nazywać konstruktorami punktów) możemy robić też konstruktory ścieżek, które wkładają do typu nowe ścieżki.
+	\item Ponieważ ścieżki to równość, możemy dzięki temu utożsamiać ze sobą różne punkty i w ten sposób zdefiniować rzeczy z powyższego slajdu.
+	\item Ale otwierają się przed nami również inne możliwości: możemy bezpośrednio definiować przestrzenie topologiczne takie jak odcinek albo okrąg, wesołe konstrukcje logiczne takie jak $n$-trunkacja, która przekształca dany typ w $n$-typ, oraz rzeczy przydatne w teorii kategorii, np. kogranice.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Wyższe typy induktywne 3 - filozofia}
 \begin{itemize}
-	\item Przypomnijmy, że w typach zdefiniowanych przez wyższą indukcję mogą być rzeczy, których tam nie włożyliśmy. Np. jeżeli wrzucimy do typu jakąś ścieżkę $p$, to pojawi się w nim także ścieżka $p^{-1}$.
-	\item A priori nie wiadomo, jak się zachowują włożone przez nas ścieżki. Mogą one być trywialne albo i nie.
-	\item Mimo, że możemy do typu dodawać ścieżki, to wciąż definiujemy pojedynczy typ - nie redefiniujemy typu $=$. Definiowany przez nas typ dostanie swoją własną regułę indukcji, a reguła indukcji po ścieżkach pozostanie taka jak była - nowe ścieżki nie mają na nią wpływu.
-	\item Wymiar konstruktora ma nikły wpływ na strukturę ścieżek: jeżeli definiując $B$ dodamy konstruktor punktów typu $A \to B$, to wszystkie ścieżki z $A$ zostają wstrzyknięte do $B$.
+	\item Przypomnijmy, że w typach zdefiniowanych przez wyższą indukcję mogą być rzeczy, których tam nie włożyliśmy. Np. jeżeli wrzucimy do typu jakąś ścieżkę $p$, to pojawi się w nim także ścieżka $p^{-1}$.
+	\item A priori nie wiadomo, jak się zachowują włożone przez nas ścieżki. Mogą one być trywialne albo i nie.
+	\item Mimo, że możemy do typu dodawać ścieżki, to wciąż definiujemy pojedynczy typ - nie redefiniujemy typu $=$. Definiowany przez nas typ dostanie swoją własną regułę indukcji, a reguła indukcji po ścieżkach pozostanie taka jak była - nowe ścieżki nie mają na nią wpływu.
+	\item Wymiar konstruktora ma nikły wpływ na strukturę ścieżek: jeżeli definiując $B$ dodamy konstruktor punktów typu $A \to B$, to wszystkie ścieżki z $A$ zostają wstrzyknięte do $B$.
 \end{itemize}
 \end{frame}
 
-\subsection{Część 2}
+\subsection{Część 2}
 
 \begin{frame}{Odcinek 1 - definicja}
 
@@ -1132,18 +1133,18 @@ $
 \begin{frame}{Odcinek 2 - uwagi}
 \begin{itemize}
 	\item Dla wyższych typów tak jak i dla zwykłych mamy 5 rodzajów reguł.
-	\item Reguły formacji i eliminacji pozostają bez zmian.
-	\item Reguły wprowadzania mogą robić ścieżki między punktami definiowanego typu.
-	\item Reguły obliczania dla punktów również nie ulegają zmianom. Musimy jednak zadbać o to, żeby napisać reguły obliczania dla ścieżek. Robimy to za pomocą funkcji $\text{ap}$ (dla rekursora) i $\text{apd}$ (dla reguły indukcji). Ponieważ $\text{apd}$ został zdefiniowany wewnątrz naszej teorii, a reguły żyją na metapoziomie, to reguły obliczania dla ścieżek nie są definicyjne (tzn. $\equiv$), tylko same są ścieżkami i wobec tego musimy je jakoś nazwać.
-	\item Wobec tego definiując za pomocą równań i dopasowania do wzorca w przypadku ścieżek będziemy używać hybrydowej notacji $:=$
+	\item Reguły formowania i eliminacji pozostają bez zmian.
+	\item Reguły wprowadzania mogą robić ścieżki między punktami definiowanego typu.
+	\item Reguły obliczania dla punktów również nie ulegają zmianom. Musimy jednak zadbać o to, żeby napisać reguły obliczania dla ścieżek. Robimy to za pomocą funkcji $\text{ap}$ (dla rekursora) i $\text{apd}$ (dla reguły indukcji). Ponieważ $\text{apd}$ został zdefiniowany wewnątrz naszej teorii, a reguły żyją na metapoziomie, to reguły obliczania dla ścieżek nie są definicyjne (tzn. $\equiv$), tylko same są ścieżkami i wobec tego musimy je jakoś nazwać.
+	\item Wobec tego definiując za pomocą równań i dopasowania do wzorca w przypadku ścieżek będziemy używać hybrydowej notacji $:=$
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Odcinek 3 - o co tak naprawdę chodzi w indukcji}
 \begin{itemize}
 	\item Jeżeli reguła eliminacji dla odcinka wydaje ci się mistyczna, to posłuchaj poniższej bajki na temat indukcji.
-	\item Każdy typ induktywny ma pewną strukturę. W przypadku odcinka są to punkty $\IZ$ i $\II$ wraz z łączącą je ścieżką $\seg$.
-	\item Rekursor (czyli upośledzona reguła eliminacji) mówi, że jeżeli znajdziemy w jakimś typie taką samą strukturę (dwa punkty $a_0$ i $a_1$ połączone ścieżką $p$), to możemy zrobić funkcję $f$, która spełnia $f(\IZ) \defn a_0, f(\II) \defn a_1, \ap{f}{\seg} := p$.
+	\item Każdy typ induktywny ma pewną strukturę. W przypadku odcinka są to punkty $\IZ$ i $\II$ wraz z łączącą je ścieżką $\seg$.
+	\item Rekursor (czyli upośledzona reguła eliminacji) mówi, że jeżeli znajdziemy w jakimś typie taką samą strukturę (dwa punkty $a_0$ i $a_1$ połączone ścieżką $p$), to możemy zrobić funkcję $f$, która spełnia $f(\IZ) \defn a_0, f(\II) \defn a_1, \ap{f}{\seg} := p$.
 	\item Reguła eliminacji z poprzedniego slajdu jest uogólnieniem powyższego opisu na typy zależne.
 \end{itemize}
 \end{frame}
@@ -1155,7 +1156,7 @@ $\isContr(\I)$
 \end{block}
 
 \begin{block}{6.3.2 Odcinek implikuje ekstensjonalność}
-Niech $f, g : A \to B$ będą funkcjami i niech $H : \Pi x : A. f(x) = g(x)$ będzie homotopią. Wtedy $f = g$ bez używania aksjomatu ekstensjonalności.
+Niech $f, g : A \to B$ będą funkcjami i niech $H : \Pi x : A. f(x) = g(x)$ będzie homotopią. Wtedy $f = g$ bez używania aksjomatu ekstensjonalności.
 \end{block}
 
 \end{frame}
@@ -1199,7 +1200,7 @@ $\looop \neq \refl{\base}$
 \end{block}
 
 \begin{block}{Dowód lematu 6.4.1}
-Załóżmy, że $\looop = \refl{\base}$. Weźmy dowolny typ $A$ z punktem $x : A$ i pętlą $p : x = x$ (są takie). Wtedy na mocy rekursora dla $\hS$ możemy zdefiniować funkcję $f : \hS \to A$ następująco: \\
+Załóżmy, że $\looop = \refl{\base}$. Weźmy dowolny typ $A$ z punktem $x : A$ i pętlą $p : x = x$ (są takie). Wtedy na mocy rekursora dla $\hS$ możemy zdefiniować funkcję $f : \hS \to A$ następująco: \\
 
 $f(\base) \defn x$ \\
 $\ap{f}{\looop} := p$ \\
@@ -1215,15 +1216,15 @@ Mamy stąd $p = \ap{f}{\looop} = \ap{f}{\refl{\base}} = \refl{f(\base)} = \refl{
 
 \begin{frame}{Klasyfikacja typów}
 \begin{itemize}
-	\item W HoTT poza punktami mamy też różne mniej lub bardziej skomplikowane ścieżki.
-	\item Wobec tego mądrym pomysłem wydaje się klasyfikowanie typów ze względu na złożoność ścieżek, jakie w nich występują.
-	\item $n$-typ, to (w przybliżeniu) typ, w którym wszystkie ścieżki powyżej $n$-tego poziomu są trywialne. $n$-typy bywają też nazywane typami $n$-obciętymi (ang. $n$-truncated).
+	\item W homotopicznej teorii typów poza punktami mamy też różne mniej lub bardziej skomplikowane ścieżki.
+	\item Wobec tego mądrym pomysłem wydaje się klasyfikowanie typów ze względu na złożoność ścieżek, jakie w nich występują.
+	\item $n$-typ, to (w przybliżeniu) typ, w którym wszystkie ścieżki powyżej $n$-tego poziomu są trywialne. $n$-typy bywają też nazywane typami $n$-obciętymi (ang. $n$-truncated).
 	\item Dualnym pojęciem jest pojęcie $n$-spójności (ang. $n$-connectedness). Typ $n$-spójny to taki, w którym wszystkie ścieżki poniżej $n$-tego poziomu są trywialne.
-	\item My zajmiemy się tylko typami $n$-obciętymi. Zanim jednak omówimy je w ogólności, zobaczmy kilka pierwszych poziomów.
+	\item My zajmiemy się tylko typami $n$-obciętymi. Zanim jednak omówimy je w ogólności, zobaczmy kilka pierwszych poziomów.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Ściągalność 1 - definicja i właściwości}
+\begin{frame}{Ściągalność 1 - definicja i właściwości}
 
 \begin{block}{Ściągalność}
 $
@@ -1238,10 +1239,10 @@ Typ jest ściągalny gdy ma punkt centralny, który jest połączony ścieżką 
 
 \begin{frame}{Ściągalność 2 - filozofowanie}
 \begin{itemize}
-	\item Mogłoby się wydawać, że ściągalność jest nieciekawa, skoro typy ściągalne są równoważne (czyli równe, dzięki uniwalencji) typowi $\textbf{1}$.
-	\item Kluczowy jest jednak fakt, że typy, które same w sobie są wysoce nietrywialne i z pewnością nie są ściągalne, złożone do kupy mogą dać typ, który jest ściągalny.
-	\item Jest tak dlatego, że wzajemne zależności między obiektami mogą wykluczyć wszystkie kombinacje poza jedną.
-	\item Najprostszym przykładem tego rodzaju jest sparowanie jakiegoś obiektu ze specyfikacją, która charakterzyuje go w sposób unikalny.
+	\item Mogłoby się wydawać, że ściągalność jest nieciekawa, skoro typy ściągalne są równoważne (czyli równe, dzięki uniwalencji) typowi $\textbf{1}$.
+	\item Kluczowy jest jednak fakt, że typy, które same w sobie są wysoce nietrywialne i z pewnością nie są ściągalne, złożone do kupy mogą dać typ, który jest ściągalny.
+	\item Jest tak dlatego, że wzajemne zależności między obiektami mogą wykluczyć wszystkie kombinacje poza jedną.
+	\item Najprostszym przykładem tego rodzaju jest sparowanie jakiegoś obiektu ze specyfikacją, która charakterzyuje go w sposób unikalny.
 	\item Co ważne, nawet jeżeli typ jest ściągalny, to zachowuje swoje właściwości obliczeniowe.
 \end{itemize}
 \end{frame}
@@ -1249,7 +1250,7 @@ Typ jest ściągalny gdy ma punkt centralny, który jest połączony ścieżką 
 \begin{frame}{Ściągalność 3 - przykłady}
 \begin{itemize}
 	\item Oczywiście $\textbf{1}$ jest ściągalny.
-	\item Odcinek $\I$ jest ściągalny. Mimo tego, jak widzieliśmy, może on posłużyć nam do udowodnienia aksjomatu ekstensjonalności.
+	\item Odcinek $\I$ jest ściągalny. Mimo tego, jak widzieliśmy, może on posłużyć nam do udowodnienia aksjomatu ekstensjonalności.
 	\item Ściągalny jest typ funkcji sortujących. Mimo, że funkcji między listami jest dużo, to dobrze wyrażona specyfikacja sortowania unikalnie charateryzuje jedyną słuszną funkcję sortującą.
 	\item Dla dowolnego $a : A$ typ $\sum_{x : A} a = x$ jest ściągalny i dlatego właśnie indukcja po ścieżkach (w wersji based) działa.
 	\item Podobnie ściągalny jest typ $\sum_{x,y : A} x = y$ i dlatego właśnie indukcja po ścieżkach (w wersji unbased) działa.
@@ -1264,7 +1265,7 @@ $\Prop \defn \sum_{A : \U} \isProp(A)$
 \end{block}
 
 \begin{itemize}
-	\item Zdanie to typ, który może mieć co najwyżej jeden punkt. Przypomina to tradycyjną logikę: twierdzenie (zdanie) może mieć dowód albo nie.
+	\item Zdanie to typ, który może mieć co najwyżej jeden punkt. Przypomina to tradycyjną logikę: twierdzenie (zdanie) może mieć dowód albo nie.
 	\item $\textbf{0}$ i $\textbf{1}$ są zdaniami. Odpowiadają one fałszowi i prawdzie.
 	\item Dla każdego $A : \U$ typ $\neg A \defn A \to \textbf{0}$ jest zdaniem.
 	\item Typ $\isequiv(f)$ jest zdaniem, ale typ $\qinv(f)$ może NIE być zdaniem i dlatego właśnie mieliśmy problem.
@@ -1283,11 +1284,11 @@ $\Set \defn \sum_{A : \U} isSet(A)$
 \end{block}
 
 \begin{itemize}
-	\item Intuicyjnie: zbiór to typ, w którym może być dużo punktów, ale nie są one połączone ścieżkami (tzn. wszystkie ścieżki są trywialne).
+	\item Intuicyjnie: zbiór to typ, w którym może być dużo punktów, ale nie są one połączone ścieżkami (tzn. wszystkie ścieżki są trywialne).
 	\item Każde zdanie jest zbiorem, więc w szczególności $\textbf{0}$ i $\textbf{1}$.
 	\item Na mocy naszej charakteryzacji typ $\textbf{2}$ jest zbiorem.
 	\item Typ $\mathbb{N}$ jest zbiorem (ćwiczenie: udowodnij za pomocą metody encode-decode).
-	\item Wszystko, co jesteśmy w stanie zdefiniować za pomocą zwykłych typów induktywnych jest zbiorem, pod warunkiem że jako argumenty konstruktorów również bierze zbiory.
+	\item Wszystko, co jesteśmy w stanie zdefiniować za pomocą zwykłych typów induktywnych jest zbiorem, pod warunkiem że jako argumenty konstruktorów również bierze zbiory.
 \end{itemize}
 
 \end{frame}
@@ -1300,16 +1301,16 @@ $\Grpd \defn \sum_{A : \U} \isGrpd(A)$
 \end{block}
 
 \begin{itemize}
-	\item Grupoid to typ, który może mieć punkty i ścieżki między punktami, ale nie może mieć ścieżek między ścieżkami.
+	\item Grupoid to typ, który może mieć punkty i ścieżki między punktami, ale nie może mieć ścieżek między ścieżkami.
 	\item Okrąg $\hS$ jest grupoidem - widzieliśmy, że pętla $\looop$ nie jest trywialna.
-	\item Uniwersum wszystkich zbiorów $\Set$ jest grupoidem, ponieważ typ $\textbf{2}$ ma nietrywialną pętlę, zrobioną z negacji boolowskiej za pomocą aksjomatu uniwalencji. Nie jest ona trywialna, bo negacja nie jest identycznością.
+	\item Uniwersum wszystkich zbiorów $\Set$ jest grupoidem, ponieważ typ $\textbf{2}$ ma nietrywialną pętlę, zrobioną z negacji boolowskiej za pomocą aksjomatu uniwalencji. Nie jest ona trywialna, bo negacja nie jest identycznością.
 \end{itemize}
 
 \end{frame}
 
 \begin{frame}{$n$-typy 1 - definicja}
 
-Na mocy pewnych zaszłości historycznych numerowanie $n$-typów zaczyna się od $-2$, a nie od $0$.
+Na mocy pewnych zaszłości historycznych numerowanie $n$-typów zaczyna się od $-2$, a nie od $0$.
 
 \begin{block}{$n$-typ}
 $\text{is-}(-2)\text{-Type}(A) \defn \sum_{c : A} \prod_{x : A} c = x$ \\
@@ -1329,11 +1330,11 @@ Widać, że:
 
 \begin{frame}{$n$-typy 2 - właściwości}
 \begin{itemize}
-	\item Jeżeli $A$ jest $n$-typem, to jest też $(n + 1)$-typem. Intuicyjnie: skoro $A$ ma trywialną strukturę powyżej poziomu $n$, to ma też trywialną strukturę powyżej poziomu $(n + 1)$
-	\item Jeżeli $A : \U$ jest $n$-typem i $B : A \to \U$ jest rodziną $n$-typów, to $\sum_{x : A} B(x)$ oraz $\prod_{x : A} B(x)$ także są $n$-typami.
-	\item W szczególności jeżeli $A$ i $B$ są $n$-typami, to $A \times B$ oraz $A \to B$ także są $n$-typami.
-	\item Jeżeli $A$ i $B$ są $n$-typami dla $n \geq 0$, to $A + B$ jest $n$-typem.
-	\item Uwaga: jeżeli $A$ i $B$ są $-2$-typami, to $A + B$ jest $0$-typem. Podobnie jeżeli $A$ i $B$ są $-1$-typami, to $A + B$ może być $-2$-typem, $-1$-typem lub $0$-typem.
+	\item Jeżeli $A$ jest $n$-typem, to jest też $(n + 1)$-typem. Intuicyjnie: skoro $A$ ma trywialną strukturę powyżej poziomu $n$, to ma też trywialną strukturę powyżej poziomu $(n + 1)$
+	\item Jeżeli $A : \U$ jest $n$-typem i $B : A \to \U$ jest rodziną $n$-typów, to $\sum_{x : A} B(x)$ oraz $\prod_{x : A} B(x)$ także są $n$-typami.
+	\item W szczególności jeżeli $A$ i $B$ są $n$-typami, to $A \times B$ oraz $A \to B$ także są $n$-typami.
+	\item Jeżeli $A$ i $B$ są $n$-typami dla $n \geq 0$, to $A + B$ jest $n$-typem.
+	\item Uwaga: jeżeli $A$ i $B$ są $-2$-typami, to $A + B$ jest $0$-typem. Podobnie jeżeli $A$ i $B$ są $-1$-typami, to $A + B$ może być $-2$-typem, $-1$-typem lub $0$-typem.
 	\item Typ $\text{is-}n\text{-Type}$ jest zdaniem.
 \end{itemize}
 \end{frame}
@@ -1346,7 +1347,7 @@ Widać, że:
 	\item $n$-te uniwersum $\U_n$ nie jest $n$-typem.
 	\item W klasycznej teorii homotopii $k$-wymiarowa (hiper)sfera $\mathbb{S}^k$ nie jest $n$-typem dla żadnego $k \geq 2$. W HoTTBooku nie ma na to dowodu.
 	\item Jeżeli powyższe jest prawdą, to żadne uniwersum nie jest $n$-typem, bo zawiera hipersferę.
-	\item Konkretny (kontr)przykład (8.8.6): Niech $A \defn \prod_{n : \mathbb{N}} B(n)$, gdzie $B : \mathbb{N} \to \U$ jest taką rodziną typów, że typ $B(n)$ zawiera $n$-pętlę, która nie jest równa trywialnej $n$-pętli. Wtedy $A$ nie jest $n$-typem dla żadnego $n : \mathbb{N}$.
+	\item Konkretny (kontr)przykład (8.8.6): Niech $A \defn \prod_{n : \mathbb{N}} B(n)$, gdzie $B : \mathbb{N} \to \U$ jest taką rodziną typów, że typ $B(n)$ zawiera $n$-pętlę, która nie jest równa trywialnej $n$-pętli. Wtedy $A$ nie jest $n$-typem dla żadnego $n : \mathbb{N}$.
 \end{itemize}
 \end{frame}
 
@@ -1356,16 +1357,16 @@ Widać, że:
 
 \begin{frame}{Logika}
 \begin{itemize}
-	\item Poznawszy wszystkie trzy filary HoTT rzućmy na koniec okiem na konsekwencje, jakie niosą one dla logiki.
-	\item W teorii typów częstym sloganem jest ``propositions as types'', który pozwala nam kodować zdania jako typy.
+	\item Poznawszy wszystkie trzy filary homotopicznej teorii typów, rzućmy na koniec okiem na konsekwencje, jakie niosą one dla logiki.
+	\item W teorii typów częstym sloganem jest ``propositions as types'', który pozwala nam kodować zdania jako typy.
 	\item Wiemy już jednak, że nasze typy reprezentują $\omega$-grupoidy (czyli przestrzenie). Poznaliśmy też typ zdań $\Prop$ - są to przestrzenie mogące mieć co najwyżej jeden punkt.
-	\item Spróbujmy jakoś uporządkować ten konceptualny bałagan.
+	\item Spróbujmy jakoś uporządkować ten konceptualny bałagan.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Logika klasyczna 1 - problem}
 
-Większość matematyki jest robiona klasycznie, mimo że jest to niegodziwe. Wobec tego my też chcielibyśmy w ostateczności móc zrobić trochę klasycznej matematyki. Sprawy się jednak komplikują.
+Większość matematyki jest robiona klasycznie, mimo że jest to niegodziwe. Wobec tego my też chcielibyśmy w ostateczności móc zrobić trochę klasycznej matematyki. Sprawy się jednak komplikują.
 
 \begin{block}{3.2.2 Prawo podwójnej negacji nie zachodzi dla dowolnych typów}
 $\neg \prod_{A : \U} \neg\neg A \to A$
@@ -1385,12 +1386,12 @@ $\neg \prod_{A : \U} F(A) \to A$
 
 \begin{frame}{Logika klasyczna 2 - interpretacja}
 \begin{itemize}
-	\item Dowód lematu 3.2.2 jest dość techniczny. Ciężko go zobrazować.
-	\item Typ $\neg\neg A$ możemy zinterpretować jako typ $A$, z którego wyrzucono wszystko poza jednym punktem, o ile były w nim jakieś punkty.
-	\item Wobec tego typ $\neg\neg A \to A$ możemy zinterpretować jako operację odzyskującą z tak obciętego typu jakiś punkt.
-	\item Można tę operację wykonać dla każdego typu z osobna, ale nie można tego zrobić w taki sam sposób dla wszystkich typów.
+	\item Dowód lematu 3.2.2 jest dość techniczny. Ciężko go zobrazować.
+	\item Typ $\neg\neg A$ możemy zinterpretować jako typ $A$, z którego wyrzucono wszystko poza jednym punktem, o ile były w nim jakieś punkty.
+	\item Wobec tego typ $\neg\neg A \to A$ możemy zinterpretować jako operację odzyskującą z tak obciętego typu jakiś punkt.
+	\item Można tę operację wykonać dla każdego typu z osobna, ale nie można tego zrobić w taki sam sposób dla wszystkich typów.
 	\item Uogólnienie lematu pokazuje, że problemem faktycznie nie jest podwójna negacja, ale utrata informacji związana z obcięciem przestrzeni.
-	\item Jeżeli przyjrzeć się dowodowi z książki, to ostateczna konkluzja brzmi: (naiwne) prawo wyłączonego środka jest sprzeczne z aksjomatem uniwalencji.
+	\item Jeżeli przyjrzeć się dowodowi z książki, to ostateczna konkluzja brzmi: (naiwne) prawo wyłączonego środka jest sprzeczne z aksjomatem uniwalencji.
 \end{itemize}
 \end{frame}
 
@@ -1412,18 +1413,18 @@ Powyższe definicje pokazują, jak wyglądają poprawnie sformułowane prawo pod
 
 \begin{frame}{Trunkacja 1 - motywacja}
 \begin{itemize}
-	\item Okazało się, że nasze typy zawierają za dużo informacji, aby móc służyć jako zdania. Tylko niektóre z nich się do tego nadają.
-	\item Jednak to nie koniec problemów - nasze spójniki też nie są idealne. W tradycyjnej logice spójniki przekształcają zdania w zdania, u nas natomiast tak nie jest: suma dwóch zdań nie musi być zdaniem, np. $\textbf{1} + \textbf{1} = \textbf{2}$.
-	\item Jeszcze hardkorowiej sprawa ma się z sumą zależną: nawet jeżeli dla każdego $x : A$ typ $B(x)$ jest zdaniem, to typ $\sum_{A : \U} B(x)$ może być dowolnie skomplikowaną przestrzenią (bo $A$ może być dowolnie skomplikowaną przestrzenią).
-	\item Jak widać, nasze spójniki $+$ oraz $\sum$ są zbyt konstruktywne. Spróbujmy zatem wynaleźć takie, które zachowywałyby właściwość bycia zdaniem.
+	\item Okazało się, że nasze typy zawierają za dużo informacji, aby móc służyć jako zdania. Tylko niektóre z nich się do tego nadają.
+	\item Jednak to nie koniec problemów - nasze spójniki też nie są idealne. W tradycyjnej logice spójniki przekształcają zdania w zdania, u nas natomiast tak nie jest: suma dwóch zdań nie musi być zdaniem, np. $\textbf{1} + \textbf{1} = \textbf{2}$.
+	\item Jeszcze hardkorowiej sprawa ma się z sumą zależną: nawet jeżeli dla każdego $x : A$ typ $B(x)$ jest zdaniem, to typ $\sum_{A : \U} B(x)$ może być dowolnie skomplikowaną przestrzenią (bo $A$ może być dowolnie skomplikowaną przestrzenią).
+	\item Jak widać, nasze spójniki $+$ oraz $\sum$ są zbyt konstruktywne. Spróbujmy zatem wynaleźć takie, które zachowywałyby właściwość bycia zdaniem.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Trunkacja 2 - pomysł}
 \begin{itemize}
-	\item Pomysł jest prosty. Widzieliśmy już, że za pomocą wyższych typów induktywnych możemy dodawać do typów dowolne ścieżki.
-	\item Wobec tego moglibyśmy zdefiniować spójnik $\lor$ podobnie do $+$, ale wrzucić do niego tyle ścieżek, żeby jego wynik był zdaniem.
-	\item Będziemy jednak sprytniejsi i zdefiniujemy trunkację zdaniową (ang. propositional truncation) - operację, która zamienia każdy typ w zdanie.
+	\item Pomysł jest prosty. Widzieliśmy już, że za pomocą wyższych typów induktywnych możemy dodawać do typów dowolne ścieżki.
+	\item Wobec tego moglibyśmy zdefiniować spójnik $\lor$ podobnie do $+$, ale wrzucić do niego tyle ścieżek, żeby jego wynik był zdaniem.
+	\item Będziemy jednak sprytniejsi i zdefiniujemy trunkację zdaniową (ang. propositional truncation) - operację, która zamienia każdy typ w zdanie.
 \end{itemize}
 \end{frame}
 
@@ -1474,7 +1475,7 @@ $
 \begin{frame}{Trunkacja 4 - interpretacja}
 \begin{itemize}
 	\item Reguła wprowadzania $\tri{-}$ wstrzykuje punkty $A$ do $\trf{A}$.
-	\item Reguła wprowadzania $\text{all\_eq}$ sprawia, że wszystkie tak wstrzyknięte punkty są połączone ścieżkami każdy z każdym.
+	\item Reguła wprowadzania $\text{all\_eq}$ sprawia, że wszystkie tak wstrzyknięte punkty są połączone ścieżkami każdy z każdym.
 	\item Reguła eliminacji mówi nam, że jeżeli $A$ implikuje zdanie $B$, to zdanie $B$ wynika już z obciętego $A$.
 	\item Reguła obliczania to tylko formalność.
 \end{itemize}
@@ -1493,26 +1494,26 @@ $
 
 \begin{frame}{Logika zdań 2 - interpretacja}
 \begin{itemize}
-	\item Dysjunkcję definiujemy jako obciętą sumę rozłączną, zaś kwatyfikator egzystencjalny jako obciętą parę zależną. Tym sposobem uzyskujemy spójniki, za pomocą których możemy rozumować tak jak dotychczas, ale tylko gdy dowodzimy zdań.
-	\item Gdy konstruujemy jakieś obiekty, nie możemy pozbyć się trunkacji, a więc nie możemy uzależnić naszych konstrukcji od wyboru lewego lub prawego dysjunktu ani od konkretnego punktu występującego w sumie zależnej. Dzięki temu wiemy, że dysjunkcja jest prawdziwa, ale nie wiemy, który dysjunkt jej dowodzi. Podobnie wiemy, że istnieje punkt spełniający warunek, ale nie wiemy, jaki to punkt.
-	\item Zauważmy też, że dla zdań $P$ i $Q$ jeżeli $P \to Q$ oraz $Q \to P$, to $P \simeq Q$, a więc także $P = Q$. Aksjomat uniwalencji w przypadku zdań mówi nam, że ścieżki między zdaniami reprezentują równoważność logiczną.
-	\item Pozostałe spójniki zachowują właściwość bycia zdaniem.
+	\item Dysjunkcję definiujemy jako obciętą sumę rozłączną, zaś kwatyfikator egzystencjalny jako obciętą parę zależną. Tym sposobem uzyskujemy spójniki, za pomocą których możemy rozumować tak jak dotychczas, ale tylko gdy dowodzimy zdań.
+	\item Gdy konstruujemy jakieś obiekty, nie możemy pozbyć się trunkacji, a więc nie możemy uzależnić naszych konstrukcji od wyboru lewego lub prawego dysjunktu ani od konkretnego punktu występującego w sumie zależnej. Dzięki temu wiemy, że dysjunkcja jest prawdziwa, ale nie wiemy, który dysjunkt jej dowodzi. Podobnie wiemy, że istnieje punkt spełniający warunek, ale nie wiemy, jaki to punkt.
+	\item Zauważmy też, że dla zdań $P$ i $Q$ jeżeli $P \to Q$ oraz $Q \to P$, to $P \simeq Q$, a więc także $P = Q$. Aksjomat uniwalencji w przypadku zdań mówi nam, że ścieżki między zdaniami reprezentują równoważność logiczną.
+	\item Pozostałe spójniki zachowują właściwość bycia zdaniem.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Zasada unikalnego wyboru 1 - rozważania}
 \begin{itemize}
-	\item Może się wydawać, że nasza logika jest trochę upośledzona - brak możliwości rozłożenia sumy (rozłącznej/zależnej) na przypadki podczas konstrukcji może zniechęcać do ich używania.
+	\item Może się wydawać, że nasza logika jest trochę upośledzona - brak możliwości rozłożenia sumy (rozłącznej/zależnej) na przypadki podczas konstrukcji może zniechęcać do ich używania.
 	\item Jest jednak pewna sprytna technika, która pozwala obejść to ograniczenie.
 	\item Prezentuje się ona zazwyczaj tak: chcąc z $\trf{A}$ skonstruować $B$, które może nie być zdaniem, robimy predykat $P : B \to \U$, taki, że typ $\sum_{x : B} P(x)$ jest ściągalny. Wtedy przy konstruowaniu funkcji $\trf{A} \to \sum_{x : B} P(x)$ możemy pozbyć się trunkacji.
-	\item Po więcej zobacz rozdział 3.9 w HoTTBooku.
+	\item Po więcej zobacz rozdział 3.9 w HoTTBooku.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Zasada unikalnego wyboru 2 - przykład}
 	
 \begin{block}{Zadanie 3.19 i 3.23}
-Niech $P : \mathbb{N} \to \U$ będzie rodziną typów. Wtedy \\~\
+Niech $P : \mathbb{N} \to \U$ będzie rodziną typów. Wtedy \\~\
 
 \begin{center}
 $\displaystyle \left|\left|\sum_{n : \mathbb{N}} P(n)\right|\right| \to \sum_{n : \mathbb{N}} P(n)$
@@ -1520,14 +1521,14 @@ $\displaystyle \left|\left|\sum_{n : \mathbb{N}} P(n)\right|\right| \to \sum_{n 
 \end{block}
 
 \begin{block}{Dowód}
-Wiemy, że istnieje jakieś $n$ spełniające $P$, ale nie wiemy jakie, więc nie możemy go rozpakować. Zamiast konstruować dowolne $n$ spełniające $P$, możemy jednak skonstruować najmniejsze takie $n$, tzn. element typu $\sum_{n : \mathbb{N}} P(n) \times \prod_{m : \mathbb{N}} P(m) \to n \leq m$. Jest ono unikalne, a zatem cały ten typ jest zdaniem. Możemy teraz odpakować $n$ z przesłanki i zrobić przeszukiwanie od $n$ do $0$ w poszukiwaniu minimalnego $n$.
+Wiemy, że istnieje jakieś $n$ spełniające $P$, ale nie wiemy jakie, więc nie możemy go rozpakować. Zamiast konstruować dowolne $n$ spełniające $P$, możemy jednak skonstruować najmniejsze takie $n$, tzn. element typu $\sum_{n : \mathbb{N}} P(n) \times \prod_{m : \mathbb{N}} P(m) \to n \leq m$. Jest ono unikalne, a zatem cały ten typ jest zdaniem. Możemy teraz odpakować $n$ z przesłanki i zrobić przeszukiwanie od $n$ do $0$ w poszukiwaniu minimalnego $n$.
 \end{block}
 
 \end{frame}
 
 \begin{frame}{Aksjomat wyboru 1 - problem}
 
-Moglibyśmy pokusić się o sformułowanie Aksjomatu Wyboru w następujący sposób.
+Moglibyśmy pokusić się o sformułowanie Aksjomatu Wyboru w następujący sposób.
 
 \begin{block}{Aksjomat ``Wyboru'', który tak naprawdę nic nie wybiera}
 Dla typu $A : \U$, rodziny typów $B : A \to \U$ oraz rodziny typów $R : \prod_{x : A} B(x) \to \U$ zachodzi: \\~\
@@ -1538,13 +1539,13 @@ $\displaystyle
 $
 \end{block}
 
-Niestety ten sposób jest upośledzony, gdyż nie jest to aksjomat, tylko twierdzenie, i to bardzo proste do udowodnienia. Mankament ten wynika z faktu, że wszystkie wybory zostały już dokonane - nasza interpretacja sumy zależnej sprawia, że żeby uzyskać konkluzję, wystarczy odopwiednio przepakować przesłankę. Ten Aksjomat ``Wyboru'' jest zupełnie jak wybory w Polsce.
+Niestety ten sposób jest upośledzony, gdyż nie jest to aksjomat, tylko twierdzenie, i to bardzo proste do udowodnienia. Mankament ten wynika z faktu, że wszystkie wybory zostały już dokonane - nasza interpretacja sumy zależnej sprawia, że żeby uzyskać konkluzję, wystarczy odopwiednio przepakować przesłankę. Ten Aksjomat ``Wyboru'' jest zupełnie jak wybory w Polsce.
 
 \end{frame}
 
 \begin{frame}{Aksjomat wyboru 2 - trunkacja na ratunek}
 
-Jak nietrudno się domyślić, nasz problem możemy rozwiązać wciskają gdzie trzeba trunkację.
+Jak nietrudno się domyślić, nasz problem możemy rozwiązać wciskają gdzie trzeba trunkację.
 
 \begin{block}{Jedyny słuszny Aksjomat Wyboru w pełnej krasie}
 Dla zbioru $A : \Set$, rodziny zbiorów $B : A \to \Set$ oraz relacji (czyli rodziny zdań) $R : \prod_{x : A} B(x) \to \Prop$ zachodzi: \\~\
@@ -1554,7 +1555,7 @@ $\displaystyle
 	\left|\left|\sum_{f : \Pi x : A. B(x)} \prod_{x : A} R(x, f(x))\right|\right|
 $ \\~\
 
-W naszej nowej notacji logicznej możemy to zapisać tak: \\~\
+W naszej nowej notacji logicznej możemy to zapisać tak: \\~\
 
 $\displaystyle
 	(\forall x : A. \exists y : B(x). R(x, y)) \implies
@@ -1570,8 +1571,8 @@ $
 \begin{itemize}
 	\item Dzięki zastosowaniu trunkacji w przesłance wiemy, że dla $x : A$ istnieje jakieś $y : B(x)$, ale nie wiemy jakie. To sprawia, że żaden wybór nie został jeszcze dokonany.
 	\item Podobnie dzięki zastosowaniu trunkacji w konkluzji aksjomat mówi, że istnieje jakaś funkcja, ale nie wiadomo jaka. To sprawia, że żaden wybór nie został z góry dokonany.
-	\item Składając to do kupy widzimy, że tym razem Aksjomat Wyboru faktycznie coś wybiera.
-	\item Jednak to nie wszystko. Zwróć uwage, że ten aksjomat dotyczy jedynie zbiorów, rodzin zbiorów oraz relacji, w przeciwieństwie do poprzedniego, który dotyczył typów i rodzin typów.
+	\item Składając to do kupy widzimy, że tym razem Aksjomat Wyboru faktycznie coś wybiera.
+	\item Jednak to nie wszystko. Zwróć uwage, że ten aksjomat dotyczy jedynie zbiorów, rodzin zbiorów oraz relacji, w przeciwieństwie do poprzedniego, który dotyczył typów i rodzin typów.
 	\item Powód tego jest prosty (ale skomplikowany).
 \end{itemize}
 \end{frame}
@@ -1584,7 +1585,7 @@ Istnieje taki typ $A$ i rodzina zbiorów $B : A \to \U$, że Aksjomat Wyboru nie
 
 Dowód jest dość skomplikowany - po więcej zajrzyj do książki. \\~\
 
-W telefgraficznym skrócie: wszystkiemu winne są nietrywialne ścieżki. Nie możemy beztrosko wybierać punktów, nie zwracając na nie uwagi. Tak jak remedium w przypadku prawa wyłączonego środka było ograniczenie się do zdań, tak w przypadku Aksjomatu Wyboru jest nim ograniczenie się do zbiorów.
+W telefgraficznym skrócie: wszystkiemu winne są nietrywialne ścieżki. Nie możemy beztrosko wybierać punktów, nie zwracając na nie uwagi. Tak jak remedium w przypadku prawa wyłączonego środka było ograniczenie się do zdań, tak w przypadku Aksjomatu Wyboru jest nim ograniczenie się do zbiorów.
 
 \end{frame}
 
@@ -1592,9 +1593,9 @@ W telefgraficznym skrócie: wszystkiemu winne są nietrywialne ścieżki. Nie mo
 
 \begin{frame}{Ostateczne wątpliwości}
 \begin{itemize}
-	\item W ramach ostatecznych wątpliwości mogą nam się nasunąć różne pytania.
-	\item A co jeżeli Aksjomat Uniwalencji jest sprzeczny? Otóż nie jest. A jeżeli nie jest konstruktywny? Otóż jest. Świadkiem nam Kubiczna Teoria Typów. Jest to teoria typów, w której można programować za pomocą $n$-wymiarowych sześcianów: \url{https://ncatlab.org/nlab/show/cubical+type+theory}
-	\item Jaka jest ogólna składnia/schemat definiowania wyższych typów induktywnych? Co wolno a czego nie? Otóż nie do końca wiadomo, choć czynione są postępy: \url{http://drops.dagstuhl.de/opus/volltexte/2018/9190/}
+	\item W ramach ostatecznych wątpliwości mogą nam się nasunąć różne pytania.
+	\item A co jeżeli Aksjomat Uniwalencji jest sprzeczny? Otóż nie jest. A jeżeli nie jest konstruktywny? Otóż jest. Świadkiem nam Kubiczna Teoria Typów. Jest to teoria typów, w której można programować za pomocą $n$-wymiarowych sześcianów: \url{https://ncatlab.org/nlab/show/cubical+type+theory}
+	\item Jaka jest ogólna składnia/schemat definiowania wyższych typów induktywnych? Co wolno a czego nie? Otóż nie do końca wiadomo, choć czynione są postępy: \url{http://drops.dagstuhl.de/opus/volltexte/2018/9190/}
 	\item Jaka jest semantyka wyższych typów induktywnych? Jakaś jest: \url{https://arxiv.org/abs/1705.07088}, ale za dużo nie wiadomo.
 	\item Będzie z tej mąki chleb? Tak.
 \end{itemize}
@@ -1602,13 +1603,13 @@ W telefgraficznym skrócie: wszystkiemu winne są nietrywialne ścieżki. Nie mo
 
 \begin{frame}{Podsumowanie}
 
-HoTT daje nam:
+Homotopiczna teoria typów daje nam:
 \begin{itemize}
 	\item Wyobraźnię w postaci interpretacji homotopicznej.
 	\item Aksjomat Uniwalencji łatający filozoficzny smród i dający fajne sposoby rozumowania.
 	\item Wyższe typy induktywne, które dają nam możliwość konstruktywnego rozwiązania masy problemów.
-	\item Znacznie precyzyjniejszą analizę logiki, zarówno klasycznej jak i konstruktywnej.
-	\item Możliwość formalizowania matematyki z prawdziwego zdarzenia, w tym teorii homotopii za pomocą metod syntetycznych.
+	\item Znacznie precyzyjniejszą analizę logiki, zarówno klasycznej jak i konstruktywnej.
+	\item Możliwość formalizowania matematyki z prawdziwego zdarzenia, w tym teorii homotopii za pomocą metod syntetycznych.
 	\item ... i wiele więcej.
 \end{itemize}
 
@@ -1622,7 +1623,7 @@ Co łączy samobójcę, programistę imperatywnego, autobusiarza i homotopicznot
 
 \begin{frame}{Żart 2}
 
-Lubią pętle.
+Lubią pętle.
 
 \end{frame}
 
